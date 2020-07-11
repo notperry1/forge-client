@@ -27,8 +27,4 @@ public class CloudClientMain {
         System.out.println(NAME + " " + VERSION + " on Top.");
     }
 
-    {
-        // some example code
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-    }
 }
