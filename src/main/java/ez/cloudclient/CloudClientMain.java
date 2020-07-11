@@ -2,6 +2,7 @@ package ez.cloudclient;
 
 
 import ez.cloudclient.discord.DiscordRPC;
+import ez.cloudclient.event.EventManager;
 import ez.cloudclient.events.EventProcessor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -19,6 +20,7 @@ public class CloudClientMain {
     public static final String VERSION = "1.0";
     public static final String APP_ID = "731393813104558122";
     public static final String FULLNAME = "Cloud Client " + VERSION;
+    public static final EventManager EVENT_MANAGER = new EventManager<>();
 
     private static Logger logger;
 
@@ -30,8 +32,6 @@ public class CloudClientMain {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         Display.setTitle(NAME + " " + VERSION);
-        MinecraftForge.EVENT_BUS.register(new EventProcessor());
-        ez.cloudclient.ModuleManager.INSTANCE.init();
         System.out.println(NAME + " " + VERSION + " on Top.");
     }
 
