@@ -1,47 +1,42 @@
-package ez.cloudclient;
+package ez.cloudclient.module;
 
-import ez.cloudclient.module.Mod;
-import ez.cloudclient.module.mods.AutoTotem;
-import ez.cloudclient.module.mods.ElytraFly;
-import ez.cloudclient.module.mods.FullBright;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+import org.reflections.Reflections;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 
 public class ModuleManager {
-    public static ModuleManager INSTANCE = new ModuleManager();
-    private List<Mod> mods = new ArrayList<>();
+    public static final HashSet<Module> modules = new HashSet<>();
 
-    public ModuleManager() {
+    public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        modules.clear();
+        for (Class<? extends Module> aClass : new Reflections("ez.cloudclient.module.modules").getSubTypesOf(
+                Module.class
+        )) {
+            Module module = aClass.getConstructor().newInstance();
+            modules.add(module);
+        }
     }
 
-    public void init() {
-        mods.add(new AutoTotem());
-        mods.add(new FullBright());
-        mods.add(new ElytraFly());
+    public static <T extends Module> T getModuleByClass(Class<T> clazz) {
+        for (Module current : modules) {
+            if (current.getClass() == clazz) return (T) current;
+        }
+        return null;
     }
 
-    public void onRender(RenderWorldLastEvent event) {
-        mods.stream().filter(m -> m.isEnabled()).collect(Collectors.toList()).forEach(m -> m.onRender(event));
+    public static Module getModuleByName(String name) {
+        for (Module current : modules) {
+            if (current.name.equals(name) || current.displayName.equals(name)) return current;
+        }
+        return null;
     }
 
-    public void onTick(TickEvent.ClientTickEvent event) {
-        mods.stream().filter(m -> m.isEnabled()).collect(Collectors.toList()).forEach(m -> { m.onTick(event); });
-    }
-
-    public void onKeyInput(String key) {
-        mods.stream().filter(m -> m.isEnabled()).collect(Collectors.toList()).forEach(m -> m.onKeyInput(key));
-    }
-
-    public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        mods.stream().filter(m -> m.isEnabled()).collect(Collectors.toList()).forEach(m -> m.onRenderGameOverlay(event));
-    }
-
-    public List<Mod> getMods() {
-        return this.mods;
+    public static HashSet<Module> getModulesInCat(Module.Category category) {
+        HashSet<Module> modulesInCategory = new HashSet<>();
+        for (Module current : modules) {
+            if (current.category == category) modulesInCategory.add(current);
+        }
+        return modulesInCategory;
     }
 }
