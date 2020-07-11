@@ -6,7 +6,7 @@ Description: There was a severe problem during mod loading that has caused the g
 
 net.minecraftforge.fml.common.LoaderExceptionModCrash: Caught exception from Cloud Client (cloudclient)
 Caused by: java.lang.RuntimeException: Cloud Client received a fatal exception and can not be launched.
-	at ez.cloudclient.CloudClient.CloudClientMain.init(CloudClientMain.java:32)
+	at CloudClientMain.init(CloudClientMain.java:32)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

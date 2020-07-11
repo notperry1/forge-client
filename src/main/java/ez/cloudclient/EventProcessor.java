@@ -1,11 +1,8 @@
-package ez.cloudclient.CloudClient;
+package ez.cloudclient;
 
-import ez.cloudclient.CloudClient.Module.Mod;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.util.ResourceLocation;
+import ez.cloudclient.Module.Mod;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -18,9 +15,6 @@ public class EventProcessor extends MinecraftInstance {
     }
 
     @SubscribeEvent
-    public void onUpdate(MinecartUpdateEvent event) { ModuleManager.INSTANCE.onUpdate(event); }
-
-    @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
             mc.fontRenderer.drawStringWithShadow(CloudClientMain.NAME, 35, 1, -1);
@@ -29,7 +23,6 @@ public class EventProcessor extends MinecraftInstance {
                 mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 1, currY, -1);
                 currY += mc.fontRenderer.FONT_HEIGHT;
             }
-
             ModuleManager.INSTANCE.onRenderGameOverlay(event);
         }
     }

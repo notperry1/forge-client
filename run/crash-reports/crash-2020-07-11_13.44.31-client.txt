@@ -49,7 +49,7 @@ net.minecraftforge.fml.common.LoaderException: cloudclient Failed to load new mo
 	at net.minecraftforge.legacydev.Main.start(Main.java:86)
 	at net.minecraftforge.legacydev.MainClient.main(MainClient.java:29)
 Caused by: java.lang.NullPointerException
-	at ez.cloudclient.CloudClient.CloudClientMain.<init>(CloudClientMain.java:32)
+	at CloudClientMain.<init>(CloudClientMain.java:32)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)

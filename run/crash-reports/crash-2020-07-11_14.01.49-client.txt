@@ -5,7 +5,7 @@ Time: 7/11/20 2:01 PM
 Description: Unexpected error
 
 java.lang.RuntimeException: Fuck you, this is a singleplayer client ONLY!
-	at ez.cloudclient.CloudClient.EventProcessor.onTick(EventProcessor.java:47)
+	at EventProcessor.onTick(EventProcessor.java:47)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler_13_EventProcessor_onTick_ClientTickEvent.invoke(.dynamic)
 	at net.minecraftforge.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:90)
 	at net.minecraftforge.fml.common.eventhandler.EventBus.post(EventBus.java:182)

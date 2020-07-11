@@ -1,9 +1,8 @@
-package ez.cloudclient.CloudClient.Module;
+package ez.cloudclient.Module;
 
-import ez.cloudclient.CloudClient.MinecraftInstance;
+import ez.cloudclient.MinecraftInstance;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class Mod extends MinecraftInstance {
@@ -38,10 +37,7 @@ public class Mod extends MinecraftInstance {
 
     public void onRender(RenderWorldLastEvent event) { }
 
-    public void onUpdate(MinecartUpdateEvent event) { }
-
-    public void onTick(TickEvent.ClientTickEvent event) throws InterruptedException {
-    }
+    public void onTick(TickEvent.ClientTickEvent event)  { }
 
     public void onKeyInput(String key) {
         if (this.key.equals(key))
