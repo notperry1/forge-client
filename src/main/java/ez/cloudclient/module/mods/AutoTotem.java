@@ -1,6 +1,6 @@
-package ez.cloudclient.Module.Mods;
+package ez.cloudclient.module.mods;
 
-import ez.cloudclient.Module.Mod;
+import ez.cloudclient.module.Mod;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;

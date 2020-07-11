@@ -1,4 +1,4 @@
-package ez.cloudclient.Module;
+package ez.cloudclient.module;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

@@ -1,4 +1,4 @@
-package ez.cloudclient.Discord;
+package ez.cloudclient.discord;
 
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRichPresence;

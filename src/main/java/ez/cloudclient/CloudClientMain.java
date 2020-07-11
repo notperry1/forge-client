@@ -1,8 +1,8 @@
 package ez.cloudclient;
 
 
-import ez.cloudclient.Discord.DiscordRPC;
-import ez.cloudclient.Events.EventProcessor;
+import ez.cloudclient.discord.DiscordRPC;
+import ez.cloudclient.events.EventProcessor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

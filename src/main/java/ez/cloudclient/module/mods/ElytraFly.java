@@ -1,6 +1,6 @@
-package ez.cloudclient.Module.Mods;
+package ez.cloudclient.module.mods;
 
-import ez.cloudclient.Module.Mod;
+import ez.cloudclient.module.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class ElytraFly extends Mod {

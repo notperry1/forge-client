@@ -1,4 +1,4 @@
-package ez.cloudclient.Command;
+package ez.cloudclient.command;
 
 import net.minecraft.client.Minecraft;
 

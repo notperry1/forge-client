@@ -1,7 +1,7 @@
-package ez.cloudclient.Events;
+package ez.cloudclient.events;
 
 import ez.cloudclient.CloudClientMain;
-import ez.cloudclient.Module.Mod;
+import ez.cloudclient.module.Mod;
 import ez.cloudclient.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

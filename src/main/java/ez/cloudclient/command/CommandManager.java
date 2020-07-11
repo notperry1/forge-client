@@ -1,4 +1,4 @@
-package ez.cloudclient.Command;
+package ez.cloudclient.command;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ public class CommandManager {
 
     public CommandManager() {
         commands = new ArrayList<>();
-        
+
     }
 
     public ArrayList<Command> getCommands() {
