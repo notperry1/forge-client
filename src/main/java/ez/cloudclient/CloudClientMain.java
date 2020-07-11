@@ -5,8 +5,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.Display;
 
 @Mod(modid = CloudClientMain.MODID, name = CloudClientMain.NAME, version = CloudClientMain.VERSION)
 public class CloudClientMain {
@@ -27,4 +29,10 @@ public class CloudClientMain {
         ModuleManager.INSTANCE.init();
         System.out.println(NAME + " " + VERSION + " on Top.");
     }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        Display.setTitle(NAME + " " + VERSION);
+    }
+
 }
