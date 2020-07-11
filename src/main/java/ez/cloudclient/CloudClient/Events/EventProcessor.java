@@ -1,6 +1,10 @@
-package ez.cloudclient;
+package ez.cloudclient.CloudClient.Events;
 
-import ez.cloudclient.Module.Mod;
+import ez.cloudclient.CloudClientMain;
+import ez.cloudclient.MinecraftInstance;
+import ez.cloudclient.CloudClient.Module.Mod;
+import ez.cloudclient.ModuleManager;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,9 +18,11 @@ public class EventProcessor extends MinecraftInstance {
         ModuleManager.INSTANCE.onRender(event);
     }
 
+    protected final static Minecraft mc = Minecraft.getMinecraft();
+
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
             mc.fontRenderer.drawStringWithShadow(CloudClientMain.FULLNAME, 5, 1, -1);
             float currY = mc.fontRenderer.FONT_HEIGHT + 5;
             for (Mod m : ModuleManager.INSTANCE.getMods()) {

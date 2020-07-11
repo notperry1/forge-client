@@ -1,6 +1,7 @@
-package ez.cloudclient.Module;
+package ez.cloudclient.CloudClient.Module;
 
 import ez.cloudclient.MinecraftInstance;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -10,12 +11,14 @@ public class Mod extends MinecraftInstance {
     private String key = "";
     private String category;
     private boolean enabled;
+    protected final static Minecraft mc = Minecraft.getMinecraft();
 
 
     public enum Category {
         COMBAT,
         RENDER,
-        MOVEMENT
+        MOVEMENT,
+        CHAT
     }
 
     public Mod(String displayName, Enum category) {

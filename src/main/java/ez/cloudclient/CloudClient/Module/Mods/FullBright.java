@@ -1,8 +1,8 @@
-package ez.cloudclient.Module.Mods;
+package ez.cloudclient.CloudClient.Module.Mods;
 
-import ez.cloudclient.Module.Mod;
+import ez.cloudclient.CloudClient.Module.Mod;
 
-import ez.cloudclient.Module.Value;
+import ez.cloudclient.CloudClient.Module.Value;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.gameevent.TickEvent;

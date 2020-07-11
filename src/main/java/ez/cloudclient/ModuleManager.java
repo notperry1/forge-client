@@ -1,9 +1,9 @@
 package ez.cloudclient;
 
-import ez.cloudclient.Module.Mod;
-import ez.cloudclient.Module.Mods.AutoTotem;
-import ez.cloudclient.Module.Mods.ElytraFly;
-import ez.cloudclient.Module.Mods.FullBright;
+import ez.cloudclient.CloudClient.Module.Mod;
+import ez.cloudclient.CloudClient.Module.Mods.AutoTotem;
+import ez.cloudclient.CloudClient.Module.Mods.ElytraFly;
+import ez.cloudclient.CloudClient.Module.Mods.FullBright;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;

@@ -1,6 +1,6 @@
-package ez.cloudclient.Module;
+package ez.cloudclient.CloudClient.Module;
 
-import ez.cloudclient.EventProcessor;
+import ez.cloudclient.CloudClient.Events.EventProcessor;
 
 public class Value<T> {
     private String name;
