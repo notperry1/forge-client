@@ -17,10 +17,10 @@ public class EventProcessor extends MinecraftInstance {
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
-            mc.fontRenderer.drawStringWithShadow(CloudClientMain.NAME, 35, 1, -1);
-            float currY = mc.fontRenderer.FONT_HEIGHT + 10;
+            mc.fontRenderer.drawStringWithShadow(CloudClientMain.FULLNAME, 5, 1, -1);
+            float currY = mc.fontRenderer.FONT_HEIGHT + 5;
             for (Mod m : ModuleManager.INSTANCE.getMods()) {
-                mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 1, currY, -1);
+                mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 5, currY, -1);
                 currY += mc.fontRenderer.FONT_HEIGHT;
             }
             ModuleManager.INSTANCE.onRenderGameOverlay(event);
