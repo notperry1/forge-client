@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 public class ModuleManager {
-    private static final HashSet<Module> modules = new HashSet<>();
+    public static final HashSet<Module> modules = new HashSet<>();
 
     public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         modules.clear();

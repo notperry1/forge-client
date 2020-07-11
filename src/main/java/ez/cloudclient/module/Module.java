@@ -6,9 +6,9 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.Objects;
 
 public abstract class Module {
-    final String name;
-    final String displayName;
-    final Category category;
+    public final String name;
+    public final String displayName;
+    public final Category category;
     private boolean enabled = false;
 
     protected static final Minecraft mc = Minecraft.getMinecraft();
