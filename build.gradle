@@ -79,8 +79,6 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
-    compile 'club.minnced:java-discord-rpc:2.0.2'
-    compile "com.github.ionar2:Alpine:1.9f"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
