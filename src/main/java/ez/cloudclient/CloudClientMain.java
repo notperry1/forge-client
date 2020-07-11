@@ -1,26 +1,24 @@
 package ez.cloudclient;
 
-
-import ez.cloudclient.discord.DiscordRPC;
-import ez.cloudclient.event.EventManager;
-import ez.cloudclient.events.EventProcessor;
-import net.minecraftforge.common.MinecraftForge;
+import ez.cloudclient.module.ModuleManager;
+import ez.cloudclient.module.modules.render.FullBright;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
+
+import java.lang.reflect.InvocationTargetException;
 
 @Mod(modid = CloudClientMain.MODID, name = CloudClientMain.NAME, version = CloudClientMain.VERSION)
 public class CloudClientMain {
     public static final String MODID = "cloudclient";
     public static final String NAME = "Cloud Client";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.0.0";
     public static final String APP_ID = "731393813104558122";
     public static final String FULLNAME = "Cloud Client " + VERSION;
-    public static final EventManager EVENT_MANAGER = new EventManager<>();
 
     private static Logger logger;
 
@@ -31,13 +29,16 @@ public class CloudClientMain {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        try {
+            ModuleManager.init();
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
         Display.setTitle(NAME + " " + VERSION);
-        System.out.println(NAME + " " + VERSION + " on Top.");
+        System.out.println(NAME + " version " + VERSION + " loaded.");
+        FullBright fullBright = ModuleManager.getModuleByClass(FullBright.class);
+        if (fullBright != null) {
+            fullBright.enable();
+        }
     }
-
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        DiscordRPC.start();
-    }
-
 }
