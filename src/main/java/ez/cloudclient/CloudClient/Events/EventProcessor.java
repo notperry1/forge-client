@@ -23,7 +23,7 @@ public class EventProcessor extends MinecraftInstance {
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-            mc.fontRenderer.drawStringWithShadow(CloudClientMain.FULLNAME, 5, 1, -1);
+            mc.fontRenderer.drawStringWithShadow(CloudClientMain.FULLNAME, 5, 1,-1);
             float currY = mc.fontRenderer.FONT_HEIGHT + 5;
             for (Mod m : ModuleManager.INSTANCE.getMods()) {
                 mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 5, currY, -1);
