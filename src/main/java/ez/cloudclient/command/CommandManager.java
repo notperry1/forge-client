@@ -1,8 +1,5 @@
 package ez.cloudclient.command;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import ez.cloudclient.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
