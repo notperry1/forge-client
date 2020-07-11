@@ -18,7 +18,7 @@ import java.io.IOException;
 public class CloudClientMain {
     public static final String MODID = "cloudclient";
     public static final String NAME = "Cloud Client";
-    public static final String VERSION = "v1.0";
+    public static final String VERSION = "v1.1";
     public static final String FULLNAME = "Cloud Client " + VERSION;
 
     protected final static Minecraft mc = Minecraft.getMinecraft();
