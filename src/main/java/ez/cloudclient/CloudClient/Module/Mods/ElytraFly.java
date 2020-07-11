@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class ElytraFly extends Mod {
     public ElytraFly() {
-        super("ElytraFly");
+        super("ElytraFly", Category.MOVEMENT);
         setEnabled(true);
     }
 

@@ -1,0 +1,18 @@
+{
+  "minecraft:end/elytra": {
+    "criteria": {
+      "elytra": "2020-07-11 14:02:53 +1000"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "ice_flats": "2020-07-11 14:03:41 +1000",
+      "frozen_river": "2020-07-11 14:04:00 +1000",
+      "forest": "2020-07-11 14:02:53 +1000",
+      "forest_hills": "2020-07-11 14:04:55 +1000",
+      "ice_mountains": "2020-07-11 14:04:02 +1000"
+    },
+    "done": false
+  }
+}
