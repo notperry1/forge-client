@@ -4,29 +4,26 @@ import ez.cloudclient.module.Module;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-public class Flight extends Module {
-    public Flight() {
-        super("Flight", Category.MOVEMENT);
-    }
+public class Speed extends Module {
 
-    /*
-    * Added by Zilleyy 12/07/20
-    */
+    public Speed() {
+        super("Speed", Category.MOVEMENT);
+    }
 
     @Override
     protected void onEnable() {
-        mc.player.capabilities.isFlying = true;
+        mc.player.capabilities.setPlayerWalkSpeed(10);
     }
 
     @Override
     protected void onDisable() {
-        mc.player.capabilities.isFlying = false;
+        mc.player.capabilities.setPlayerWalkSpeed(1);
     }
 
     @SubscribeEvent
     public void onUpdate(TickEvent event) {
         if(mc.player != null) {
-                mc.player.capabilities.isFlying = true;
+            mc.player.capabilities.setPlayerWalkSpeed(10);
         }
     }
 }

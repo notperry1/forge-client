@@ -3,6 +3,7 @@ package ez.cloudclient.command.commands;
 import ez.cloudclient.command.Command;
 import ez.cloudclient.module.Module;
 import ez.cloudclient.module.ModuleManager;
+import ez.cloudclient.util.MessageUtil;
 import net.minecraft.util.text.TextComponentString;
 import org.lwjgl.util.Color;
 
@@ -21,9 +22,9 @@ public class ToggleModule extends Command {
                     Module mod = ModuleManager.getModuleByName(moduleName.toLowerCase());
                     if(mod != null){
                         mod.toggle();
-                        mc.player.sendMessage(new TextComponentString(mod.displayName + " has been toggled and is now set to: " + mod.isEnabled()));
+                        MessageUtil.sendMessage(mod.displayName + " has been toggled.", MessageUtil.Color.GREEN);
                     } else {
-                        mc.player.sendMessage(new TextComponentString(moduleName + " is not a module!"));
+                        MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
                     }
                     break;
                     /*
@@ -37,10 +38,10 @@ public class ToggleModule extends Command {
                      */
                 }
             } else {
-                mc.player.sendMessage(new TextComponentString("Invalid Arguments!"));
+                MessageUtil.sendMessage("Invalid Arguments!", MessageUtil.Color.RED);
             }
         } else {
-            mc.player.sendMessage(new TextComponentString("Invalid Arguments!"));
+            MessageUtil.sendMessage("Invalid Arguments!", MessageUtil.Color.RED);
         }
     }
 }
