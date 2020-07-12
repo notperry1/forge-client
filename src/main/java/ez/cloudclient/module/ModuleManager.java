@@ -1,5 +1,7 @@
 package ez.cloudclient.module;
 
+import ez.cloudclient.module.modules.exploits.AntiHunger;
+import ez.cloudclient.module.modules.movement.Flight;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import org.reflections.Reflections;
@@ -22,6 +24,8 @@ public class ModuleManager {
          */
         modules.add(new NoFall());
         modules.add(new FullBright());
+        modules.add(new Flight());
+        modules.add(new AntiHunger());
     }
 
     public static <T extends Module> T getModuleByClass(Class<T> clazz) {

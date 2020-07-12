@@ -28,7 +28,6 @@ public class NoFall extends Module {
         if(mc.player != null){
             if(mc.player.fallDistance != 0){
                 mc.player.connection.sendPacket(new CPacketPlayer(true));
-                mc.player.fall(0,0);
                 super.onTick(event);
             }
         }

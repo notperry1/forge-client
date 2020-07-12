@@ -78,9 +78,11 @@ public abstract class Module {
     //A - Z Please
     public enum Category {
         COMBAT,
+        EXPLOITS,
         PLAYER,
         RENDER,
         MISC,
+        MOVEMENT,
         NONE
     }
 }
