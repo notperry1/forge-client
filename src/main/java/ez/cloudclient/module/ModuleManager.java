@@ -1,5 +1,7 @@
 package ez.cloudclient.module;
 
+import ez.cloudclient.module.modules.player.NoFall;
+import ez.cloudclient.module.modules.render.FullBright;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
@@ -10,12 +12,16 @@ public class ModuleManager {
 
     public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         modules.clear();
+        /* TODO: Make work
         for (Class<? extends Module> aClass : new Reflections("ez.cloudclient.module.modules").getSubTypesOf(
                 Module.class
         )) {
             Module module = aClass.getConstructor().newInstance();
             modules.add(module);
         }
+         */
+        modules.add(new NoFall());
+        modules.add(new FullBright());
     }
 
     public static <T extends Module> T getModuleByClass(Class<T> clazz) {

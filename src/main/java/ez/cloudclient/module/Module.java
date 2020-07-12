@@ -2,6 +2,7 @@ package ez.cloudclient.module;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.Objects;
 
@@ -21,6 +22,13 @@ public abstract class Module {
     protected abstract void onEnable();
 
     protected abstract void onDisable();
+
+    public void onTick(TickEvent event) {}
+
+    public void setEnabled(boolean bool){
+        if(bool) enable();
+        else disable();
+    }
 
     public void enable() {
         MinecraftForge.EVENT_BUS.register(this);
@@ -67,8 +75,12 @@ public abstract class Module {
                 ", enabled=" + enabled +
                 '}';
     }
-
+    //A - Z Please
     public enum Category {
-        RENDER
+        COMBAT,
+        PLAYER,
+        RENDER,
+        MISC,
+        NONE
     }
 }
