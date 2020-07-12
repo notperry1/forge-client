@@ -18,6 +18,15 @@ public class ToggleModule extends Command {
             if (args[0] != null) {
                 for (Module module : ModuleManager.modules) {
                     String moduleName = args[0].replaceAll(" ", "");
+                    Module mod = ModuleManager.getModuleByName(moduleName.toLowerCase());
+                    if(mod != null){
+                        mod.toggle();
+                        mc.player.sendMessage(new TextComponentString(mod.displayName + " has been toggled and is now set to: " + mod.isEnabled()));
+                    } else {
+                        mc.player.sendMessage(new TextComponentString(moduleName + " is not a module!"));
+                    }
+                    break;
+                    /*
                     if (module.displayName.equals(moduleName.toLowerCase()) || module.name.equals(moduleName.toLowerCase())) {
                         module.toggle();
                         mc.player.sendMessage(new TextComponentString(module.displayName + " has been toggled and is now set to: " + module.isEnabled()));
@@ -25,6 +34,7 @@ public class ToggleModule extends Command {
                         mc.player.sendMessage(new TextComponentString(moduleName + " is not a module!"));
                     }
                     break;
+                     */
                 }
             } else {
                 mc.player.sendMessage(new TextComponentString("Invalid Arguments!"));
