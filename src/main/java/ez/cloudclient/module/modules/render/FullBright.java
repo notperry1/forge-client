@@ -8,17 +8,21 @@ public class FullBright extends Module {
     private float startGamma;
 
     public FullBright() {
-        super("FullBright", Category.RENDER);
+        super("FullBright", Category.RENDER, "Increase client brightness");
     }
 
     @Override
     protected void onEnable() {
-        startGamma = mc.gameSettings.gammaSetting;
+        if(mc.player != null) {
+            startGamma = mc.gameSettings.gammaSetting;
+        }
     }
 
     @Override
     protected void onDisable() {
-        mc.gameSettings.gammaSetting = startGamma;
+        if(mc.player != null) {
+            mc.gameSettings.gammaSetting = startGamma;
+        }
     }
 
     @SubscribeEvent

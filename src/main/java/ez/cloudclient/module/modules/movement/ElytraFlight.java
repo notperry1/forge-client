@@ -15,17 +15,21 @@ public class ElytraFlight extends Module {
 
 
     public ElytraFlight() {
-        super("ElytraFlight", Module.Category.MOVEMENT);
+        super("ElytraFlight", Module.Category.MOVEMENT, "Fly using Elytra");
     }
 
     @Override
     protected void onEnable() {
-        mc.player.capabilities.isFlying = true;
+        if(mc.player != null) {
+            mc.player.capabilities.isFlying = true;
+        }
     }
 
     @Override
     protected void onDisable() {
-        mc.player.capabilities.isFlying = false;
+        if(mc.player != null) {
+            mc.player.capabilities.isFlying = false;
+        }
     }
 
     @SubscribeEvent

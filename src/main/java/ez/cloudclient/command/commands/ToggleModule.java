@@ -29,8 +29,8 @@ public class ToggleModule extends Command {
                     if(mod != null){
                         mod.toggle();
                         if (mod.isEnabled()) {
-                            MessageUtil.sendMessage(mod.displayName + " has been toggled.", MessageUtil.Color.GREEN);
-                        } else { MessageUtil.sendMessage(mod.displayName + " has been disabled.", MessageUtil.Color.RED);}
+                            MessageUtil.sendMessage(mod.getDisplayName() + " has been toggled.", MessageUtil.Color.GREEN);
+                        } else { MessageUtil.sendMessage(mod.getDisplayName() + " has been disabled.", MessageUtil.Color.RED);}
 
                     } else {
                         MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);

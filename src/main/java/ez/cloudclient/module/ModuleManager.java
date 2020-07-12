@@ -3,13 +3,14 @@ package ez.cloudclient.module;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
-import ez.cloudclient.module.modules.movement.Speed;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
-import org.reflections.Reflections;
+import ez.cloudclient.setting.ModuleSettings;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
+
+import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
 
 public class ModuleManager {
     public static final HashSet<Module> modules = new HashSet<>();
@@ -28,8 +29,14 @@ public class ModuleManager {
         modules.add(new FullBright());
         modules.add(new Flight());
         modules.add(new AntiHunger());
-        modules.add(new Speed());
         modules.add(new ElytraFlight());
+
+        SETTINGS_MANAGER.loadSettings();
+        for (Module module : ModuleManager.modules) {
+            if ((boolean) module.getSettings().getSetting("enabled")) {
+                module.enable();
+            }
+        }
     }
 
     public static <T extends Module> T getModuleByClass(Class<T> clazz) {
@@ -41,18 +48,21 @@ public class ModuleManager {
 
     public static Module getModuleByName(String name) {
         for (Module current : modules) {
-            if (current.name.equals(name) || current.displayName.equals(name)) return current;
+            if (current.getName().equals(name) || current.getDisplayName().equals(name)) return current;
         }
         return null;
     }
 
-
-
     public static HashSet<Module> getModulesInCat(Module.Category category) {
         HashSet<Module> modulesInCategory = new HashSet<>();
         for (Module current : modules) {
-            if (current.category == category) modulesInCategory.add(current);
+            if (current.getCategory() == category) modulesInCategory.add(current);
         }
         return modulesInCategory;
     }
+
+    public HashSet<Module> getModules() {
+        return modules;
+    }
+
 }

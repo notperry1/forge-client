@@ -14,14 +14,23 @@ public class NoFall extends Module {
      */
 
     public NoFall() {
-        super("NoFall", Category.PLAYER);
+        super("NoFall", Category.PLAYER, "Prevent Taking Fall Damage");
     }
 
     @Override
-    protected void onEnable() { mc.player.fallDistance = 0; }
+    protected void onEnable() {
+
+        if(mc.player != null) {
+            mc.player.fallDistance = 0;
+        }
+    }
 
     @Override
-    protected void onDisable() { mc.player.fallDistance = 0; }
+    protected void onDisable() {
+        if(mc.player != null) {
+            mc.player.fallDistance = 0;
+        }
+    }
 
     @SubscribeEvent
     public void onUpdate(TickEvent event) {
