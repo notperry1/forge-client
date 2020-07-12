@@ -7,6 +7,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.lwjgl.opengl.Display;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,6 +21,11 @@ public class CloudClientMain {
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
 
     @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        Display.setTitle(FULLNAME);
+    }
+
+    @EventHandler
     public void init(FMLInitializationEvent event) {
         try {
             ModuleManager.init();
@@ -28,7 +34,6 @@ public class CloudClientMain {
             e.printStackTrace();
         }
         MinecraftForge.EVENT_BUS.register(new HUD());
-        Display.setTitle(FULLNAME);
-        System.out.println(NAME + " version " + VERSION + " loaded.");
+        System.out.println(FULLNAME + " loaded.");
     }
 }

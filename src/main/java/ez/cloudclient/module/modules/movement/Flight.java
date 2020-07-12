@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class Flight extends Module {
     public Flight() {
-        super("Flight", Module.Category.COMBAT);
+        super("Flight", Category.MOVEMENT);
     }
 
     /*
