@@ -8,7 +8,7 @@ public class FullBright extends Module {
     private float startGamma;
 
     public FullBright() {
-        super("Full Bright", Category.RENDER);
+        super("FullBright", Category.RENDER);
     }
 
     @Override

@@ -8,15 +8,20 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class NoFall extends Module {
 
+    /*
+        Added by Zilleyy 11/07/20
+        Modified by RemainingToast 12/07/20
+     */
+
     public NoFall() {
         super("NoFall", Category.PLAYER);
     }
 
     @Override
-    protected void onEnable() { }
+    protected void onEnable() { mc.player.fallDistance = 0; }
 
     @Override
-    protected void onDisable() { }
+    protected void onDisable() { mc.player.fallDistance = 0; }
 
     @SubscribeEvent
     public void onUpdate(TickEvent event) {

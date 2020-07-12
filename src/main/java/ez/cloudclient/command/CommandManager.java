@@ -3,6 +3,8 @@ package ez.cloudclient.command;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.reflections.Reflections;
 
@@ -13,6 +15,7 @@ import java.util.regex.Pattern;
 
 public class CommandManager {
     public static HashSet<Command> commands = new HashSet<>();
+    public static String commandPrefix = ".";
 
     public void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         commands.clear();
@@ -25,9 +28,8 @@ public class CommandManager {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void chatEvent(ClientChatEvent event) {
-        String commandPrefix = ".";
         if (event.getMessage().startsWith(commandPrefix)) {
             if (event.getMessage().length() > 1) {
                 String firstArg = event.getMessage().replaceFirst(commandPrefix, "").split(" ")[0];
@@ -43,7 +45,7 @@ public class CommandManager {
                     for (String alias : command.aliases) {
                         if (alias.equals(firstArg)) {
                             command.call(argsList);
-                            return;
+                            break;
                         }
                     }
                 }
