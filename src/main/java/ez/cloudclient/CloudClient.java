@@ -20,6 +20,7 @@ public class CloudClient {
     public static final String MODID = "cloudclient";
     public static final String NAME = "Cloud Client";
     public static final String VERSION = "v1.1";
+    public static final String APP_ID = "731393813104558122";
     public static final String FULLNAME = NAME + " " + VERSION;
 
     public static final String CLOUDCLIENT_CONFIGFILE = "CloudClientConfig.json";

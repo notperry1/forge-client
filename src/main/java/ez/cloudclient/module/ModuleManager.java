@@ -1,5 +1,6 @@
 package ez.cloudclient.module;
 
+import ez.cloudclient.module.modules.DiscordRPC;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
@@ -30,11 +31,15 @@ public class ModuleManager {
         modules.add(new Flight());
         modules.add(new AntiHunger());
         modules.add(new ElytraFlight());
+        modules.add(new DiscordRPC());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
             if ((boolean) module.getSettings().getSetting("enabled")) {
                 module.enable();
+            }
+            if ((boolean) module.getSettings().getSetting("drawn")) {
+                module.enableDrawn();
             }
         }
     }

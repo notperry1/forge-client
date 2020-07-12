@@ -4,19 +4,10 @@ import ez.cloudclient.command.Command;
 import ez.cloudclient.module.Module;
 import ez.cloudclient.module.ModuleManager;
 import ez.cloudclient.util.MessageUtil;
-import net.minecraft.util.text.TextComponentString;
-import org.lwjgl.util.Color;
 
-public class ToggleModule extends Command {
-
-    /*
-     * Added by Wnuke 11/07/20
-     * Modified by RemainingToast 12/07/20
-     */
-
-
-    public ToggleModule() {
-        super("Module Toggle", "Toggles modules on and off.", "t", "toggle");
+public class Drawn extends Command {
+    public Drawn() {
+        super("Drawn", "Shows module in arraylist", "draw", "drawn");
     }
 
     @Override
@@ -27,10 +18,10 @@ public class ToggleModule extends Command {
                     String moduleName = args[0].replaceAll(" ", "");
                     Module mod = ModuleManager.getModuleByName(moduleName.toLowerCase());
                     if(mod != null){
-                        mod.toggle();
-                        if (mod.isEnabled()) {
-                            MessageUtil.sendMessage(mod.getDisplayName() + " has been toggled.", MessageUtil.Color.GREEN);
-                        } else { MessageUtil.sendMessage(mod.getDisplayName() + " has been disabled.", MessageUtil.Color.RED);}
+                        mod.toggleDrawn();
+                        if (mod.isDrawn()) {
+                            MessageUtil.sendMessage(mod.getDisplayName() + " is now being drawn.", MessageUtil.Color.GREEN);
+                        } else { MessageUtil.sendMessage(mod.getDisplayName() + " is now not being drawn.", MessageUtil.Color.RED);}
 
                     } else {
                         MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
@@ -45,4 +36,3 @@ public class ToggleModule extends Command {
         }
     }
 }
-

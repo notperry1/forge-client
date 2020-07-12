@@ -15,9 +15,10 @@ public abstract class Module {
     protected static final Minecraft mc = Minecraft.getMinecraft();
     protected Logger LOGGER = CloudClient.log;
     private String name;
-    private final String displayName;
+    private String displayName;
     private final Category category;
     private boolean enabled;
+    private boolean drawn;
     private String description;
     public ModuleSettings settings = new ModuleSettings();
 
@@ -27,10 +28,12 @@ public abstract class Module {
         this.category = category;
         this.description = description;
         enabled = false;
+        drawn = true;
     }
 
     public void registerSettings() {
         settings.addSetting("enabled", false);
+        settings.addSetting("drawn", true);
         selfSettings();
         LOGGER.info("Registered settings of " + this.getName());
     }
@@ -61,14 +64,21 @@ public abstract class Module {
         return description;
     }
 
+    public String setDesc(String desc) {
+        return description = desc;
+    }
+
     public void setName(String name) {
-        this.name = name;
+        this.displayName = name;
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
+    public boolean isDrawn() {
+        return drawn;
+    }
 
     protected abstract void onEnable();
 
@@ -99,11 +109,29 @@ public abstract class Module {
         SETTINGS_MANAGER.updateSettings();
     }
 
+    public void enableDrawn() {
+        MinecraftForge.EVENT_BUS.register(this);
+        drawn = true;
+        settings.setSetting("drawn", true);
+        SETTINGS_MANAGER.updateSettings();
+    }
+
+    public void disableDrawn() {
+        MinecraftForge.EVENT_BUS.unregister(this);
+        drawn = false;
+        settings.setSetting("drawn", false);
+        SETTINGS_MANAGER.updateSettings();
+    }
+
     public void toggle() {
         if (enabled) disable();
         else enable();
     }
 
+    public void toggleDrawn() {
+        if (drawn) disableDrawn();
+        else enableDrawn();
+    }
 
     @Override
     public boolean equals(Object o) {
