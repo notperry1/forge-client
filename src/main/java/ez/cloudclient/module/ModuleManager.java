@@ -1,6 +1,7 @@
 package ez.cloudclient.module;
 
 import ez.cloudclient.module.modules.exploits.AntiHunger;
+import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
 import ez.cloudclient.module.modules.movement.Speed;
 import ez.cloudclient.module.modules.player.NoFall;
@@ -28,6 +29,7 @@ public class ModuleManager {
         modules.add(new Flight());
         modules.add(new AntiHunger());
         modules.add(new Speed());
+        modules.add(new ElytraFlight());
     }
 
     public static <T extends Module> T getModuleByClass(Class<T> clazz) {

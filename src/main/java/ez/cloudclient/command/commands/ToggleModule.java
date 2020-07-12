@@ -9,6 +9,12 @@ import org.lwjgl.util.Color;
 
 public class ToggleModule extends Command {
 
+    /*
+     * Added by Wnuke 11/07/20
+     * Modified by RemainingToast 12/07/20
+     */
+
+
     public ToggleModule() {
         super("Module Toggle", "Toggles modules on and off.", "t", "toggle");
     }
@@ -22,7 +28,10 @@ public class ToggleModule extends Command {
                     Module mod = ModuleManager.getModuleByName(moduleName.toLowerCase());
                     if(mod != null){
                         mod.toggle();
-                        MessageUtil.sendMessage(mod.displayName + " has been toggled.", MessageUtil.Color.GREEN);
+                        if (mod.isEnabled()) {
+                            MessageUtil.sendMessage(mod.displayName + " has been toggled.", MessageUtil.Color.GREEN);
+                        } else { MessageUtil.sendMessage(mod.displayName + " has been disabled.", MessageUtil.Color.RED);}
+
                     } else {
                         MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
                     }

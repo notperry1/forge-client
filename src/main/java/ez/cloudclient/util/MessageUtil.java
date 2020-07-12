@@ -7,8 +7,12 @@ import net.minecraft.util.text.TextFormatting;
 
 public class MessageUtil {
 
+    /*
+     * Added by RemainingToast 12/07/20
+     */
+
     private static final EntityPlayerSP player = Minecraft.getMinecraft().player;
-    public static final String CHAT_PREFIX = TextFormatting.DARK_GRAY + "[" + TextFormatting.LIGHT_PURPLE + TextFormatting.BOLD + "Cloud Client" + TextFormatting.DARK_GRAY + "] ";
+    public static final String CHAT_PREFIX = TextFormatting.DARK_GRAY + "[" + TextFormatting.LIGHT_PURPLE + TextFormatting.BOLD + "Cloud" + TextFormatting.DARK_GRAY + "] ";
 
 
     public static void sendRawMessage(String message) {

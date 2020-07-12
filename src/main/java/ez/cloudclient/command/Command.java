@@ -17,6 +17,10 @@ public abstract class Command {
         this.description = description;
     }
 
+    public String getName() { return name.replaceAll(" ", ""); }
+
+
+
     protected abstract void call(String[] args);
 }
 

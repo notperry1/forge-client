@@ -28,6 +28,8 @@ public class CommandManager {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+
+
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void chatEvent(ClientChatEvent event) {
         if (event.getMessage().startsWith(commandPrefix)) {
