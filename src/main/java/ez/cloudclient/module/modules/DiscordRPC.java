@@ -10,8 +10,12 @@ public class DiscordRPC extends Module {
     }
 
     @Override
-    protected void onEnable() { DiscordPresence.start(); }
+    protected void onEnable() {
+        DiscordPresence.start();
+    }
 
     @Override
-    protected void onDisable() { DiscordPresence.end(); }
+    protected void onDisable() {
+        DiscordPresence.end();
+    }
 }

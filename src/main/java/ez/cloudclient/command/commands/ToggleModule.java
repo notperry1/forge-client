@@ -4,8 +4,6 @@ import ez.cloudclient.command.Command;
 import ez.cloudclient.module.Module;
 import ez.cloudclient.module.ModuleManager;
 import ez.cloudclient.util.MessageUtil;
-import net.minecraft.util.text.TextComponentString;
-import org.lwjgl.util.Color;
 
 public class ToggleModule extends Command {
 
@@ -26,11 +24,13 @@ public class ToggleModule extends Command {
                 for (Module module : ModuleManager.modules) {
                     String moduleName = args[0].replaceAll(" ", "");
                     Module mod = ModuleManager.getModuleByName(moduleName.toLowerCase());
-                    if(mod != null){
+                    if (mod != null) {
                         mod.toggle();
                         if (mod.isEnabled()) {
                             MessageUtil.sendMessage(mod.getDisplayName() + " has been toggled.", MessageUtil.Color.GREEN);
-                        } else { MessageUtil.sendMessage(mod.getDisplayName() + " has been disabled.", MessageUtil.Color.RED);}
+                        } else {
+                            MessageUtil.sendMessage(mod.getDisplayName() + " has been disabled.", MessageUtil.Color.RED);
+                        }
 
                     } else {
                         MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);

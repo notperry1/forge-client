@@ -1,8 +1,6 @@
 package ez.cloudclient.module.modules.movement;
 
 import ez.cloudclient.module.Module;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class Sprint extends Module {
 
@@ -28,8 +26,8 @@ public class Sprint extends Module {
         }
     }
 
-    @SubscribeEvent
-    public void onUpdate(TickEvent event) {
+    @Override
+    public void onTick() {
         try {
             mc.player.setSprinting(mc.gameSettings.keyBindForward.isKeyDown());
         } catch (Exception ignored) {

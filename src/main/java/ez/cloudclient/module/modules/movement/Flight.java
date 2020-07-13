@@ -1,8 +1,6 @@
 package ez.cloudclient.module.modules.movement;
 
 import ez.cloudclient.module.Module;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class Flight extends Module {
 
@@ -11,9 +9,9 @@ public class Flight extends Module {
     }
 
     /*
-    * Added by Zilleyy 12/07/20
-    * Updated by ollie on 13/07/20
-    */
+     * Added by Zilleyy 12/07/20
+     * Updated by ollie on 13/07/20
+     */
 
     @Override
     protected void onEnable() {
@@ -29,10 +27,8 @@ public class Flight extends Module {
         }
     }
 
-    @SubscribeEvent
-    public void onUpdate(TickEvent event) {
-        if (mc.player != null) {
-            mc.player.capabilities.isFlying = true;
-        }
+    @Override
+    public void onTick() {
+        mc.player.capabilities.isFlying = true;
     }
 }

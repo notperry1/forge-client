@@ -18,16 +18,16 @@ public class HUD {
     protected final static Minecraft mc = Minecraft.getMinecraft();
 
     @SubscribeEvent
-    public void onRenderGameOverlay(RenderGameOverlayEvent event) throws InterruptedException {
+    public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-            int number = 0;
+            int number;
             int Min = 0;
             int Max = 255;
-            number = Min + (int)(Math.random() * ((Max - Min) + 1));
+            number = Min + (int) (Math.random() * ((Max - Min) + 1));
             mc.fontRenderer.drawStringWithShadow(CloudClient.FULLNAME, 5, 5, -1);
             float currY = mc.fontRenderer.FONT_HEIGHT + 5;
             for (Module m : ModuleManager.modules) {
-                if(m.isEnabled() && m.isDrawn()){
+                if (m.isEnabled()) {
                     mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 5, currY + 1, GetRainbowColor(number, 90.0f, 50.0f, 1.0f).getRGB());
                     currY += mc.fontRenderer.FONT_HEIGHT;
                 }

@@ -1,17 +1,18 @@
 package ez.cloudclient.module;
 
 import ez.cloudclient.module.modules.DiscordRPC;
+import ez.cloudclient.module.modules.combat.AutoTotem;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
 import ez.cloudclient.module.modules.movement.Sprint;
-import ez.cloudclient.module.modules.combat.AutoTotem;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
-import ez.cloudclient.setting.ModuleSettings;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
@@ -20,7 +21,7 @@ public class ModuleManager {
 
     public static final HashSet<Module> modules = new HashSet<>();
 
-    public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void init() { //throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         modules.clear();
         /* TODO: Make work
         for (Class<? extends Module> aClass : new Reflections("ez.cloudclient.module.modules").getSubTypesOf(
@@ -42,15 +43,17 @@ public class ModuleManager {
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
-            if((Boolean) module.getSettings().getSetting("Enabled")){
+            if (module.getSettings().getBoolean("Enabled")) {
                 module.enable();
             }
-            if((Boolean) module.getSettings().getSetting("Drawn")){
+            if (module.getSettings().getBoolean("Drawn")) {
                 module.enableDrawn();
             }
         }
     }
 
+    // there is a check in the method for whether or not it is the correct class
+    @SuppressWarnings("unchecked")
     public static <T extends Module> T getModuleByClass(Class<T> clazz) {
         for (Module current : modules) {
             if (current.getClass() == clazz) return (T) current;
@@ -77,4 +80,12 @@ public class ModuleManager {
         return modules;
     }
 
+    @SubscribeEvent
+    public void onTick(TickEvent e) {
+        if (Minecraft.getMinecraft().player != null) {
+            for (Module module : modules) {
+                if (module.isEnabled()) module.onTick();
+            }
+        }
+    }
 }
