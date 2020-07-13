@@ -10,8 +10,8 @@ public class Flight extends Module {
     }
 
     /*
-    * Added by Zilleyy 12/07/20
-    */
+     * Added by Zilleyy 12/07/20
+     */
 
     @Override
     protected void onEnable() {
@@ -25,8 +25,8 @@ public class Flight extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent event) {
-        if(mc.player != null) {
-                mc.player.capabilities.isFlying = true;
+        if (mc.player != null) {
+            mc.player.capabilities.isFlying = true;
         }
     }
 }

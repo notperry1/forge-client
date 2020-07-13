@@ -11,18 +11,19 @@ public class MessageUtil {
      * Added by RemainingToast 12/07/20
      */
 
-    private static final EntityPlayerSP player = Minecraft.getMinecraft().player;
     public static final String CHAT_PREFIX = TextFormatting.DARK_GRAY + "[" + TextFormatting.LIGHT_PURPLE + TextFormatting.BOLD + "Cloud" + TextFormatting.DARK_GRAY + "] ";
-
+    private static final EntityPlayerSP player = Minecraft.getMinecraft().player;
 
     public static void sendRawMessage(String message) {
         player.sendMessage(new TextComponentString(message));
     }
+
     public static void sendPublicMessage(String message) {
         player.sendChatMessage(message);
     }
+
     public static void sendMessage(String message, Color color) {
-        switch(color){
+        switch (color) {
             case DARK_RED:
                 sendRawMessage(CHAT_PREFIX + TextFormatting.DARK_RED + message);
                 break;

@@ -13,14 +13,14 @@ public class FullBright extends Module {
 
     @Override
     protected void onEnable() {
-        if(mc.player != null) {
+        if (mc.player != null) {
             startGamma = mc.gameSettings.gammaSetting;
         }
     }
 
     @Override
     protected void onDisable() {
-        if(mc.player != null) {
+        if (mc.player != null) {
             mc.gameSettings.gammaSetting = startGamma;
         }
     }

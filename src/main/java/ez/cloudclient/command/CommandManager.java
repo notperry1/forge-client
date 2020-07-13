@@ -28,7 +28,6 @@ public class CommandManager {
     }
 
 
-
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void chatEvent(ClientChatEvent event) {
         if (event.getMessage().startsWith(commandPrefix)) {
