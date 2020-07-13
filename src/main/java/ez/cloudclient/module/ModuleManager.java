@@ -6,6 +6,7 @@ import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
 import ez.cloudclient.module.modules.movement.Sprint;
+import ez.cloudclient.module.modules.combat.AutoTotem;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import ez.cloudclient.setting.ModuleSettings;
@@ -37,6 +38,7 @@ public class ModuleManager {
         modules.add(new DiscordRPC());
         modules.add(new KillAura());
         modules.add(new Sprint());
+        modules.add(new AutoTotem());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
