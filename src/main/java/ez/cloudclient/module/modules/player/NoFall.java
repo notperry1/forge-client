@@ -2,7 +2,6 @@ package ez.cloudclient.module.modules.player;
 
 import ez.cloudclient.module.Module;
 import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -20,22 +19,22 @@ public class NoFall extends Module {
     @Override
     protected void onEnable() {
 
-        if(mc.player != null) {
+        if (mc.player != null) {
             mc.player.fallDistance = 0;
         }
     }
 
     @Override
     protected void onDisable() {
-        if(mc.player != null) {
+        if (mc.player != null) {
             mc.player.fallDistance = 0;
         }
     }
 
     @SubscribeEvent
     public void onUpdate(TickEvent event) {
-        if(mc.player != null){
-            if(mc.player.fallDistance != 0){
+        if (mc.player != null) {
+            if (mc.player.fallDistance != 0) {
                 mc.player.connection.sendPacket(new CPacketPlayer(true));
                 super.onTick(event);
             }

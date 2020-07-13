@@ -13,29 +13,28 @@ import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
 
 public abstract class Module {
     protected static final Minecraft mc = Minecraft.getMinecraft();
-    protected Logger LOGGER = CloudClient.log;
-    private String name;
-    private final String displayName;
+    private final String name;
     private final Category category;
-    private boolean enabled;
-    private String description;
+    private final String description;
     public ModuleSettings settings = new ModuleSettings();
+    protected Logger LOGGER = CloudClient.log;
+    private String displayName;
 
     public Module(String name, Category category, String description) {
         this.name = name.toLowerCase().replaceAll(" ", "_");
         this.displayName = name;
         this.category = category;
         this.description = description;
-        enabled = false;
+        settings.addBoolean("enabled", false);
     }
 
     public void registerSettings() {
-        settings.addSetting("enabled", false);
         selfSettings();
         LOGGER.info("Registered settings of " + this.getName());
     }
 
-    public void selfSettings() {}
+    public void selfSettings() {
+    }
 
     public ModuleSettings getSettings() {
         return settings;
@@ -53,6 +52,10 @@ public abstract class Module {
         return displayName;
     }
 
+    public void setDisplayName(String name) {
+        this.displayName = name;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -61,46 +64,38 @@ public abstract class Module {
         return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isEnabled() {
-        return enabled;
+        return settings.getBoolean("enabled");
     }
 
+    public void setEnabled(boolean bool) {
+        if (bool) enable();
+        else disable();
+    }
 
     protected abstract void onEnable();
 
     protected abstract void onDisable();
 
-    public void onTick(TickEvent event) {}
-
-    public void setEnabled(boolean bool){
-        if(bool) enable();
-        else disable();
-        settings.setSetting("enabled", bool);
-        SETTINGS_MANAGER.updateSettings();
+    public void onTick(TickEvent event) {
     }
 
     public void enable() {
         MinecraftForge.EVENT_BUS.register(this);
         onEnable();
-        enabled = true;
-        settings.setSetting("enabled", true);
+        settings.setBoolean("enabled", true);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void disable() {
         MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
-        enabled = false;
-        settings.setSetting("enabled", false);
+        settings.setBoolean("enabled", false);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void toggle() {
-        if (enabled) disable();
+        if (settings.getBoolean("enabled")) disable();
         else enable();
     }
 
@@ -117,7 +112,7 @@ public abstract class Module {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, displayName, category);
+        return Objects.hash(name, description, category);
     }
 
     @Override
@@ -126,18 +121,19 @@ public abstract class Module {
                 "name='" + name + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", category=" + category +
-                ", enabled=" + enabled +
+                ", enabled=" + isEnabled() +
                 '}';
     }
+
     //A - Z Please
     public enum Category {
         COMBAT,
         EXPLOITS,
-        PLAYER,
-        RENDER,
         MISC,
         MOVEMENT,
-        NONE
+        NONE,
+        PLAYER,
+        RENDER
     }
 
 }

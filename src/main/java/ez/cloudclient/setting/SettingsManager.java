@@ -1,8 +1,8 @@
 package ez.cloudclient.setting;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import ez.cloudclient.CloudClient;
 import ez.cloudclient.module.Module;
 import ez.cloudclient.module.ModuleManager;
@@ -22,7 +22,8 @@ public class SettingsManager {
         if (configFile.exists() && configFile.isFile()) {
             try {
                 CloudClient.log.info("Reading config file...");
-                settingsArray = gson.fromJson(new FileReader(configFile), new TypeToken<Map<String, ModuleSettings>>(){}.getType());
+                settingsArray = gson.fromJson(new FileReader(configFile), new TypeToken<Map<String, ModuleSettings>>() {
+                }.getType());
                 CloudClient.log.info("Successfully read config file.");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
