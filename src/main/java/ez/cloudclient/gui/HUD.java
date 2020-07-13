@@ -27,7 +27,7 @@ public class HUD {
             mc.fontRenderer.drawStringWithShadow(CloudClient.FULLNAME, 5, 5, -1);
             float currY = mc.fontRenderer.FONT_HEIGHT + 5;
             for (Module m : ModuleManager.modules) {
-                if (m.isEnabled()) {
+                if (m.isEnabled() && m.isDrawn()) {
                     mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 5, currY + 1, GetRainbowColor(number, 90.0f, 50.0f, 1.0f).getRGB());
                     currY += mc.fontRenderer.FONT_HEIGHT;
                 }
