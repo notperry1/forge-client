@@ -18,7 +18,7 @@ public class ModuleSettings {
     }
 
     public Boolean getBoolean(String settingName) {
-        Setting setting = getSetting(settingName);
+        Setting setting = settings.get(settingName);
         if (setting instanceof BooleanSetting) {
             return ((BooleanSetting) setting).getValue();
         }
@@ -26,24 +26,20 @@ public class ModuleSettings {
     }
 
     public void setBoolean(String settingName, Boolean newValue) {
-        Setting setting = getSetting(settingName);
+        Setting setting = settings.get(settingName);
         if (setting instanceof BooleanSetting) {
             ((BooleanSetting) setting).setValue(newValue);
         }
     }
 
     public void setSetting(String settingName, Setting newValue) {
-        if (newValue.getClass() == getSetting(settingName).getClass()) {
+        if (newValue.getClass() == settings.get(settingName).getClass()) {
             settings.replace(settingName, newValue);
         }
     }
 
-    public Setting getSetting(String settingName) {
-        return settings.get(settingName);
-    }
-
     public Setting getSetting(String settingName, Setting type) {
-        Setting setting = getSetting(settingName);
+        Setting setting = settings.get(settingName);
         if (setting.getClass() == type.getClass()) {
             return setting;
         }
