@@ -1,6 +1,7 @@
 package ez.cloudclient.setting.settings;
 
-import com.sun.tools.javac.util.List;
+
+import java.util.Arrays;
 
 public class ModeSetting {
     private final String[] modes;
@@ -23,6 +24,6 @@ public class ModeSetting {
     }
 
     public void setMode(String mode) {
-        currentMode = List.from(modes).indexOf(mode);
+        currentMode = Arrays.asList(modes).indexOf(mode);
     }
 }
