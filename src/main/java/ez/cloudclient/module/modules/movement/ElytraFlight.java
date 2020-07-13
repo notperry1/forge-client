@@ -13,7 +13,6 @@ public class ElytraFlight extends Module {
 
     public float speed = 1;
 
-
     public ElytraFlight() {
         super("ElytraFlight", Module.Category.MOVEMENT, "Fly using Elytra");
     }

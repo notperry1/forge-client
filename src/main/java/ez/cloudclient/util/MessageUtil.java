@@ -94,5 +94,4 @@ public class MessageUtil {
         DARK_GRAY,
         BLACK
     }
-
 }

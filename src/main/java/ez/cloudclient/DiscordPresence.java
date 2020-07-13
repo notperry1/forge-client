@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 
 public class DiscordPresence {
+
     public static DiscordRichPresence presence;
     private static boolean connected;
     private static final club.minnced.discord.rpc.DiscordRPC rpc;

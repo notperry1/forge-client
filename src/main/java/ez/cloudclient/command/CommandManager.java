@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandManager {
+
     public static HashSet<Command> commands = new HashSet<>();
     public static String commandPrefix = ".";
 

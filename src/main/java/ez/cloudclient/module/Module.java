@@ -12,6 +12,7 @@ import java.util.Objects;
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
 
 public abstract class Module {
+    
     protected static final Minecraft mc = Minecraft.getMinecraft();
     protected Logger LOGGER = CloudClient.log;
     private String name;

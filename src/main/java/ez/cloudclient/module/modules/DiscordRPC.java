@@ -4,6 +4,7 @@ import ez.cloudclient.DiscordPresence;
 import ez.cloudclient.module.Module;
 
 public class DiscordRPC extends Module {
+
     public DiscordRPC() {
         super("DiscordRPC", Category.NONE, "DiscordPresence");
     }

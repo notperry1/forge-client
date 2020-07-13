@@ -4,6 +4,7 @@ package ez.cloudclient.command;
 import net.minecraft.client.Minecraft;
 
 public abstract class Command {
+
     final String name;
     final String displayName;
     final String description;

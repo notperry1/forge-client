@@ -16,6 +16,7 @@ import java.util.HashSet;
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
 
 public class ModuleManager {
+
     public static final HashSet<Module> modules = new HashSet<>();
 
     public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {

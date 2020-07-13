@@ -14,6 +14,7 @@ import java.util.Map;
 import static ez.cloudclient.CloudClient.CLOUDCLIENT_CONFIGFILE;
 
 public class SettingsManager {
+
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     File configFile = new File(CLOUDCLIENT_CONFIGFILE);
 
@@ -82,5 +83,4 @@ public class SettingsManager {
         }
         updateSettings();
     }
-
 }

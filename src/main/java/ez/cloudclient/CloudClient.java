@@ -17,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 
 @Mod(modid = CloudClient.MODID, name = CloudClient.NAME, version = CloudClient.VERSION)
 public class CloudClient {
+
     public static final String MODID = "cloudclient";
     public static final String NAME = "Cloud Client";
     public static final String VERSION = "v1.1";

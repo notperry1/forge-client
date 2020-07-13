@@ -32,6 +32,7 @@ public class Sprint extends Module {
                 mc.player.setSprinting(true);
             else
                 mc.player.setSprinting(false);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
     }
 }

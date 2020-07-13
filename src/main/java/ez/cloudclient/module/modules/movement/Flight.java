@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class Flight extends Module {
+
     public Flight() {
         super("Flight", Category.MOVEMENT, "Creative Flight");
     }
