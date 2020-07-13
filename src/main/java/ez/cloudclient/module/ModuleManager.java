@@ -1,5 +1,16 @@
 package ez.cloudclient.module;
 
+import ez.cloudclient.module.modules.DiscordRPC;
+import ez.cloudclient.module.modules.combat.AutoTotem;
+import ez.cloudclient.module.modules.combat.CrystalAura;
+import ez.cloudclient.module.modules.combat.KillAura;
+import ez.cloudclient.module.modules.exploits.AntiHunger;
+import ez.cloudclient.module.modules.movement.ElytraFlight;
+import ez.cloudclient.module.modules.movement.Flight;
+import ez.cloudclient.module.modules.movement.Sprint;
+import ez.cloudclient.module.modules.player.NoFall;
+import ez.cloudclient.module.modules.render.EntityESP;
+import ez.cloudclient.module.modules.render.FullBright;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -22,6 +33,18 @@ public class ModuleManager {
             Module module = aClass.getConstructor().newInstance();
             modules.add(module);
         }
+
+        modules.add(new NoFall());
+        modules.add(new FullBright());
+        modules.add(new Flight());
+        modules.add(new AntiHunger());
+        modules.add(new ElytraFlight());
+        modules.add(new DiscordRPC());
+        modules.add(new KillAura());
+        modules.add(new Sprint());
+        modules.add(new AutoTotem());
+        modules.add(new EntityESP());
+        modules.add(new CrystalAura());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
