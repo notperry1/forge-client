@@ -16,17 +16,6 @@ public class AutoTotem extends Module {
         super("AutoTotem", Category.COMBAT, "Automatically swaps totem of undying to your offhand");
     }
 
-
-    @Override
-    protected void onEnable() {
-
-    }
-
-    @Override
-    protected void onDisable() {
-
-    }
-
     @Override
     public void onTick() {
         if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.OFFHAND).getItem() == Items.TOTEM_OF_UNDYING) {
