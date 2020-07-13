@@ -6,6 +6,7 @@ import ez.cloudclient.module.modules.combat.CrystalAura;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.*;
+import ez.cloudclient.module.modules.player.AutoRespawn;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.EntityESP;
 import ez.cloudclient.module.modules.render.FullBright;
@@ -44,6 +45,7 @@ public class ModuleManager {
         modules.add(new FastStop());
         modules.add(new EntityESP());
         modules.add(new CrystalAura());
+        modules.add(new AutoRespawn());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
