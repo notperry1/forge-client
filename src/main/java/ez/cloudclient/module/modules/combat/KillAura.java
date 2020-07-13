@@ -8,7 +8,7 @@ public class KillAura extends Module {
     int l_Slot = -1;
 
     public KillAura() {
-        super("KillAura", Category.COMBAT, "Automatically attacks enemies in range.");
+        super("KillAura", Category.COMBAT, "Automatically attacks enemies in range.", -1);
     }
 
     @Override

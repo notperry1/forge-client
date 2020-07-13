@@ -17,12 +17,14 @@ public abstract class Module {
     private final Category category;
     private final String description;
     public ModuleSettings settings = new ModuleSettings();
+    public int key;
     protected Logger LOGGER = CloudClient.log;
     private String displayName;
 
-    public Module(String name, Category category, String description) {
+    public Module(String name, Category category, String description, int key) {
         this.name = name.toLowerCase().replaceAll(" ", "_");
         this.displayName = name;
+        this.key = key;
         this.category = category;
         this.description = description;
     }
@@ -68,6 +70,10 @@ public abstract class Module {
     public boolean isEnabled() {
         return settings.getBoolean("Enabled");
     }
+
+    public int getKey() { return key; }
+
+    public void setKey(int key) { this.key = key; }
 
     public void setEnabled(boolean bool) {
         if (bool) enable();

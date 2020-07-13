@@ -18,18 +18,36 @@ public class ListModule extends Command {
     public void call(String[] args) {
         if (mc.player == null) return;
         if (args.length == 0) {
-            sb.replace(0, sb.capacity(), "");
-            for (Module module : ModuleManager.modules) {
-                i++;
-                sb.append(module.getDisplayName()).append(", ");
-                if (ModuleManager.modules.size() == i) {
-                    i = 0;
-                    break;
+            MessageUtil.sendMessage("List of categories:", MessageUtil.Color.GRAY);
+            MessageUtil.sendMessage("  ALL", MessageUtil.Color.GRAY);
+            for (Module.Category category : Module.Category.values()) {
+                MessageUtil.sendMessage("  " + category.name(), MessageUtil.Color.GRAY);
+            }
+        } else {
+            for (Module.Category category : Module.Category.values()) {
+                if (category.name().equalsIgnoreCase(args[0])) {
+                    MessageUtil.sendMessage("Modules in " + args[0] + ":", MessageUtil.Color.GRAY);
+                    for (Module module : ModuleManager.getModulesInCat(Module.Category.valueOf(args[0].toUpperCase()))) {
+                        MessageUtil.sendMessage("  " + module.getDisplayName() + ": " + module.getDesc(), MessageUtil.Color.GRAY);
+                    }
+                    return;
+                } else if (args[0].equalsIgnoreCase("ALL")){
+                    sb.replace(0, sb.capacity(), "");
+                    for (Module module : ModuleManager.modules) {
+                        i++;
+                        sb.append(module.getDisplayName()).append(", ");
+                        if (ModuleManager.modules.size() == i) {
+                            i = 0;
+                            break;
+                        }
+                    }
+                    sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1, "");
+                    MessageUtil.sendMessage(sb.toString(), MessageUtil.Color.GRAY);
+                    sb.replace(0, sb.capacity(), "");
+                    return;
                 }
             }
-            sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1, "");
-//            sb.append("\n" + TextFormatting.GRAY + " Do " + TextFormatting.GRAY + CommandManager.commandPrefix + TextFormatting.GRAY + "list category to get a list of categories");
-            MessageUtil.sendMessage(sb.toString(), MessageUtil.Color.GRAY);
+            MessageUtil.sendMessage(args[0] + " is not a valid category.", MessageUtil.Color.RED);
         }
     }
 }

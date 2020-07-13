@@ -5,7 +5,7 @@ import ez.cloudclient.module.Module;
 public class Sprint extends Module {
 
     public Sprint() {
-        super("Sprint", Category.MOVEMENT, "Automatically Sprints for you");
+        super("Sprint", Category.MOVEMENT, "Automatically Sprints for you", -1);
     }
 
     /*

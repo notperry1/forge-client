@@ -11,7 +11,7 @@ public class NoFall extends Module {
      */
 
     public NoFall() {
-        super("NoFall", Category.PLAYER, "Prevent Taking Fall Damage");
+        super("NoFall", Category.PLAYER, "Prevent Taking Fall Damage", -1);
     }
 
     @Override

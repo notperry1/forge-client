@@ -4,9 +4,7 @@ import ez.cloudclient.module.modules.DiscordRPC;
 import ez.cloudclient.module.modules.combat.AutoTotem;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
-import ez.cloudclient.module.modules.movement.ElytraFlight;
-import ez.cloudclient.module.modules.movement.Flight;
-import ez.cloudclient.module.modules.movement.Sprint;
+import ez.cloudclient.module.modules.movement.*;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import net.minecraft.client.Minecraft;
@@ -40,6 +38,8 @@ public class ModuleManager {
         modules.add(new KillAura());
         modules.add(new Sprint());
         modules.add(new AutoTotem());
+        modules.add(new FastStop());
+
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {

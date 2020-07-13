@@ -89,6 +89,6 @@ public class DiscordPresence {
         DiscordPresence.presence.details = details;
         DiscordPresence.presence.state = state;
         DiscordPresence.presence.largeImageKey = "cloud";
-        DiscordPresence.presence.largeImageText = "cloud client";
+        DiscordPresence.presence.largeImageText = "Cloud Client on Top";
     }
 }

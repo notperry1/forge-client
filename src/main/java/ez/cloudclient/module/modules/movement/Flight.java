@@ -5,7 +5,7 @@ import ez.cloudclient.module.Module;
 public class Flight extends Module {
 
     public Flight() {
-        super("Flight", Category.MOVEMENT, "Creative Flight");
+        super("Flight", Category.MOVEMENT, "Creative Flight", -1);
     }
 
     /*
@@ -15,8 +15,10 @@ public class Flight extends Module {
 
     @Override
     protected void onEnable() {
-        if (mc.player != null) {
-            mc.player.capabilities.isFlying = true;
+        if(this.isEnabled()) {
+            if (mc.player != null) {
+                mc.player.capabilities.isFlying = true;
+            }
         }
     }
 
