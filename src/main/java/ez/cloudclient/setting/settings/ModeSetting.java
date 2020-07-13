@@ -1,9 +1,11 @@
 package ez.cloudclient.setting.settings;
 
 
+import ez.cloudclient.setting.Setting;
+
 import java.util.Arrays;
 
-public class ModeSetting {
+public class ModeSetting extends Setting {
     private final String[] modes;
     private int currentMode;
 

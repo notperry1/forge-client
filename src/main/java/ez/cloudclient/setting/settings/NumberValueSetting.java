@@ -1,7 +1,5 @@
 package ez.cloudclient.setting.settings;
 
-import ez.cloudclient.setting.settings.ValueSetting;
-
 public class NumberValueSetting extends ValueSetting<Double> {
 
     protected Double min, max;

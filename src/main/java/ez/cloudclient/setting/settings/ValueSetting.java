@@ -1,6 +1,8 @@
 package ez.cloudclient.setting.settings;
 
-public class ValueSetting<T> {
+import ez.cloudclient.setting.Setting;
+
+public class ValueSetting<T> extends Setting {
 
     public T value;
 
