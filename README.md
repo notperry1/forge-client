@@ -1,9 +1,10 @@
-# cloudclient
-official GitHub of cloud client
-
-## CloudClient
-Cloud Client is a 1.12.2 Anarchy PVP focused client.
-Focusing on PVP and the elements of Crystal PVP. It will have elements that other clients do not have, such as custom High Ping CA, "wasp" CA and more. Comes along with a custom resource pack.
-
-## Cloudclient On Top!
-EZZZZ
+# Cloud Client
+The official GitHub for Cloud Client.
+- This is a private Utility Mod for Minecraft Forge 1.12.2 and is oriented towards Anarchy Servers.
+#### Using
+Really, if you don't know, you shouldn't be here.
+- The default prefix for commands in chat is `.`
+#### Credits
+- Huge thanks to all the contributors for their work on the project.
+####Links
+[Discord Server](https://discord.gg/ZydwkaY)
