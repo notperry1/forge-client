@@ -2,6 +2,7 @@ package ez.cloudclient.module;
 
 import ez.cloudclient.module.modules.DiscordRPC;
 import ez.cloudclient.module.modules.combat.AutoTotem;
+import ez.cloudclient.module.modules.combat.CrystalAura;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.ElytraFlight;
@@ -40,6 +41,7 @@ public class ModuleManager {
         modules.add(new KillAura());
         modules.add(new Sprint());
         modules.add(new AutoTotem());
+        modules.add(new CrystalAura());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
