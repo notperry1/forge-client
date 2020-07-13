@@ -1,14 +1,14 @@
-package ez.cloudclient.value;
+package ez.cloudclient.setting.settings;
 
-public class Value<T> {
+public class ValueSetting<T> {
 
     public T value;
 
-    private String name;
+    private final String name;
 
-    private T defaultValue;
+    private final T defaultValue;
 
-    public Value(String name, T defaultValue) {
+    public ValueSetting(String name, T defaultValue) {
 
         this.name = name;
         this.defaultValue = defaultValue;
