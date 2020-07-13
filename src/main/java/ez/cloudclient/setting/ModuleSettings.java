@@ -1,13 +1,16 @@
 package ez.cloudclient.setting;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import ez.cloudclient.setting.settings.BooleanSetting;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ModuleSettings {
-
-    public Map<String, Setting> settings = new HashMap<>();
+    @Expose
+    @SerializedName("Settings")
+    private final Map<String, Setting> settings = new HashMap<>();
 
     public void addSetting(String settingName, Setting defaultValue) {
         settings.put(settingName, defaultValue);

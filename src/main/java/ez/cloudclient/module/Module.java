@@ -86,9 +86,9 @@ public abstract class Module {
         SETTINGS_MANAGER.updateSettings();
     }
 
-    protected abstract void onEnable();
+    protected void onEnable() {}
 
-    protected abstract void onDisable();
+    protected void onDisable() {}
 
     public void onTick() {
     }
