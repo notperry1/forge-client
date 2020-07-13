@@ -44,7 +44,7 @@ public class ModuleManager {
                 module.enable();
             }
             if((Boolean) module.getSettings().getSetting("Drawn")){
-                module.enable();
+                module.enableDrawn();
             }
         }
     }

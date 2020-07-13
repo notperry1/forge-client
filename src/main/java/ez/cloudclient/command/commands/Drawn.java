@@ -23,7 +23,6 @@ public class Drawn extends Command {
                         if (mod.isDrawn()) {
                             MessageUtil.sendMessage(mod.getDisplayName() + " is now being drawn.", MessageUtil.Color.GREEN);
                         } else { MessageUtil.sendMessage(mod.getDisplayName() + " is now not being drawn.", MessageUtil.Color.RED);}
-
                     } else {
                         MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
                     }
