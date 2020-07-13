@@ -6,25 +6,24 @@ import ez.cloudclient.setting.Setting;
 
 import java.util.Objects;
 
-public class BooleanSetting extends Setting {
+public class ValueSetting<T> extends Setting {
     @Expose
     @SerializedName("Current Value")
-    private Boolean value;
+    public T value;
 
-    public BooleanSetting(Boolean defaultValue) {
-        value = defaultValue;
+    public ValueSetting(T defaultValue) {
+        this.value = defaultValue;
     }
 
-    @Override
-    public String toString() {
-        return "\"BooleanSetting\": {" + "\"value\": \"" + value + "\"}";
+    public T getValue() {
+        return value;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BooleanSetting)) return false;
-        BooleanSetting that = (BooleanSetting) o;
+        if (!(o instanceof ValueSetting)) return false;
+        ValueSetting<?> that = (ValueSetting<?>) o;
         return Objects.equals(getValue(), that.getValue());
     }
 
@@ -33,11 +32,14 @@ public class BooleanSetting extends Setting {
         return Objects.hash(getValue());
     }
 
-    public Boolean getValue() {
-        return value;
+    @Override
+    public String toString() {
+        return "ValueSetting{" +
+                "value=" + value +
+                '}';
     }
 
-    public void setValue(Boolean value) {
+    public void setValue(T value) {
         this.value = value;
     }
 }

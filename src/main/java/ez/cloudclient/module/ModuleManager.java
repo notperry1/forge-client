@@ -14,7 +14,9 @@ import ez.cloudclient.module.modules.render.FullBright;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import org.reflections.Reflections;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
@@ -23,16 +25,15 @@ public class ModuleManager {
 
     public static final HashSet<Module> modules = new HashSet<>();
 
-    public static void init() { //throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         modules.clear();
-        /* TODO: Make work
         for (Class<? extends Module> aClass : new Reflections("ez.cloudclient.module.modules").getSubTypesOf(
                 Module.class
         )) {
             Module module = aClass.getConstructor().newInstance();
             modules.add(module);
         }
-         */
+
         modules.add(new NoFall());
         modules.add(new FullBright());
         modules.add(new Flight());

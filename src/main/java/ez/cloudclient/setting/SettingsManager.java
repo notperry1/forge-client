@@ -3,9 +3,14 @@ package ez.cloudclient.setting;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import ez.cloudclient.CloudClient;
 import ez.cloudclient.module.Module;
 import ez.cloudclient.module.ModuleManager;
+import ez.cloudclient.setting.settings.BooleanSetting;
+import ez.cloudclient.setting.settings.ModeSetting;
+import ez.cloudclient.setting.settings.NumberValueSetting;
+import ez.cloudclient.setting.settings.ValueSetting;
 
 import java.io.*;
 import java.util.HashMap;
@@ -14,8 +19,13 @@ import java.util.Map;
 import static ez.cloudclient.CloudClient.CLOUDCLIENT_CONFIGFILE;
 
 public class SettingsManager {
-
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    final RuntimeTypeAdapterFactory<Setting> typeFactory = RuntimeTypeAdapterFactory
+            .of(Setting.class, "type")
+            .registerSubtype(BooleanSetting.class)
+            .registerSubtype(ModeSetting.class)
+            .registerSubtype(ValueSetting.class)
+            .registerSubtype(NumberValueSetting.class);
+    Gson gson = new GsonBuilder().registerTypeAdapterFactory(typeFactory).setPrettyPrinting().create();
     File configFile = new File(CLOUDCLIENT_CONFIGFILE);
 
     public Map<String, ModuleSettings> readSettings() {

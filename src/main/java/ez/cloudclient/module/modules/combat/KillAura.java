@@ -17,15 +17,6 @@ public class KillAura extends Module {
     }
 
     @Override
-    protected void onEnable() {
-
-    }
-
-    @Override
-    protected void onDisable() {
-    }
-
-    @Override
     public void onTick() {
         if (settings.getBoolean("Auto Switch")) {
             for (int l_I = 0; l_I < 9; ++l_I) {
