@@ -1,9 +1,11 @@
 package ez.cloudclient.module;
 
 import ez.cloudclient.module.modules.DiscordRPC;
+import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
+import ez.cloudclient.module.modules.movement.Sprint;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import ez.cloudclient.setting.ModuleSettings;
@@ -32,6 +34,8 @@ public class ModuleManager {
         modules.add(new AntiHunger());
         modules.add(new ElytraFlight());
         modules.add(new DiscordRPC());
+        modules.add(new KillAura());
+        modules.add(new Sprint());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
