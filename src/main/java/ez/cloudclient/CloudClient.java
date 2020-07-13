@@ -4,6 +4,7 @@ import ez.cloudclient.command.CommandManager;
 import ez.cloudclient.gui.HUD;
 import ez.cloudclient.module.ModuleManager;
 import ez.cloudclient.setting.SettingsManager;
+import ez.cloudclient.util.AuthUtil;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -41,6 +42,7 @@ public class CloudClient {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         try {
+            //new AuthUtil();
             ModuleManager.init();
             COMMAND_MANAGER.init();
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
