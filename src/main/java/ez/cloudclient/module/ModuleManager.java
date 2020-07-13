@@ -8,6 +8,7 @@ import ez.cloudclient.module.modules.movement.ElytraFlight;
 import ez.cloudclient.module.modules.movement.Flight;
 import ez.cloudclient.module.modules.movement.Sprint;
 import ez.cloudclient.module.modules.player.NoFall;
+import ez.cloudclient.module.modules.render.ESP;
 import ez.cloudclient.module.modules.render.FullBright;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -40,6 +41,7 @@ public class ModuleManager {
         modules.add(new KillAura());
         modules.add(new Sprint());
         modules.add(new AutoTotem());
+        modules.add(new ESP());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
