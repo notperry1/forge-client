@@ -5,7 +5,7 @@ import ez.cloudclient.module.Module;
 public class Flight extends Module {
 
     public Flight() {
-        super("Flight", Category.MOVEMENT, "Creative Flight", -1);
+        super("Flight", Category.MOVEMENT, "Creative Flight");
     }
 
     /*

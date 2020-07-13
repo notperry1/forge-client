@@ -5,7 +5,7 @@ import ez.cloudclient.module.Module;
 public class FastStop extends Module {
 
     public FastStop() {
-        super("FastStop",  Category.MOVEMENT,"Brings you to a stop instantly", -1);
+        super("FastStop",  Category.MOVEMENT,"Brings you to a stop instantly");
         this.settings.addBoolean("Air Stop", false);
     }
 
@@ -17,7 +17,6 @@ public class FastStop extends Module {
 
     @Override
     public void onTick() {
-        if (mc.player == null) return;
         if (!mc.gameSettings.keyBindForward.isPressed() && !mc.gameSettings.keyBindBack.isPressed() && !mc.gameSettings.keyBindLeft.isPressed() && !mc.gameSettings.keyBindRight.isPressed()) {
             if (mc.player.onGround) {
                 mc.player.setVelocity(0, mc.player.motionY, 0);

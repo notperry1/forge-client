@@ -13,7 +13,7 @@ public class AutoTotem extends Module {
      */
 
     public AutoTotem() {
-        super("AutoTotem", Category.COMBAT, "Automatically swaps totem of undying to your offhand", -1);
+        super("AutoTotem", Category.COMBAT, "Automatically swaps totem of undying to your offhand");
     }
 
 

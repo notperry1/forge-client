@@ -7,7 +7,7 @@ public class FullBright extends Module {
     private float startGamma;
 
     public FullBright() {
-        super("FullBright", Category.RENDER, "Increase client brightness", -1);
+        super("FullBright", Category.RENDER, "Increase client brightness");
     }
 
     @Override
