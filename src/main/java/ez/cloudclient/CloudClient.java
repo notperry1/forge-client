@@ -47,6 +47,7 @@ public class CloudClient {
             e.printStackTrace();
         }
         MinecraftForge.EVENT_BUS.register(new HUD());
+        MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
         System.out.println(FULLNAME + " loaded.");
     }
 }

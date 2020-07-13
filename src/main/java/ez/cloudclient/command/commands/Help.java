@@ -3,9 +3,6 @@ package ez.cloudclient.command.commands;
 import ez.cloudclient.command.Command;
 import ez.cloudclient.command.CommandManager;
 import ez.cloudclient.util.MessageUtil;
-import jdk.nashorn.internal.runtime.regexp.RegExp;
-import net.minecraft.util.text.TextFormatting;
-import scala.tools.nsc.interpreter.Formatting;
 
 
 public class Help extends Command {
@@ -35,7 +32,7 @@ public class Help extends Command {
                     break;
                 }
             }
-            sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ")+1, "");
+            sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1, "");
             MessageUtil.sendMessage(sb.toString(), MessageUtil.Color.GRAY);
         }
     }

@@ -1,11 +1,9 @@
 package ez.cloudclient.command.commands;
 
 import ez.cloudclient.command.Command;
-import ez.cloudclient.command.CommandManager;
 import ez.cloudclient.module.Module;
 import ez.cloudclient.module.ModuleManager;
 import ez.cloudclient.util.MessageUtil;
-import net.minecraft.util.text.TextFormatting;
 
 public class ListModule extends Command {
 
@@ -29,7 +27,7 @@ public class ListModule extends Command {
                     break;
                 }
             }
-            sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ")+1, "");
+            sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1, "");
 //            sb.append("\n" + TextFormatting.GRAY + " Do " + TextFormatting.GRAY + CommandManager.commandPrefix + TextFormatting.GRAY + "list category to get a list of categories");
             MessageUtil.sendMessage(sb.toString(), MessageUtil.Color.GRAY);
         }

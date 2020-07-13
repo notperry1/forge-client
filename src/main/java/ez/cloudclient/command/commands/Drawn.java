@@ -18,11 +18,13 @@ public class Drawn extends Command {
                 for (Module module : ModuleManager.modules) {
                     String moduleName = args[0].replaceAll(" ", "");
                     Module mod = ModuleManager.getModuleByName(moduleName.toLowerCase());
-                    if(mod != null){
+                    if (mod != null) {
                         mod.toggleDrawn();
                         if (mod.isDrawn()) {
                             MessageUtil.sendMessage(mod.getDisplayName() + " is now being drawn.", MessageUtil.Color.GREEN);
-                        } else { MessageUtil.sendMessage(mod.getDisplayName() + " is now not being drawn.", MessageUtil.Color.RED);}
+                        } else {
+                            MessageUtil.sendMessage(mod.getDisplayName() + " is now not being drawn.", MessageUtil.Color.RED);
+                        }
                     } else {
                         MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
                     }

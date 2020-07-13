@@ -1,5 +1,4 @@
 package ez.cloudclient.setting;
 
-public class Setting {
-
+public abstract class Setting {
 }
