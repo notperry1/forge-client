@@ -15,8 +15,10 @@ public class Flight extends Module {
 
     @Override
     protected void onEnable() {
-        if (mc.player != null) {
-            mc.player.capabilities.isFlying = true;
+        if(this.isEnabled()) {
+            if (mc.player != null) {
+                mc.player.capabilities.isFlying = true;
+            }
         }
     }
 

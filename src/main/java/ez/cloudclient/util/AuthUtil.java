@@ -19,8 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 public class AuthUtil {
 
-
-
     static JTextField textfield1;
     public void auth(){
         JFrame frame = new JFrame("CloudClient Auth");
@@ -45,7 +43,6 @@ public class AuthUtil {
             e.printStackTrace();
         }
         frame.setTitle("Connecting");
-
         try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
@@ -60,7 +57,7 @@ public class AuthUtil {
         if(acces.equalsIgnoreCase("true")){
             frame.setTitle("Done");
         }else{
-            frame.setTitle("No acces");
+            frame.setTitle("No access");
             Minecraft.getMinecraft().shutdownMinecraftApplet();
         }
         try {
@@ -69,9 +66,5 @@ public class AuthUtil {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
-
-
 }

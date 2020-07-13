@@ -1,5 +1,6 @@
 package ez.cloudclient.command;
 
+import ez.cloudclient.CloudClient;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
 public class CommandManager {
 
     public static HashSet<Command> commands = new HashSet<>();
-    public static String commandPrefix = ".";
+    public static String commandPrefix;
 
     public void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         commands.clear();
@@ -26,6 +27,7 @@ public class CommandManager {
             commands.add(command);
         }
         MinecraftForge.EVENT_BUS.register(this);
+        commandPrefix = CloudClient.PREFIX;
     }
 
 

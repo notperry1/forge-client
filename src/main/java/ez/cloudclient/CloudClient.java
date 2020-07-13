@@ -4,7 +4,6 @@ import ez.cloudclient.command.CommandManager;
 import ez.cloudclient.gui.HUD;
 import ez.cloudclient.module.ModuleManager;
 import ez.cloudclient.setting.SettingsManager;
-import ez.cloudclient.util.AuthUtil;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -25,6 +24,7 @@ public class CloudClient {
     public static final String VERSION = "1.1"; //putting a v before this looks weird in the mod menu
     public static final String APP_ID = "731393813104558122";
     public static final String FULLNAME = NAME + " " + VERSION;
+    public static String PREFIX = ".";
 
     public static final String CLOUDCLIENT_CONFIGFILE = "CloudClientConfig.json";
 
@@ -42,7 +42,7 @@ public class CloudClient {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         try {
-            //new AuthUtil();
+//            new AuthUtil().auth();
             ModuleManager.init();
             COMMAND_MANAGER.init();
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
@@ -50,6 +50,7 @@ public class CloudClient {
         }
         MinecraftForge.EVENT_BUS.register(new HUD());
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
+//        ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
     }
 }

@@ -6,7 +6,7 @@ import ez.cloudclient.module.Module;
 public class DiscordRPC extends Module {
 
     public DiscordRPC() {
-        super("DiscordRPC", Category.NONE, "DiscordPresence");
+        super("DiscordRPC", Category.NONE, "DiscordPresence", -1);
     }
 
     @Override
