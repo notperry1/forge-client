@@ -17,18 +17,21 @@ public class Flight extends Module {
 
     @Override
     protected void onEnable() {
+        if (mc.player != null) {
+            mc.player.capabilities.isFlying = true;
+        }
     }
 
     @Override
     protected void onDisable() {
-        if (mc.world != null) {
+        if (mc.player != null) {
             mc.player.capabilities.isFlying = false;
         }
     }
 
     @SubscribeEvent
     public void onUpdate(TickEvent event) {
-        if(mc.player != null) {
+        if (mc.player != null) {
             mc.player.capabilities.isFlying = true;
         }
     }

@@ -16,11 +16,14 @@ public class Sprint extends Module {
 
     @Override
     protected void onEnable() {
+        if (mc.player != null) {
+            mc.player.setSprinting(true);
+        }
     }
 
     @Override
     protected void onDisable() {
-        if (mc.world != null) {
+        if (mc.player != null) {
             mc.player.setSprinting(false);
         }
     }
@@ -28,10 +31,7 @@ public class Sprint extends Module {
     @SubscribeEvent
     public void onUpdate(TickEvent event) {
         try {
-            if ((mc.player !=null) && mc.gameSettings.keyBindForward.isKeyDown())
-                mc.player.setSprinting(true);
-            else
-                mc.player.setSprinting(false);
+            mc.player.setSprinting(mc.gameSettings.keyBindForward.isKeyDown());
         } catch (Exception ignored) {
         }
     }

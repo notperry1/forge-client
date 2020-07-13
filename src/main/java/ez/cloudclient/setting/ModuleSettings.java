@@ -13,9 +13,17 @@ public class ModuleSettings {
         return settings.put(settingName, defaultValue);
     }
 
-    public Object addBooleanSetting(String settingName, Boolean bool) {
-        return settings.put(settingName, bool);
-    }
+//    public Object addBooleanSetting(String settingName, Boolean bool) {
+//        return settings.put(settingName, bool);
+//    }
+//
+//    public boolean getBooleanSetting(String settingName) {
+//        return (boolean) settings.get(settingName);
+//    }
+
+//    public void setBooleanSetting(String settingName, Boolean bool) {
+//        settings.replace(settingName, bool);
+//    }
 
     public void setSetting(String settingName, Object newValue) {
         settings.replace(settingName, newValue);

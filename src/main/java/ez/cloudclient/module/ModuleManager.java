@@ -40,11 +40,11 @@ public class ModuleManager {
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
-            if ((boolean) module.getSettings().getSetting("enabled")) {
+            if((Boolean) module.getSettings().getSetting("Enabled")){
                 module.enable();
             }
-            if ((boolean) module.getSettings().getSetting("drawn")) {
-                module.enableDrawn();
+            if((Boolean) module.getSettings().getSetting("Drawn")){
+                module.enable();
             }
         }
     }

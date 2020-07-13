@@ -33,8 +33,8 @@ public abstract class Module {
     }
 
     public void registerSettings() {
-        settings.addSetting("enabled", false);
-        settings.addSetting("drawn", true);
+        settings.addSetting("Drawn", true);
+        settings.addSetting("Enabled", false);
         selfSettings();
         LOGGER.info("Registered settings of " + this.getName());
     }
@@ -90,7 +90,14 @@ public abstract class Module {
     public void setEnabled(boolean bool){
         if(bool) enable();
         else disable();
-        settings.setSetting("enabled", bool);
+        settings.setSetting("Enabled", bool);
+        SETTINGS_MANAGER.updateSettings();
+    }
+
+    public void setDrawn(boolean bool){
+        if(bool) enableDrawn();
+        else disableDrawn();
+        settings.setSetting("Drawn", bool);
         SETTINGS_MANAGER.updateSettings();
     }
 
@@ -98,7 +105,7 @@ public abstract class Module {
         MinecraftForge.EVENT_BUS.register(this);
         onEnable();
         enabled = true;
-        settings.setSetting("enabled", true);
+        settings.setSetting("Enabled", true);
         SETTINGS_MANAGER.updateSettings();
     }
 
@@ -106,21 +113,21 @@ public abstract class Module {
         MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
         enabled = false;
-        settings.setSetting("enabled", false);
+        settings.setSetting("Enabled", false);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void enableDrawn() {
         MinecraftForge.EVENT_BUS.register(this);
         drawn = true;
-        settings.setSetting("drawn", true);
+        settings.setSetting("Drawn", true);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void disableDrawn() {
         MinecraftForge.EVENT_BUS.unregister(this);
         drawn = false;
-        settings.setSetting("drawn", false);
+        settings.setSetting("Drawn", false);
         SETTINGS_MANAGER.updateSettings();
     }
 
