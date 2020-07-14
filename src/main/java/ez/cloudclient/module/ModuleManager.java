@@ -8,8 +8,9 @@ import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.movement.*;
 import ez.cloudclient.module.modules.player.AutoRespawn;
 import ez.cloudclient.module.modules.player.NoFall;
-import ez.cloudclient.module.modules.render.EntityESP;
 import ez.cloudclient.module.modules.render.FullBright;
+import ez.cloudclient.module.modules.render.PlayerESP;
+import ibxm.Player;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -43,7 +44,7 @@ public class ModuleManager {
         modules.add(new Sprint());
         modules.add(new AutoTotem());
         modules.add(new FastStop());
-        modules.add(new EntityESP());
+        modules.add(new PlayerESP());
         modules.add(new CrystalAura());
         modules.add(new AutoRespawn());
 
