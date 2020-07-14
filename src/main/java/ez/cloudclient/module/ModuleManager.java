@@ -5,18 +5,19 @@ import ez.cloudclient.module.modules.combat.AutoTotem;
 import ez.cloudclient.module.modules.combat.CrystalAura;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
-import ez.cloudclient.module.modules.movement.*;
+import ez.cloudclient.module.modules.movement.ElytraFlight;
+import ez.cloudclient.module.modules.movement.FastStop;
+import ez.cloudclient.module.modules.movement.Flight;
+import ez.cloudclient.module.modules.movement.Sprint;
 import ez.cloudclient.module.modules.player.AutoRespawn;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import ez.cloudclient.module.modules.render.PlayerESP;
-import ibxm.Player;
+import ez.cloudclient.setting.settings.BooleanSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.reflections.Reflections;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
@@ -25,15 +26,8 @@ public class ModuleManager {
 
     public static final HashSet<Module> modules = new HashSet<>();
 
-    public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void init() {
         modules.clear();
-        for (Class<? extends Module> aClass : new Reflections("ez.cloudclient.module.modules").getSubTypesOf(
-                Module.class
-        )) {
-            Module module = aClass.getConstructor().newInstance();
-            modules.add(module);
-        }
-
         modules.add(new NoFall());
         modules.add(new FullBright());
         modules.add(new Flight());
@@ -50,10 +44,10 @@ public class ModuleManager {
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
-            if (module.getSettings().getBoolean("Enabled")) {
+            if (module.getSettings().getSetting("Enabled", BooleanSetting.class).getValue()) {
                 module.enable();
             }
-            if (module.getSettings().getBoolean("Drawn")) {
+            if (module.getSettings().getSetting("Drawn", BooleanSetting.class).getValue()) {
                 module.enableDrawn();
             }
         }
