@@ -38,9 +38,10 @@ public class CloudClient {
     public void init(FMLInitializationEvent event) {
         // new AuthUtil().auth();
         ModuleManager.init();
-        COMMAND_MANAGER.init();
+        CommandManager.init();
         MinecraftForge.EVENT_BUS.register(new HUD());
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
+        MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
         // ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
     }

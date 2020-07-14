@@ -17,7 +17,7 @@ public class CommandManager {
     public static HashSet<Command> commands = new HashSet<>();
     public static String commandPrefix;
 
-    public void init() {
+    public static void init() {
         commands.clear();
         commands.add(new ClearChat());
         commands.add(new Drawn());
@@ -27,7 +27,6 @@ public class CommandManager {
         commands.add(new Panic());
         commands.add(new Prefix());
         commands.add(new ToggleModule());
-        MinecraftForge.EVENT_BUS.register(this);
         commandPrefix = CloudClient.PREFIX;
     }
 
