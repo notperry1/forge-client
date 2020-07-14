@@ -2,11 +2,8 @@ package ez.cloudclient.module.modules.misc;
 
 import ez.cloudclient.module.Module;
 import ez.cloudclient.util.MessageUtil;
-import jdk.nashorn.internal.ir.Block;
-import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
@@ -20,15 +17,15 @@ public class CoordinateLogger extends Module {
 
     @SubscribeEvent
     public void onDeath(LivingDeathEvent e) {
-        if(e.getEntity() == mc.player) {
+        if (e.getEntity() == mc.player) {
             setDeathLocation(mc.player.getPosition());
         }
     }
 
     @SubscribeEvent
     public void onSpawn(PlayerEvent.PlayerRespawnEvent e) {
-        if(e.player == mc.player) {
-            if(getDeathLocation() != null) {
+        if (e.player == mc.player) {
+            if (getDeathLocation() != null) {
                 MessageUtil.sendMessage("You died at " + l.toString(), MessageUtil.Color.GREEN);
             }
         }

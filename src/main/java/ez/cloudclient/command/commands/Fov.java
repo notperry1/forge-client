@@ -25,7 +25,7 @@ public class Fov extends Command {
                     MessageUtil.sendMessage("Successfully set FOV to: " + mc.gameSettings.fovSetting, MessageUtil.Color.GREEN);
                 }
             } else {
-                switch(args[0].toLowerCase()) {
+                switch (args[0].toLowerCase()) {
                     case "max":
                     case "m":
                         mc.gameSettings.fovSetting = 150f;
