@@ -5,12 +5,12 @@ import ez.cloudclient.module.modules.combat.AutoTotem;
 import ez.cloudclient.module.modules.combat.CrystalAura;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
+import ez.cloudclient.module.modules.misc.CoordinateLogger;
 import ez.cloudclient.module.modules.movement.*;
 import ez.cloudclient.module.modules.player.AutoRespawn;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import ez.cloudclient.module.modules.render.PlayerESP;
-import ibxm.Player;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -47,6 +47,7 @@ public class ModuleManager {
         modules.add(new PlayerESP());
         modules.add(new CrystalAura());
         modules.add(new AutoRespawn());
+        modules.add(new CoordinateLogger());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
