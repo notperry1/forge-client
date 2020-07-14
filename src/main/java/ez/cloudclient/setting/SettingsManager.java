@@ -18,7 +18,7 @@ import static ez.cloudclient.CloudClient.CLOUDCLIENT_CONFIGFILE;
 public class SettingsManager {
     final RuntimeTypeAdapterFactory<Setting> typeFactory = RuntimeTypeAdapterFactory
             .of(Setting.class, "type")
-            .registerSubtype(BooleanSetting.class, "bool")
+            .registerSubtype(BooleanSetting.class, "toggle")
             .registerSubtype(ModeSetting.class, "mode")
             .registerSubtype(ValueSetting.class, "value")
             .registerSubtype(KeybindSetting.class, "keybind")

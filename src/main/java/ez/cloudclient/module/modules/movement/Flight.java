@@ -1,6 +1,9 @@
 package ez.cloudclient.module.modules.movement;
 
 import ez.cloudclient.module.Module;
+import net.minecraftforge.client.settings.KeyBindingMap;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GLUConstants;
 
 public class Flight extends Module {
 

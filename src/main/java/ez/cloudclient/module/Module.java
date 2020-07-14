@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Objects;
 
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
+import static ez.cloudclient.util.MessageUtil.sendRawMessage;
 
 public abstract class Module {
 
