@@ -2,6 +2,8 @@ package ez.cloudclient.module;
 
 import ez.cloudclient.CloudClient;
 import ez.cloudclient.setting.ModuleSettings;
+import ez.cloudclient.setting.settings.BooleanSetting;
+import ez.cloudclient.setting.settings.KeybindSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
@@ -21,15 +23,20 @@ public abstract class Module {
     private String displayName;
 
     public Module(String name, Category category, String description) {
+        this(name, category, description, -1);
+    }
+
+    public Module(String name, Category category, String description, int key) {
         this.name = name.toLowerCase().replaceAll(" ", "_");
         this.displayName = name;
         this.category = category;
         this.description = description;
+        settings.addSetting("Bind", new KeybindSetting(key));
     }
 
     public void registerSettings() {
-        settings.addBoolean("Drawn", true);
-        settings.addBoolean("Enabled", false);
+        settings.addSetting("Drawn", new BooleanSetting(true));
+        settings.addSetting("Enabled", new BooleanSetting(false));
         selfSettings();
         LOGGER.info("Registered settings of " + this.getName());
     }
@@ -61,12 +68,24 @@ public abstract class Module {
         return category;
     }
 
+    public int getKey() {
+        return settings.getSetting("Bind", KeybindSetting.class).getKey();
+    }
+
+    public void setKey(int newKey) {
+        settings.getSetting("Bind", KeybindSetting.class).setKey(newKey);
+    }
+
+    public String getKeyName() {
+        return settings.getSetting("Bind", KeybindSetting.class).getKeyName();
+    }
+
     public String getDesc() {
         return description;
     }
 
     public boolean isEnabled() {
-        return settings.getBoolean("Enabled");
+        return settings.getSetting("Enabled", BooleanSetting.class).getValue();
     }
 
     public void setEnabled(boolean bool) {
@@ -76,19 +95,19 @@ public abstract class Module {
     }
 
     public boolean isDrawn() {
-        return settings.getBoolean("Drawn");
+        return settings.getSetting("Drawn", BooleanSetting.class).getValue();
     }
 
     public void setDrawn(boolean bool) {
         if (bool) enableDrawn();
         else disableDrawn();
-        settings.setBoolean("Drawn", bool);
-        SETTINGS_MANAGER.updateSettings();
     }
 
-    protected void onEnable() {}
+    protected void onEnable() {
+    }
 
-    protected void onDisable() {}
+    protected void onDisable() {
+    }
 
     public void onTick() {
     }
@@ -96,36 +115,34 @@ public abstract class Module {
     public void enable() {
         MinecraftForge.EVENT_BUS.register(this);
         onEnable();
-        settings.setBoolean("Enabled", true);
+        settings.getSetting("Enabled", BooleanSetting.class).setValue(true);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void disable() {
         MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
-        settings.setBoolean("Enabled", false);
+        settings.getSetting("Enabled", BooleanSetting.class).setValue(false);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void enableDrawn() {
-        MinecraftForge.EVENT_BUS.register(this);
-        settings.setBoolean("Drawn", true);
+        settings.getSetting("Drawn", BooleanSetting.class).setValue(true);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void disableDrawn() {
-        MinecraftForge.EVENT_BUS.unregister(this);
-        settings.setBoolean("Drawn", false);
+        settings.getSetting("Drawn", BooleanSetting.class).setValue(false);
         SETTINGS_MANAGER.updateSettings();
     }
 
     public void toggle() {
-        if (settings.getBoolean("Enabled")) disable();
+        if (settings.getSetting("Enabled", BooleanSetting.class).getValue()) disable();
         else enable();
     }
 
     public void toggleDrawn() {
-        if (settings.getBoolean("Drawn")) disableDrawn();
+        if (settings.getSetting("Drawn", BooleanSetting.class).getValue()) disableDrawn();
         else enableDrawn();
     }
 
