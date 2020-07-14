@@ -10,7 +10,9 @@ import ez.cloudclient.module.modules.render.*;
 import ez.cloudclient.setting.settings.BooleanSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import org.lwjgl.input.Keyboard;
 
 import java.util.HashSet;
 
@@ -44,6 +46,15 @@ public class ModuleManager {
             }
             if (module.getSettings().getSetting("Drawn", BooleanSetting.class).getValue()) {
                 module.enableDrawn();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void inputEvent(InputEvent.KeyInputEvent event) {
+        for (Module module : modules) {
+            if (Keyboard.isKeyDown(module.getKey())) {
+                module.toggle();
             }
         }
     }
