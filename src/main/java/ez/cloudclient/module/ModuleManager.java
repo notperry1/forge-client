@@ -1,18 +1,12 @@
 package ez.cloudclient.module;
 
 import ez.cloudclient.module.modules.DiscordRPC;
-import ez.cloudclient.module.modules.combat.AutoTotem;
-import ez.cloudclient.module.modules.combat.CrystalAura;
-import ez.cloudclient.module.modules.combat.KillAura;
-import ez.cloudclient.module.modules.exploits.AntiHunger;
-import ez.cloudclient.module.modules.movement.ElytraFlight;
-import ez.cloudclient.module.modules.movement.FastStop;
-import ez.cloudclient.module.modules.movement.Flight;
-import ez.cloudclient.module.modules.movement.Sprint;
-import ez.cloudclient.module.modules.player.AutoRespawn;
-import ez.cloudclient.module.modules.player.NoFall;
-import ez.cloudclient.module.modules.render.FullBright;
-import ez.cloudclient.module.modules.render.PlayerESP;
+import ez.cloudclient.module.modules.combat.*;
+import ez.cloudclient.module.modules.exploits.*;
+import ez.cloudclient.module.modules.misc.*;
+import ez.cloudclient.module.modules.movement.*;
+import ez.cloudclient.module.modules.player.*;
+import ez.cloudclient.module.modules.render.*;
 import ez.cloudclient.setting.settings.BooleanSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -41,6 +35,7 @@ public class ModuleManager {
         modules.add(new PlayerESP());
         modules.add(new CrystalAura());
         modules.add(new AutoRespawn());
+        modules.add(new CoordinateLogger());
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {

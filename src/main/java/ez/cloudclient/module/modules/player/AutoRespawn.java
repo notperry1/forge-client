@@ -14,5 +14,4 @@ public class AutoRespawn extends Module {
             mc.player.respawnPlayer();
         }
     }
-
 }
