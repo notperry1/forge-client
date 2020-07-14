@@ -25,6 +25,34 @@ public class Fov extends Command {
                     mc.gameSettings.fovSetting = Float.parseFloat(args[0]);
                     MessageUtil.sendMessage("Successfully set FOV to: " + mc.gameSettings.fovSetting, MessageUtil.Color.GREEN);
                 }
+            } else {
+                switch(args[0].toLowerCase()) {
+                    case "max":
+                    case "m":
+                        mc.gameSettings.fovSetting = 150f;
+                        MessageUtil.sendMessage("Successfully set FOV to: " + mc.gameSettings.fovSetting, MessageUtil.Color.GREEN);
+                        break;
+                    case "normal":
+                    case "n":
+                    case "medium":
+                        mc.gameSettings.fovSetting = 70f;
+                        MessageUtil.sendMessage("Successfully set FOV to: " + mc.gameSettings.fovSetting, MessageUtil.Color.GREEN);
+                        break;
+                    case "quakepro":
+                    case "quake":
+                    case "q":
+                        mc.gameSettings.fovSetting = 110f;
+                        MessageUtil.sendMessage("Successfully set FOV to: " + mc.gameSettings.fovSetting, MessageUtil.Color.GREEN);
+                        break;
+                    case "low":
+                    case "l":
+                        mc.gameSettings.fovSetting = 30f;
+                        MessageUtil.sendMessage("Successfully set FOV to: " + mc.gameSettings.fovSetting, MessageUtil.Color.GREEN);
+                        break;
+                    default:
+                        MessageUtil.sendMessage("Invalid arguments, enter a number between 10 and 150 inclusive or a preset: Low, Normal, QuakePro, Max.", MessageUtil.Color.RED);
+                        break;
+                }
             }
         }
     }
