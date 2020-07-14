@@ -11,13 +11,12 @@ import static ez.cloudclient.util.RgbUtil.GetRainbowColor;
 
 public class HUD {
 
-    public static boolean panicked = false;
-
     protected final static Minecraft mc = Minecraft.getMinecraft();
+    public static boolean panicked = false;
 
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        if(!panicked) {
+        if (!panicked) {
             if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
                 int number;
                 int Min = 0;

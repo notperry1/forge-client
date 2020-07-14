@@ -13,8 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-import java.lang.reflect.InvocationTargetException;
-
 @Mod(modid = CloudClient.MODID, name = CloudClient.NAME, version = CloudClient.VERSION)
 
 public class CloudClient {
@@ -24,15 +22,12 @@ public class CloudClient {
     public static final String VERSION = "1.1"; //putting a v before this looks weird in the mod menu
     public static final String APP_ID = "731393813104558122";
     public static final String FULLNAME = NAME + " " + VERSION;
-    public static String PREFIX = ".";
-
     public static final String CLOUDCLIENT_CONFIGFILE = "CloudClientConfig.json";
-
     public static final Logger log = LogManager.getLogger("Cloud Client");
-
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
     public static final SettingsManager SETTINGS_MANAGER = new SettingsManager();
+    public static String PREFIX = ".";
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -41,16 +36,12 @@ public class CloudClient {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        try {
-//            new AuthUtil().auth();
-            ModuleManager.init();
-            COMMAND_MANAGER.init();
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
-        }
+        // new AuthUtil().auth();
+        ModuleManager.init();
+        COMMAND_MANAGER.init();
         MinecraftForge.EVENT_BUS.register(new HUD());
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
-//        ASCII.printFancyConsoleMSG();
+        // ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
     }
 }

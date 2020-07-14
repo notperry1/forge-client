@@ -7,11 +7,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 
 public class AutoTotem extends Module {
-
-    /*
-     * Added by Zilleyy on 13/07/2020
-     */
-
     public AutoTotem() {
         super("AutoTotem", Category.COMBAT, "Automatically swaps totem of undying to your offhand");
     }

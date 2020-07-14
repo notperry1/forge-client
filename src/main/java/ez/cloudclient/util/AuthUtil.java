@@ -9,26 +9,23 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class AuthUtil {
 
     static JTextField textfield1;
-    public void auth(){
+
+    public void auth() {
         JFrame frame = new JFrame("CloudClient Auth");
         frame.setVisible(true);
         frame.setSize(300, 100);
         frame.setLocationRelativeTo(null);
-        textfield1 = new JTextField("Status: Loading...",10);
+        textfield1 = new JTextField("Status: Loading...", 10);
         textfield1.setVisible(true);
         String acces = null;
-        try{
+        try {
             String sURL = "https://cloudclient.glitch.me/?name=" + Minecraft.getMinecraft().getSession().getUsername();
             URL url = new URL(sURL);
             URLConnection request = url.openConnection();
@@ -37,8 +34,6 @@ public class AuthUtil {
             JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
             JsonObject rootobj = root.getAsJsonObject();
             acces = rootobj.get("allowed").getAsString();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,9 +49,9 @@ public class AuthUtil {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if(acces.equalsIgnoreCase("true")){
+        if (acces != null && acces.equalsIgnoreCase("true")) {
             frame.setTitle("Done");
-        }else{
+        } else {
             frame.setTitle("No access");
             Minecraft.getMinecraft().shutdownMinecraftApplet();
         }

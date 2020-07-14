@@ -8,10 +8,6 @@ public class Sprint extends Module {
         super("Sprint", Category.MOVEMENT, "Automatically Sprints for you");
     }
 
-    /*
-     * Created by ollie on 12/07/20
-     */
-
     @Override
     protected void onEnable() {
         if (mc.player != null) {

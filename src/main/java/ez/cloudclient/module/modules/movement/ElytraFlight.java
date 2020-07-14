@@ -4,11 +4,6 @@ import ez.cloudclient.module.Module;
 import ez.cloudclient.util.MathUtil;
 
 public class ElytraFlight extends Module {
-
-    /*
-     * Added by RemainingToast 12/07/20
-     */
-
     public float speed = 1;
 
     public ElytraFlight() {

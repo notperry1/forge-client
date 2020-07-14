@@ -8,14 +8,9 @@ public class Flight extends Module {
         super("Flight", Category.MOVEMENT, "Creative Flight");
     }
 
-    /*
-     * Added by Zilleyy 12/07/20
-     * Updated by ollie on 13/07/20
-     */
-
     @Override
     protected void onEnable() {
-        if(this.isEnabled()) {
+        if (this.isEnabled()) {
             if (mc.player != null) {
                 mc.player.capabilities.isFlying = true;
             }

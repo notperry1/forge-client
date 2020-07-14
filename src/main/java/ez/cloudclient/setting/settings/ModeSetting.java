@@ -1,7 +1,6 @@
 package ez.cloudclient.setting.settings;
 
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import ez.cloudclient.setting.Setting;
 

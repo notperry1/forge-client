@@ -31,7 +31,7 @@ public class ListModule extends Command {
                         MessageUtil.sendMessage("  " + module.getDisplayName() + ": " + module.getDesc(), MessageUtil.Color.GRAY);
                     }
                     return;
-                } else if (args[0].equalsIgnoreCase("ALL")){
+                } else if (args[0].equalsIgnoreCase("ALL")) {
                     sb.replace(0, sb.capacity(), "");
                     for (Module module : ModuleManager.modules) {
                         i++;
