@@ -2,7 +2,6 @@ package ez.cloudclient.command.commands;
 
 import ez.cloudclient.CloudClient;
 import ez.cloudclient.command.Command;
-import ez.cloudclient.command.CommandManager;
 import ez.cloudclient.util.MessageUtil;
 
 public class Prefix extends Command {

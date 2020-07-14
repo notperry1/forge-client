@@ -1,10 +1,10 @@
 package ez.cloudclient.module.modules.combat;
 
 import ez.cloudclient.module.Module;
+import ez.cloudclient.setting.settings.BooleanSetting;
 import net.minecraft.item.ItemSword;
 
 public class KillAura extends Module {
-
     int l_Slot = -1;
 
     public KillAura() {
@@ -13,12 +13,12 @@ public class KillAura extends Module {
 
     @Override
     public void selfSettings() {
-        settings.addBoolean("Auto Switch", true);
+        settings.addSetting("Auto Switch", new BooleanSetting(true));
     }
 
     @Override
     public void onTick() {
-        if (settings.getBoolean("Auto Switch")) {
+        if (settings.getSetting("Auto Switch", BooleanSetting.class).getValue()) {
             for (int l_I = 0; l_I < 9; ++l_I) {
                 if (mc.player.inventory.getStackInSlot(l_I).getItem() instanceof ItemSword) {
                     l_Slot = l_I;

@@ -1,7 +1,7 @@
 package ez.cloudclient.util;
 
 public class ASCII {
-    public static void printFancyConsoleMSG(){
+    public static void printFancyConsoleMSG() {
         System.out.println("======================================================================");
         System.out.println("      ______  __        ______    __    __   _______            ");
         System.out.println("     /      ||  |      /  __  \\  |  |  |  | |       \\           ");

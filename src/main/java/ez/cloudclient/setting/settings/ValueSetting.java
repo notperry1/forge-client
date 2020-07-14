@@ -19,6 +19,10 @@ public class ValueSetting<T> extends Setting {
         return value;
     }
 
+    public void setValue(T value) {
+        this.value = value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,9 +41,5 @@ public class ValueSetting<T> extends Setting {
         return "ValueSetting{" +
                 "value=" + value +
                 '}';
-    }
-
-    public void setValue(T value) {
-        this.value = value;
     }
 }

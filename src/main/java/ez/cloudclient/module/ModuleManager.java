@@ -6,17 +6,21 @@ import ez.cloudclient.module.modules.combat.CrystalAura;
 import ez.cloudclient.module.modules.combat.KillAura;
 import ez.cloudclient.module.modules.exploits.AntiHunger;
 import ez.cloudclient.module.modules.misc.CoordinateLogger;
-import ez.cloudclient.module.modules.movement.*;
+import ez.cloudclient.module.modules.movement.ElytraFlight;
+import ez.cloudclient.module.modules.movement.FastStop;
+import ez.cloudclient.module.modules.movement.Flight;
+import ez.cloudclient.module.modules.movement.Sprint;
 import ez.cloudclient.module.modules.player.AutoRespawn;
 import ez.cloudclient.module.modules.player.NoFall;
 import ez.cloudclient.module.modules.render.FullBright;
 import ez.cloudclient.module.modules.render.PlayerESP;
+import ez.cloudclient.setting.settings.BooleanSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.reflections.Reflections;
+import org.lwjgl.input.Keyboard;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 
 import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
@@ -24,16 +28,10 @@ import static ez.cloudclient.CloudClient.SETTINGS_MANAGER;
 public class ModuleManager {
 
     public static final HashSet<Module> modules = new HashSet<>();
+    private final HashSet<Integer> unReleased = new HashSet<>();
 
-    public static void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void init() {
         modules.clear();
-        for (Class<? extends Module> aClass : new Reflections("ez.cloudclient.module.modules").getSubTypesOf(
-                Module.class
-        )) {
-            Module module = aClass.getConstructor().newInstance();
-            modules.add(module);
-        }
-
         modules.add(new NoFall());
         modules.add(new FullBright());
         modules.add(new Flight());
@@ -51,10 +49,10 @@ public class ModuleManager {
 
         SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {
-            if (module.getSettings().getBoolean("Enabled")) {
+            if (module.getSettings().getSetting("Enabled", BooleanSetting.class).getValue()) {
                 module.enable();
             }
-            if (module.getSettings().getBoolean("Drawn")) {
+            if (module.getSettings().getSetting("Drawn", BooleanSetting.class).getValue()) {
                 module.enableDrawn();
             }
         }
@@ -82,6 +80,21 @@ public class ModuleManager {
             if (current.getCategory() == category) modulesInCategory.add(current);
         }
         return modulesInCategory;
+    }
+
+    @SubscribeEvent
+    public void inputEvent(InputEvent.KeyInputEvent event) {
+        int key = Keyboard.getEventKey();
+        if (unReleased.contains(key)) {
+            unReleased.remove(key);
+            return;
+        }
+        for (Module module : modules) {
+            if (module.getKey() == key) {
+                module.toggle();
+                unReleased.add(key);
+            }
+        }
     }
 
     public HashSet<Module> getModules() {

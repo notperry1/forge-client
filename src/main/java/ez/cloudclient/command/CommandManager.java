@@ -1,14 +1,12 @@
 package ez.cloudclient.command;
 
 import ez.cloudclient.CloudClient;
+import ez.cloudclient.command.commands.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.reflections.Reflections;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,15 +16,16 @@ public class CommandManager {
     public static HashSet<Command> commands = new HashSet<>();
     public static String commandPrefix;
 
-    public void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void init() {
         commands.clear();
-        for (Class<? extends Command> aClass : new Reflections("ez.cloudclient.command.commands").getSubTypesOf(
-                Command.class
-        )) {
-            Command command = aClass.getConstructor().newInstance();
-            commands.add(command);
-        }
-        MinecraftForge.EVENT_BUS.register(this);
+        commands.add(new ClearChat());
+        commands.add(new Drawn());
+        commands.add(new Fov());
+        commands.add(new Help());
+        commands.add(new ListModule());
+        commands.add(new Panic());
+        commands.add(new Prefix());
+        commands.add(new ToggleModule());
         commandPrefix = CloudClient.PREFIX;
     }
 

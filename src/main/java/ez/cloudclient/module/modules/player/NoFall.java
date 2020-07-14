@@ -4,12 +4,6 @@ import ez.cloudclient.module.Module;
 import net.minecraft.network.play.client.CPacketPlayer;
 
 public class NoFall extends Module {
-
-    /*
-        Added by Zilleyy 11/07/20
-        Modified by RemainingToast 12/07/20
-     */
-
     public NoFall() {
         super("NoFall", Category.PLAYER, "Prevent Taking Fall Damage");
     }
