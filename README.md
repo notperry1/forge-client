@@ -5,6 +5,14 @@ The official GitHub for Cloud Client.
 Really, if you don't know, you shouldn't be here.
 - The default prefix for commands in chat is `.`
 #### Credits
-- Huge thanks to all the contributors for their work on the project.
-
+Huge thanks to all the contributors for their work on the project.
+	* RemainingToast
+	* wnuke
+	* RSK5
+	* Zilleyy
+	* LittleDraily
+	* ollieobama
+	* OccultMC
+	* iSudo
+	* noodles
 [Discord Server](https://discord.gg/ZydwkaY)
