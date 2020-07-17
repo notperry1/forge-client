@@ -1,9 +1,20 @@
 package me.remainingtoast.toastclient.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.Vec3d;
 
+import java.text.DecimalFormat;
+
 public class MathUtil {
+
+    public static String formatPlayerCoords(EntityPlayer player){
+        final DecimalFormat format = new DecimalFormat("#.#");
+        final String x = format.format(player.posX);
+        final String y = format.format(player.posY);
+        final String z = format.format(player.posZ);
+        return x + ", " + y + ", " + z;
+    }
 
     public static double[] directionSpeed(double speed) {
         final Minecraft mc = Minecraft.getMinecraft();

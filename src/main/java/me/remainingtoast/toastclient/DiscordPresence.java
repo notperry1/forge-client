@@ -2,6 +2,7 @@ package me.remainingtoast.toastclient;
 
 import club.minnced.discord.rpc.DiscordEventHandlers;
 import club.minnced.discord.rpc.DiscordRichPresence;
+import me.remainingtoast.toastclient.util.MathUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 
@@ -47,27 +48,25 @@ public class DiscordPresence {
                 String separator = " | ";
                 //First Line of RPC
 
-                if (Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().player != null) {
-                    details = ToastClient.VERSION + separator + "Holding " + Minecraft.getMinecraft().player.getHeldItemMainhand().getCount() + "x " + Minecraft.getMinecraft().player.getHeldItemMainhand().getDisplayName();
-                }
+
 
                 //Second Line of RPC
-                state = "Loading Minecraft";
-                if (Minecraft.getMinecraft().isSingleplayer()) {
-                    gamemode = "Singleplayer";
-                }
-                if (!Minecraft.getMinecraft().isSingleplayer()) {
-                    gamemode = "Multiplayer";
-                }
+                state = "Loading";
+                if (Minecraft.getMinecraft().isSingleplayer()) { gamemode = "Singleplayer"; }
+                if (!Minecraft.getMinecraft().isSingleplayer()) { gamemode = "Multiplayer"; }
                 if (Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu) {
-                    state = "In Main Menu";
+                    state = ToastClient.FULLVERSION + separator + "Main Menu";
                 }
                 if (Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().player != null) {
                     if (Minecraft.getMinecraft().isSingleplayer()) {
-                        state = "Playing " + gamemode;
+                        if (Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().player != null) {
+                            details = Minecraft.getMinecraft().getSession().getUsername() + " is playing " + gamemode;
+                            state = "Located at " + MathUtil.formatPlayerCoords(Minecraft.getMinecraft().player);
+                        }
                     }
                     if (!Minecraft.getMinecraft().isSingleplayer() && Minecraft.getMinecraft().getCurrentServerData() != null) {
-                        state = "Playing " + gamemode;
+                        details = Minecraft.getMinecraft().getSession().getUsername() + " is playing " + gamemode;
+                        state = "Connected to " + Minecraft.getMinecraft().getCurrentServerData().serverIP;
                     }
                 }
 
@@ -88,7 +87,5 @@ public class DiscordPresence {
     private static void setRpcFromSettings() {
         DiscordPresence.presence.details = details;
         DiscordPresence.presence.state = state;
-        DiscordPresence.presence.largeImageKey = "cloud";
-        DiscordPresence.presence.largeImageText = "Cloud Client on Top";
     }
 }
