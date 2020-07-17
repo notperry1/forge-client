@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.util.MessageUtil;
@@ -33,6 +34,7 @@ public class ListModule extends Command {
                     return;
                 } else if (args[0].equalsIgnoreCase("ALL")) {
                     sb.replace(0, sb.capacity(), "");
+                    sb.append("Modules (" + ModuleManager.modules.size() + "): ");
                     for (Module module : ModuleManager.modules) {
                         i++;
                         sb.append(module.getDisplayName()).append(", ");

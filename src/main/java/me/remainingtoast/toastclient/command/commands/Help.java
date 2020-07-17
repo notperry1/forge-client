@@ -23,6 +23,7 @@ public class Help extends Command {
         if (mc.player == null) return;
         if (args.length < 1) {
             sb.replace(0, sb.capacity(), "");
+            sb.append("Commands (" + CommandManager.commands.size() + "): ");
             for (Command command : CommandManager.commands) {
                 i++;
                 if (command.getName().equalsIgnoreCase("Help")) continue;
