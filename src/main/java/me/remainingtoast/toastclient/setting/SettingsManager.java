@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static me.remainingtoast.toastclient.ToastClient.TOASTCLIENT_CONFIGFILE;
+import static me.remainingtoast.toastclient.ToastClient.CONFIGFILE;
 
 public class SettingsManager {
     final RuntimeTypeAdapterFactory<Setting> typeFactory = RuntimeTypeAdapterFactory
@@ -24,7 +24,7 @@ public class SettingsManager {
             .registerSubtype(KeybindSetting.class, "keybind")
             .registerSubtype(NumberValueSetting.class, "number");
     Gson gson = new GsonBuilder().registerTypeAdapterFactory(typeFactory).setPrettyPrinting().create();
-    File configFile = new File(TOASTCLIENT_CONFIGFILE);
+    File configFile = new File(CONFIGFILE);
 
     public Map<String, ModuleSettings> readSettings() {
         Map<String, ModuleSettings> settingsArray = new HashMap<>();

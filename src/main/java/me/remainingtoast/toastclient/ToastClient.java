@@ -13,7 +13,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = ToastClient.MODID, name = ToastClient.NAME, version = ToastClient.VERSION, clientSideOnly = true)
+import java.lang.reflect.InvocationTargetException;
+
+@Mod(modid = ToastClient.MODID, name = ToastClient.NAME, version = ToastClient.VERSION)
+
 public class ToastClient {
 
     public static final String MODID = "toastclient";
@@ -22,7 +25,7 @@ public class ToastClient {
     public static final String FULLVERSION = "b1";
     public static final String APP_ID = "669916916290420736";
     public static final String FULLNAME = NAME +" "+ FULLVERSION;
-    public static final String TOASTCLIENT_CONFIGFILE = "ToastClientConfig.json";
+    public static final String CONFIGFILE = "ToastClientConfig.json";
     public static final Logger log = LogManager.getLogger("Toast Client");
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
