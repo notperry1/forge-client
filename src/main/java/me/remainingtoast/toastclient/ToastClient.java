@@ -25,7 +25,7 @@ public class ToastClient {
     public static final String FULLVERSION = "b1";
     public static final String APP_ID = "669916916290420736";
     public static final String FULLNAME = NAME +" "+ FULLVERSION;
-    public static final String CLOUDCLIENT_CONFIGFILE = "ToastClientConfig.json";
+    public static final String CONFIGFILE = "ToastClientConfig.json";
     public static final Logger log = LogManager.getLogger("Toast Client");
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
