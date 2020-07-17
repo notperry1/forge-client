@@ -3,6 +3,7 @@ package me.remainingtoast.toastclient;
 import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.setting.SettingsManager;
+import me.remainingtoast.toastclient.util.ASCII;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -42,7 +43,7 @@ public class ToastClient {
         COMMAND_MANAGER.init();
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
         MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
-        // ASCII.printFancyConsoleMSG();
+        ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
     }
 }

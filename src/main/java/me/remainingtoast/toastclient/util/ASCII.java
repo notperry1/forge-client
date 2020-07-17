@@ -2,29 +2,24 @@ package me.remainingtoast.toastclient.util;
 
 public class ASCII {
     public static void printFancyConsoleMSG() {
-        System.out.println("======================================================================");
-        System.out.println("      ______  __        ______    __    __   _______            ");
-        System.out.println("     /      ||  |      /  __  \\  |  |  |  | |       \\           ");
-        System.out.println("    |  ,----'|  |     |  |  |  | |  |  |  | |  .--.  |          ");
-        System.out.println("    |  |     |  |     |  |  |  | |  |  |  | |  |  |  |          ");
-        System.out.println("   |  `----.|  `----.|  `--'  | |  `--'  | |  '--'  |          ");
-        System.out.println("    \\______||_______| \\______/   \\______/  |_______/           ");
-        System.out.println("                                                               ");
-        System.out.println("     ______  __       __   _______ .__   __. .___________.     ");
-        System.out.println("    /      ||  |     |  | |   ____||  \\ |  | |           |     ");
-        System.out.println("   |  ,----'|  |     |  | |  |__   |   \\|  | `---|  |----`     ");
-        System.out.println("   |  |     |  |     |  | |   __|  |  . `  |     |  |          ");
-        System.out.println("   |  `----.|  `----.|  | |  |____ |  |\\   |     |  |          ");
-        System.out.println("    \\______||_______||__| |_______||__| \\__|     |__|          ");
-        System.out.println("                                                               ");
-        System.out.println(" __        ______        ___       _______   _______  _______  ");
-        System.out.println("|  |      /  __  \\      /   \\     |       \\ |   ____||       \\ ");
-        System.out.println("|  |     |  |  |  |    /  ^  \\    |  .--.  ||  |__   |  .--.  |");
-        System.out.println("|  |     |  |  |  |   /  /_\\  \\   |  |  |  ||   __|  |  |  |  |");
-        System.out.println("|  `----.|  `--'  |  /  _____  \\  |  '--'  ||  |____ |  '--'  |");
-        System.out.println("|_______| \\______/  /__/     \\__\\ |_______/ |_______||_______/ ");
-        System.out.println("                                                               ");
-        System.out.println("======================================================================");
+        System.out.println("_________________________________________________________");
+        System.out.println("     _________ _______  _______  _______ _________           ");
+        System.out.println("     \\__   __/(  ___  )(  ___  )(  ____ \\\\__   __/        ");
+        System.out.println("        ) (   | (   ) || (   ) || (    \\/   ) (             ");
+        System.out.println("        | |   | |   | || (___) || (_____    | |              ");
+        System.out.println("        | |   | |   | ||  ___  |(_____  )   | |              ");
+        System.out.println("        | |   | |   | || (   ) |      ) |   | |              ");
+        System.out.println("        | |   | (___) || )   ( |/\\____) |   | |             ");
+        System.out.println("        )_(   (_______)|/     \\|\\_______)   )_(            ");
+        System.out.println("  _______  _       _________ _______  _       _________  ");
+        System.out.println(" (  ____ \\( \\      \\__   __/(  ____ \\( (    /|\\__   __/");
+        System.out.println(" | (    \\/| (         ) (   | (    \\/|  \\  ( |   ) (   ");
+        System.out.println(" | |      | |         | |   | (__    |   \\ | |   | |   ");
+        System.out.println(" | |      | |         | |   |  __)   | (\\ \\) |   | |   ");
+        System.out.println(" | |      | |         | |   | (      | | \\   |   | |   ");
+        System.out.println(" | (____/\\| (____/\\___) (___| (____/\\| )  \\  |   | |   ");
+        System.out.println(" (_______/(_______/\\_______/(_______/|/    )_)   )_(   ");
+        System.out.println("_________________________________________________________");
         // Please dont break this
     }
 }

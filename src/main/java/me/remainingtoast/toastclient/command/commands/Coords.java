@@ -15,13 +15,16 @@ public class Coords extends Command {
 
     @Override
     protected void call(String[] args) {
-        if(args.length > 0){
+        if(args.length < 1){
             final DecimalFormat format = new DecimalFormat("#.#");
-            final StringSelection contents = new StringSelection(format.format(mc.player.posX + ", " + mc.player.posY + ", " + mc.player.posZ));
+            final String x = format.format(mc.player.posX);
+            final String y = format.format(mc.player.posY);
+            final String z = format.format(mc.player.posZ);
+            String coords = x + ", " + y + ", " + z;
+            final StringSelection selection = new StringSelection(coords);
             final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clipboard.setContents(contents, null);
+            clipboard.setContents(selection, selection);
             MessageUtil.sendMessage("Copied coordinates to clipboard", MessageUtil.Color.GREEN);
-            MessageUtil.sendPublicMessage(contents.toString());
         }
     }
 }

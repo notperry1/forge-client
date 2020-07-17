@@ -25,6 +25,8 @@ public class Bind extends Command {
                         MessageUtil.sendMessage(module.getDisplayName() + " keybind set to NONE", MessageUtil.Color.GREEN);
                     }
                 }
+            } else if(args[0].equalsIgnoreCase("help")){
+
             } else if (mod != null){
                 if(NumberUtil.isNumeric(args[1])){
                     try {

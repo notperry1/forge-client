@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.math.Vec3d;
 
 public class MathUtil {
 
@@ -31,5 +32,13 @@ public class MathUtil {
         final double posX = (forward * speed * cos + side * speed * sin);
         final double posZ = (forward * speed * sin - side * speed * cos);
         return new double[]{posX, posZ};
+    }
+
+    public static double degToRad(double deg) {
+        return deg * (float) (Math.PI / 180.0f);
+    }
+
+    public static Vec3d direction(float yaw) {
+        return new Vec3d(Math.cos(degToRad(yaw + 90f)), 0, Math.sin(degToRad(yaw + 90f)));
     }
 }

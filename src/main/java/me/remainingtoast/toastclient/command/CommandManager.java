@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 public class CommandManager {
 
+    private static boolean isPanicking = false;
     public static HashSet<Command> commands = new HashSet<>();
     public static String commandPrefix;
 
@@ -28,14 +29,12 @@ public class CommandManager {
         commands.add(new HClip());
         commands.add(new Help());
         commands.add(new ListModule());
-        commands.add(new Panic());
         commands.add(new Peek());
         commands.add(new Pitch());
         commands.add(new Prefix());
-        commands.add(new RBook());
         commands.add(new Say());
         commands.add(new SignBook());
-        commands.add(new Spammer());
+//        commands.add(new Spammer());
         commands.add(new ToggleModule());
         commands.add(new VClip());
         commands.add(new Yaw());
@@ -47,6 +46,7 @@ public class CommandManager {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void chatEvent(ClientChatEvent event) {
         if (event.getMessage().startsWith(commandPrefix)) {
+            if(isPanicking) return;
             if (event.getMessage().length() > 1) {
                 String firstArg = event.getMessage().replaceFirst(commandPrefix, "").split(" ")[0];
                 HashSet<String> matchList = new HashSet<>();
@@ -69,6 +69,14 @@ public class CommandManager {
             Minecraft.getMinecraft().ingameGUI.getChatGUI().addToSentMessages(event.getMessage());
             event.setCanceled(true);
         }
+    }
+
+    public static void setPanicking(Boolean bool) {
+        isPanicking = true;
+    }
+
+    public static boolean getPanicked() {
+        return getPanicked();
     }
 }
 
