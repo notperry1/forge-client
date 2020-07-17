@@ -29,6 +29,7 @@ public class HUD extends Module{
                 float currY = mc.fontRenderer.FONT_HEIGHT + 5;
                 for (Module m : ModuleManager.modules) {
                     if (m.isEnabled() && m.isDrawn()) {
+                        if(m.getDisplayName().equalsIgnoreCase("hud")) return;
                         mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 5, currY + 1, -1);
                         currY += mc.fontRenderer.FONT_HEIGHT;
                     }
