@@ -1,4 +1,4 @@
-package me.remainingtoast.toastclient.module.modules.render;
+package me.remainingtoast.toastclient.module.modules.gui;
 
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.module.Module;
@@ -14,20 +14,17 @@ public class HUD extends Module{
     public static boolean panicked = false;
 
     public HUD() {
-        super("HUD", Category.RENDER, "HUD");
+        super("HUD", Category.GUI, "HUD");
     }
 
     @SubscribeEvent
     public void onRenderGameOverlay(RenderGameOverlayEvent event) {
         if (!panicked && this.isEnabled()) {
             if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-                int number;
-                int Min = 0;
-                int Max = 255;
-                number = Min + (int) (Math.random() * ((Max - Min) + 1));
                 mc.fontRenderer.drawStringWithShadow(ToastClient.FULLNAME, 5, 5, -1);
                 float currY = mc.fontRenderer.FONT_HEIGHT + 5;
                 for (Module m : ModuleManager.modules) {
+                    if(m.getCategory() == Category.GUI) return;
                     if (m.isEnabled() && m.isDrawn()) {
                         mc.fontRenderer.drawStringWithShadow(m.getDisplayName(), 5, currY + 1, -1);
                         currY += mc.fontRenderer.FONT_HEIGHT;

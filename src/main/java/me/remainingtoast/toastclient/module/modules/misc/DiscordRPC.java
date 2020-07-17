@@ -1,4 +1,4 @@
-package me.remainingtoast.toastclient.module.modules;
+package me.remainingtoast.toastclient.module.modules.misc;
 
 import me.remainingtoast.toastclient.DiscordPresence;
 import me.remainingtoast.toastclient.module.Module;
@@ -6,7 +6,7 @@ import me.remainingtoast.toastclient.module.Module;
 public class DiscordRPC extends Module {
 
     public DiscordRPC() {
-        super("DiscordRPC", Category.NONE, "DiscordPresence", -1);
+        super("DiscordRPC", Category.MISC, "DiscordPresence", -1);
     }
 
     @Override

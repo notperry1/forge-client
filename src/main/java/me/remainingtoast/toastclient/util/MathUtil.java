@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.Vec3d;
 
@@ -14,6 +15,12 @@ public class MathUtil {
         final String y = format.format(player.posY);
         final String z = format.format(player.posZ);
         return x + ", " + y + ", " + z;
+    }
+
+    public static Vec3d interpolateEntity(Entity entity, float time) {
+        return new Vec3d(entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * time,
+                entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * time,
+                entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * time);
     }
 
     public static double[] directionSpeed(double speed) {

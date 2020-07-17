@@ -1,6 +1,6 @@
 package me.remainingtoast.toastclient.module;
 
-import me.remainingtoast.toastclient.module.modules.DiscordRPC;
+import me.remainingtoast.toastclient.module.modules.misc.DiscordRPC;
 import me.remainingtoast.toastclient.module.modules.combat.AutoTotem;
 import me.remainingtoast.toastclient.module.modules.combat.CrystalAura;
 import me.remainingtoast.toastclient.module.modules.combat.KillAura;
@@ -13,8 +13,9 @@ import me.remainingtoast.toastclient.module.modules.movement.Sprint;
 import me.remainingtoast.toastclient.module.modules.player.AutoReconnect;
 import me.remainingtoast.toastclient.module.modules.player.AutoRespawn;
 import me.remainingtoast.toastclient.module.modules.player.NoFall;
+import me.remainingtoast.toastclient.module.modules.render.BlockHighlight;
 import me.remainingtoast.toastclient.module.modules.render.FullBright;
-import me.remainingtoast.toastclient.module.modules.render.HUD;
+import me.remainingtoast.toastclient.module.modules.gui.HUD;
 import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
 import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
 import me.remainingtoast.toastclient.ToastClient;
@@ -49,6 +50,7 @@ public class ModuleManager {
         modules.add(new AutoRespawn());
         modules.add(new AutoReconnect());
         modules.add(new CoordinateLogger());
+        modules.add(new BlockHighlight());
 
         ToastClient.SETTINGS_MANAGER.loadSettings();
         for (Module module : ModuleManager.modules) {

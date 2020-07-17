@@ -21,6 +21,7 @@ public class CommandManager {
     public void init() {
         commands.clear();
         commands.add(new Bind());
+        commands.add(new BlockHighlight());
         commands.add(new ClearChat());
         commands.add(new Coords());
         commands.add(new Drawn());

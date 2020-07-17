@@ -22,6 +22,7 @@ public class PlayerESP extends Module {
     public void onTick() {
         for (Entity e : mc.world.getLoadedEntityList()) {
             if (e instanceof EntityPlayer && e != mc.player && !e.isGlowing()) {
+
                 e.setGlowing(true);
             }
         }

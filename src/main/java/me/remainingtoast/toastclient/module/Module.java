@@ -173,11 +173,12 @@ public abstract class Module {
     public enum Category {
         COMBAT,
         EXPLOITS,
+        GUI,
         MISC,
         MOVEMENT,
-        NONE,
         PLAYER,
-        RENDER
+        RENDER,
+        NONE
     }
 
 }
