@@ -32,6 +32,7 @@ public class CommandManager {
         commands.add(new Peek());
         commands.add(new Pitch());
         commands.add(new Prefix());
+        commands.add(new Reload());
         commands.add(new Say());
         commands.add(new SignBook());
 //        commands.add(new Spammer());

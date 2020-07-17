@@ -21,7 +21,11 @@ public abstract class Module {
     private String displayName;
 
     public Module(String name, Category category, String description) {
-        this(name, category, description, -1);
+        this.name = name.toLowerCase().replaceAll(" ", "_");
+        this.displayName = name;
+        this.category = category;
+        this.description = description;
+        settings.addSetting("Bind", new KeybindSetting(-1));
     }
 
     public Module(String name, Category category, String description, int key) {

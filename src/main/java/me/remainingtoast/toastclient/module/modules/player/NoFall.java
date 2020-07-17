@@ -4,6 +4,7 @@ import me.remainingtoast.toastclient.module.Module;
 import net.minecraft.network.play.client.CPacketPlayer;
 
 public class NoFall extends Module {
+
     public NoFall() {
         super("NoFall", Category.PLAYER, "Prevent Taking Fall Damage");
     }
