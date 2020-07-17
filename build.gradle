@@ -88,9 +88,6 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
-    // https://mvnrepository.com/artifact/org.reflections/reflections
-    compile group: 'org.reflections', name: 'reflections', version: '0.9.12'
-
     // https://mvnrepository.com/artifact/org.javassist/javassist
     compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
 
@@ -112,7 +109,6 @@ configurations.all {
 shadowJar {
     dependencies {
         include(dependency('club.minnced:java-discord-rpc'))
-        include(dependency('org.reflections:reflections'))
         include(dependency('org.javassist:javassist'))
         include(dependency('com.google.code.gson:gson'))
         include(dependency('com.google.code.gson:gson-extras'))

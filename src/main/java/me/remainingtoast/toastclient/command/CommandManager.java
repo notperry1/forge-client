@@ -7,7 +7,6 @@ import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
@@ -19,26 +18,28 @@ public class CommandManager {
     public static HashSet<Command> commands = new HashSet<>();
     public static String commandPrefix;
 
-    public void init() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void init() {
         commands.clear();
-        for (Class<? extends Command> aClass : new Reflections("ez.cloudclient.command.commands").getSubTypesOf(
-                Command.class
-        )) {
-            Command command = aClass.getConstructor().newInstance();
-            commands.add(command);
-        }
+        commands.add(new Bind());
+        commands.add(new ClearChat());
+        commands.add(new Coords());
+        commands.add(new Drawn());
+        commands.add(new Fov());
+        commands.add(new HClip());
+        commands.add(new Help());
+        commands.add(new ListModule());
+        commands.add(new Panic());
+        commands.add(new Peek());
+        commands.add(new Pitch());
+        commands.add(new Prefix());
+        commands.add(new RBook());
+        commands.add(new Say());
+        commands.add(new SignBook());
+        commands.add(new Spammer());
+        commands.add(new ToggleModule());
+        commands.add(new VClip());
+        commands.add(new Yaw());
         MinecraftForge.EVENT_BUS.register(this);
-//        commands.add(new ClearChat());
-//        commands.add(new Drawn());
-//        commands.add(new Fov());
-//        commands.add(new Help());
-//        commands.add(new ListModule());
-//        commands.add(new Panic());
-//        commands.add(new Prefix());
-//        commands.add(new ToggleModule());
-//        commands.add(new Bind());
-//        commands.add(new Say());
-//        commands.add(new Coords());
         commandPrefix = ToastClient.PREFIX;
     }
 
