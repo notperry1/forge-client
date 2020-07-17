@@ -26,6 +26,9 @@ public class CommandManager {
         commands.add(new Panic());
         commands.add(new Prefix());
         commands.add(new ToggleModule());
+        commands.add(new Bind());
+        commands.add(new Say());
+        commands.add(new Coords());
         commandPrefix = ToastClient.PREFIX;
     }
 

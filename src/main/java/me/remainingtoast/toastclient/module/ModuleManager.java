@@ -10,9 +10,11 @@ import me.remainingtoast.toastclient.module.modules.movement.ElytraFlight;
 import me.remainingtoast.toastclient.module.modules.movement.FastStop;
 import me.remainingtoast.toastclient.module.modules.movement.Flight;
 import me.remainingtoast.toastclient.module.modules.movement.Sprint;
+import me.remainingtoast.toastclient.module.modules.player.AutoReconnect;
 import me.remainingtoast.toastclient.module.modules.player.AutoRespawn;
 import me.remainingtoast.toastclient.module.modules.player.NoFall;
 import me.remainingtoast.toastclient.module.modules.render.FullBright;
+import me.remainingtoast.toastclient.module.modules.render.HUD;
 import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
 import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
 import me.remainingtoast.toastclient.ToastClient;
@@ -32,6 +34,7 @@ public class ModuleManager {
     public static void init() {
         modules.clear();
         modules.add(new NoFall());
+        modules.add(new HUD());
         modules.add(new FullBright());
         modules.add(new Flight());
         modules.add(new AntiHunger());
@@ -44,6 +47,7 @@ public class ModuleManager {
         modules.add(new PlayerESP());
         modules.add(new CrystalAura());
         modules.add(new AutoRespawn());
+        modules.add(new AutoReconnect());
         modules.add(new CoordinateLogger());
 
         ToastClient.SETTINGS_MANAGER.loadSettings();
@@ -96,7 +100,7 @@ public class ModuleManager {
         }
     }
 
-    public HashSet<Module> getModules() {
+    public static HashSet<Module> getModules() {
         return modules;
     }
 

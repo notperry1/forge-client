@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.command;
 
 
+import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.client.Minecraft;
 
 public abstract class Command {
