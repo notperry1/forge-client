@@ -13,19 +13,21 @@ public class ToggleModule extends Command {
 
     @Override
     public void onRun(final String[] args) {
-        boolean found = false;
         if(args.length == 0){
             MessageUtil.sendMessage("Invalid Arguments", MessageUtil.Color.RED);
             return;
         }
-        final Module mod = ToastClient.MODULE_MANAGER.getAlias(args[0]);
-        if(mod != null){
-            found = true;
-            MessageUtil.sendMessage("Toggled " + mod.getName() + (mod.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
-            mod.toggle();
-        }
-        if (!found) {
-            MessageUtil.sendMessage("Module \"" + args[0] + "\" not found.", MessageUtil.Color.RED);
+        for(Module module : ToastClient.MODULE_MANAGER.getModules()){
+            for(String s : module.getAlias()){
+                if(args[0].equalsIgnoreCase(module.getName()) || args[0].equalsIgnoreCase(s)){
+                    MessageUtil.sendMessage("Toggled " + module.getName() + (module.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
+                    module.toggle();
+                }else{
+                    MessageUtil.sendMessage("Failed to find Module \"" + args[0] + "\" ", MessageUtil.Color.RED);
+                    break;
+                }
+                break;
+            }
         }
     }
 }

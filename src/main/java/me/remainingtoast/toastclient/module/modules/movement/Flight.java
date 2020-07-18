@@ -3,7 +3,7 @@ package me.remainingtoast.toastclient.module.modules.movement;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
 
-@ModuleManifest(label = "Flight", category = Module.Category.MOVEMENT, description = "Creative Flight", aliases = {"Flight"}, hidden = false)
+@ModuleManifest(label = "Flight", category = Module.Category.MOVEMENT, description = "Creative Flight", aliases = {"flight", "fly"}, hidden = false)
 public class Flight extends Module {
 
     @Override

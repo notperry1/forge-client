@@ -1,5 +1,6 @@
 package me.remainingtoast.toastclient.command.commands;
 
+import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.command.CommandManifest;
@@ -26,17 +27,17 @@ public class ListModule extends Command {
             for (Module.Category category : Module.Category.values()) {
                 if (category.name().equalsIgnoreCase(args[0])) {
                     MessageUtil.sendMessage("Modules in " + args[0] + ":", MessageUtil.Color.GRAY);
-                    for (Module module : ModuleManager.getModulesInCat(Module.Category.valueOf(args[0].toUpperCase()))) {
+                    for (Module module : ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.valueOf(args[0].toUpperCase()))) {
                         MessageUtil.sendMessage("  " + module.getName() + ": " + module.getDesc(), MessageUtil.Color.GRAY);
                     }
                     return;
                 } else if (args[0].equalsIgnoreCase("ALL")) {
                     sb.replace(0, sb.capacity(), "");
-                    sb.append("Modules (" + ModuleManager.modulesSet.size() + "): ");
-                    for (Module module : ModuleManager.modulesSet) {
+                    sb.append("Modules (" + ToastClient.MODULE_MANAGER.modulesSet.size() + "): ");
+                    for (Module module : ToastClient.MODULE_MANAGER.modulesSet) {
                         i++;
                         sb.append(module.getName()).append(", ");
-                        if (ModuleManager.modulesSet.size() == i) {
+                        if (ToastClient.MODULE_MANAGER.modulesSet.size() == i) {
                             i = 0;
                             break;
                         }

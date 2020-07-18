@@ -3,6 +3,7 @@ package me.remainingtoast.toastclient.command;
 
 import net.minecraft.client.Minecraft;
 
+import java.net.MalformedURLException;
 import java.util.Arrays;
 
 public abstract class Command {
@@ -38,7 +39,7 @@ public abstract class Command {
 
 //    protected abstract void call(final String[] args);
 
-    public void onRun(final String[] args) {
+    public void onRun(String[] args) {
     }
 
     public String getLabel() {

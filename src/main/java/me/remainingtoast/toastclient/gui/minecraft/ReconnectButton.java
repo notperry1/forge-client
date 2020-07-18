@@ -1,5 +1,6 @@
 package me.remainingtoast.toastclient.gui.minecraft;
 
+import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.module.modules.player.AutoReconnect;
 import me.remainingtoast.toastclient.util.TimerUtil;
@@ -13,7 +14,7 @@ public class ReconnectButton extends GuiButton {
     public ReconnectButton(int buttonId, int x, int y, String buttonText) {
         super(buttonId, x, y, buttonText);
         timer.reset();
-        mod = ModuleManager.getModuleByClass(AutoReconnect.class);
+        mod = ToastClient.MODULE_MANAGER.getModuleByClass(AutoReconnect.class);
         ReconnectTimer = mod.Delay.getValue() * 1000f;
     }
 

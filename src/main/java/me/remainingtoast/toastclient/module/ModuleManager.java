@@ -19,17 +19,21 @@ import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
 import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.managers.HashMapManager;
+import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
+import scala.Array;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 public class ModuleManager extends HashMapManager<String, Module> {
 
-    public static final HashSet<Module> modulesSet = new HashSet<>();
+    public final HashSet<Module> modulesSet = new HashSet<>();
     private final HashSet<Integer> unReleasedKeys = new HashSet<>();
 
     @Override
@@ -40,7 +44,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
                 new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new CoordinateLogger(),
                 new BlockHighlight());
         ToastClient.SETTINGS_MANAGER.loadSettings();
-        for (Module module : ModuleManager.modulesSet) {
+        for (Module module : ToastClient.MODULE_MANAGER.modulesSet) {
             if (module.getSettings().getSetting("Enabled", BooleanSetting.class).getValue()) {
                 module.enable();
             }
@@ -60,37 +64,21 @@ public class ModuleManager extends HashMapManager<String, Module> {
 
     // there is a check in the method for whether or not it is the correct class
     @SuppressWarnings("unchecked")
-    public static <T extends Module> T getModuleByClass(Class<T> clazz) {
+    public <T extends Module> T getModuleByClass(Class<T> clazz) {
         for (Module current : modulesSet) {
             if (current.getClass() == clazz) return (T) current;
         }
         return null;
     }
 
-    public static Module getModuleByName(String name) {
+    public Module getModuleByName(String name) {
         for (Module current : modulesSet) {
             if (current.getName().equals(name)) return current;
         }
         return null;
     }
 
-    public Module getAlias(final String name) {
-        for (final Module f : this.getRegistry().values()) {
-            if (f.getName().equalsIgnoreCase(name)) {
-                return f;
-            }
-            String[] alias;
-            for (int length = (alias = f.getAlias()).length, i = 0; i < length; ++i) {
-                final String s = alias[i];
-                if (s.equalsIgnoreCase(name)) {
-                    return f;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static HashSet<Module> getModulesInCat(Module.Category category) {
+    public HashSet<Module> getModulesInCat(Module.Category category) {
         HashSet<Module> modulesInCategory = new HashSet<>();
         for (Module current : modulesSet) {
             if (current.getCategory() == category) modulesInCategory.add(current);
@@ -113,7 +101,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
         }
     }
 
-    public static HashSet<Module> getModules() {
+    public HashSet<Module> getModules() {
         return modulesSet;
     }
 

@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.regex.Matcher;
@@ -30,7 +31,7 @@ public class CommandManager extends HashMapManager<String, Command> {
     public void init() {
         aliasMap.clear();
         commandsSet.clear();
-        register(new Bind(), new BlockHighlight(), new ClearChat(), new Coords(), new Drawn(), new Fov(), new HClip(), new Help(),
+        register(new BlockHighlight(), new ClearChat(), new Coords(), new Drawn(), new Fov(), new HClip(), new Help(),
                 new ListModule(), new Peek(), new Pitch(), new Prefix(), new Reload(), new Say(), new SignBook(), new ToggleModule(),
                 new VClip(), new Yaw());
         MinecraftForge.EVENT_BUS.register(this);
@@ -82,11 +83,11 @@ public class CommandManager extends HashMapManager<String, Command> {
         }
     }
 
-    public static void setPanicking(Boolean bool) {
+    public void setPanicking(Boolean bool) {
         isPanicking = bool;
     }
 
-    public static boolean getPanicked() {
+    public boolean getPanicked() {
         return getPanicked();
     }
 }
