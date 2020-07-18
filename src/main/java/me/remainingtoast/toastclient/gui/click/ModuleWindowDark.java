@@ -1,16 +1,13 @@
 package me.remainingtoast.toastclient.gui.click;
 
+import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.module.Module;
-import net.minecraft.client.Minecraft;
+import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.math.MathHelper;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -69,6 +66,9 @@ public class ModuleWindowDark extends ModuleWindow {
                     }
 
                     if (this.lmDown) {
+                        if(ToastClient.MODULE_MANAGER.getModuleByClass(ClickGui.class).equals(m.getKey())){
+                            ((Module) m.getKey()).disable();
+                        }
                         ((Module) m.getKey()).toggle();
                         this.lmDown = false;
                     }

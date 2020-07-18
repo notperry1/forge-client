@@ -2,7 +2,6 @@ package me.remainingtoast.toastclient.gui.click;
 
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.module.Module;
-import me.remainingtoast.toastclient.module.ModuleManager;
 import net.minecraft.client.gui.GuiScreen;
 import org.apache.commons.lang3.tuple.MutableTriple;
 
@@ -18,13 +17,14 @@ public class ToastClientGUI extends GuiScreen {
     public List<ModuleWindow> tabs = new ArrayList<>();
 
     public void initWindows(){
+        this.tabs.clear();
         this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.COMBAT), "Combat", 70, 30, 35));
         this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.EXPLOITS), "Exploits", 70, 105, 35));
         this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.GUI), "GUI",70, 180,35));
         this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.MISC), "MISC", 70, 255, 35));
-        this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.MOVEMENT), "Movement", 70, 300, 35));
-        this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.PLAYER), "Player", 70, 350, 35));
-        this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.RENDER), "Render", 70, 420,35));
+        this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.MOVEMENT), "Movement", 70, 330, 35));
+        this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.PLAYER), "Player", 70, 405, 35));
+        this.tabs.add(new ModuleWindowDark(ToastClient.MODULE_MANAGER.getModulesInCat(Module.Category.RENDER), "Render", 70, 480,35));
 
         for(Module m : ToastClient.MODULE_MANAGER.getModules()){
             int i = 0;
@@ -38,7 +38,7 @@ public class ToastClientGUI extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
-        this.fontRenderer.drawStringWithShadow("Toast Client", 2.0f, 2.0f,  3166352);
+        this.fontRenderer.drawStringWithShadow(ToastClient.FULLNAME, 2.0f, 2.0f,  3166352);
 
         Iterator tabsIter = this.tabs.iterator();
 

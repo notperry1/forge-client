@@ -4,7 +4,7 @@ import me.remainingtoast.toastclient.gui.click.ToastClientGUI;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
 
-@ModuleManifest(label = "ClickGUI", category = Module.Category.GUI)
+@ModuleManifest(label = "ClickGUI", category = Module.Category.GUI, description = "Click GUI", key = 54, hidden = true)
 public class ClickGui extends Module {
 
     public static ToastClientGUI clickGui = new ToastClientGUI();
@@ -13,6 +13,8 @@ public class ClickGui extends Module {
         if (mc.currentScreen != clickGui) {
             mc.displayGuiScreen(clickGui);
         }
-        this.disable();
+        disable();
     }
+
+
 }

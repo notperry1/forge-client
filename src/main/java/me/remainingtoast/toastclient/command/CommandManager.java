@@ -9,7 +9,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.regex.Matcher;
@@ -33,7 +32,7 @@ public class CommandManager extends HashMapManager<String, Command> {
         commandsSet.clear();
         register(new BlockHighlight(), new ClearChat(), new Coords(), new Drawn(), new Fov(), new HClip(), new Help(),
                 new ListModule(), new Peek(), new Pitch(), new Prefix(), new Reload(), new Say(), new SignBook(), new ToggleModule(),
-                new VClip(), new Yaw());
+                new VClip(), new Yaw(), new GuiReset());
         MinecraftForge.EVENT_BUS.register(this);
         commandPrefix = ToastClient.PREFIX;
     }

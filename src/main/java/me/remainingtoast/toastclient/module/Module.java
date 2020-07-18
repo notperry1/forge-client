@@ -36,12 +36,13 @@ public abstract class Module {
             this.alias = moduleManifest.aliases();
             this.hidden = moduleManifest.hidden();
             this.description = moduleManifest.description();
-            settings.addSetting("Bind", new KeybindSetting(-1));
+            this.key = moduleManifest.key();
+            settings.addSetting("Bind", new KeybindSetting(key));
         }
     }
 
     public void registerSettings() {
-        settings.addSetting("Drawn", new BooleanSetting(true));
+        settings.addSetting("Drawn", new BooleanSetting(!hidden));
         settings.addSetting("Enabled", new BooleanSetting(false));
         selfSettings();
         LOGGER.info("Registered settings of " + this.getName());
