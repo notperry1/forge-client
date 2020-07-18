@@ -10,11 +10,11 @@ public class ClickGui extends Module {
     public static ToastClientGUI clickGui = new ToastClientGUI();
 
     public void onEnable(){
+        //TODO: Figure out how to disable clickGui inside GUI
         if (mc.currentScreen != clickGui) {
             mc.displayGuiScreen(clickGui);
+            disable();
         }
         disable();
     }
-
-
 }
