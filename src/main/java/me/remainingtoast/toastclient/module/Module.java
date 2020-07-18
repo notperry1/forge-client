@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.module;
 
 import me.remainingtoast.toastclient.ToastClient;
+import me.remainingtoast.toastclient.gui.click.TextWindow;
 import me.remainingtoast.toastclient.setting.ModuleSettings;
 import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
 import me.remainingtoast.toastclient.setting.settings.KeybindSetting;
@@ -8,6 +9,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Module {
@@ -21,6 +24,7 @@ public abstract class Module {
     private int key;
     private boolean hidden;
     private boolean enabled;
+    private final List<TextWindow> windows = new ArrayList<>();
     public ModuleSettings settings = new ModuleSettings();
     protected Logger LOGGER = ToastClient.log;
 
@@ -111,6 +115,11 @@ public abstract class Module {
     }
 
     public void onTick() {
+    }
+
+    public List<TextWindow> getWindows()
+    {
+        return this.windows;
     }
 
     public void enable() {

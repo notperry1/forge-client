@@ -2,6 +2,7 @@ package me.remainingtoast.toastclient;
 
 import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.module.ModuleManager;
+import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.setting.SettingsManager;
 import me.remainingtoast.toastclient.util.ASCII;
 import net.minecraftforge.common.MinecraftForge;
@@ -40,6 +41,7 @@ public class ToastClient {
     public void init(FMLInitializationEvent event) {
         MODULE_MANAGER.load();
         COMMAND_MANAGER.load();
+        ClickGui.clickGui.initWindows();
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
         MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
         ASCII.printFancyConsoleMSG();

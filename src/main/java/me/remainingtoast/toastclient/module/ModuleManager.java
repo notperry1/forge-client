@@ -1,5 +1,6 @@
 package me.remainingtoast.toastclient.module;
 
+import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.module.modules.misc.DiscordRPC;
 import me.remainingtoast.toastclient.module.modules.combat.AutoTotem;
 import me.remainingtoast.toastclient.module.modules.combat.CrystalAura;
@@ -40,7 +41,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
     public void load() {
         super.load();
         modulesSet.clear();
-        register(new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
+        register(new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
                 new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new CoordinateLogger(),
                 new BlockHighlight());
         ToastClient.SETTINGS_MANAGER.loadSettings();

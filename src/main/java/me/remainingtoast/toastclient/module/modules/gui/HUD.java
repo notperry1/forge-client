@@ -21,7 +21,7 @@ public class HUD extends Module{
                 mc.fontRenderer.drawStringWithShadow(ToastClient.FULLNAME, 5, 5, -1);
                 float currY = mc.fontRenderer.FONT_HEIGHT + 5;
                 for (Module m : ToastClient.MODULE_MANAGER.modulesSet) {
-                    if (m.isEnabled() && m.isDrawn()) {
+                    if (m.isEnabled() && m.isDrawn() && !m.getCategory().equals(Category.GUI)) {
                         mc.fontRenderer.drawStringWithShadow(m.getName(), 5, currY + 1, -1);
                         currY += mc.fontRenderer.FONT_HEIGHT;
                     }
