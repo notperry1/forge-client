@@ -1,12 +1,10 @@
 package me.remainingtoast.toastclient.module.modules.movement;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 
+@ModuleManifest(label = "Sprint", category = Module.Category.MOVEMENT, description = "Sprint Automatically", aliases = {}, hidden = false)
 public class Sprint extends Module {
-
-    public Sprint() {
-        super("Sprint", Category.MOVEMENT, "Automatically Sprints for you");
-    }
 
     @Override
     protected void onEnable() {

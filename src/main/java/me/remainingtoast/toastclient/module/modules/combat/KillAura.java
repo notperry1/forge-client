@@ -1,15 +1,13 @@
 package me.remainingtoast.toastclient.module.modules.combat;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
 import net.minecraft.item.ItemSword;
 
+@ModuleManifest(label = "KillAura", category = Module.Category.COMBAT, description = "Automatically Attack Enemies", aliases = {"Aura"}, hidden = false)
 public class KillAura extends Module {
     int l_Slot = -1;
-
-    public KillAura() {
-        super("KillAura", Category.COMBAT, "Automatically attacks enemies in range.");
-    }
 
     @Override
     public void selfSettings() {

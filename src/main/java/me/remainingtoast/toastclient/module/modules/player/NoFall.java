@@ -1,13 +1,11 @@
 package me.remainingtoast.toastclient.module.modules.player;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import net.minecraft.network.play.client.CPacketPlayer;
 
+@ModuleManifest(label = "NoFall", category = Module.Category.PLAYER, description = "Prevent you from taking fall damage", aliases = {}, hidden = false)
 public class NoFall extends Module {
-
-    public NoFall() {
-        super("NoFall", Category.PLAYER, "Prevent Taking Fall Damage");
-    }
 
     @Override
     protected void onEnable() {

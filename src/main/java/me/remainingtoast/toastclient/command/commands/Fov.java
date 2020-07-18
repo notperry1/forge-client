@@ -1,17 +1,15 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NumberUtil;
 
+@CommandManifest(label = "FOV", description = "Change client FOV", aliases = {""}, usage = "")
 public class Fov extends Command {
 
-    public Fov() {
-        super("FOV", "Change client Fov", "fov");
-    }
-
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         if (args.length > 0) {
             if (NumberUtil.isNumeric(args[0])) {
                 if ((Float.parseFloat(args[0]) >= 150)) {

@@ -2,24 +2,21 @@ package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManager;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
-import me.remainingtoast.toastclient.util.NumberUtil;
 
 import java.awt.*;
 
+@CommandManifest(label = "BlockHighlight", description = "", aliases = {"bh", "bhighlight", "blockh"}, usage = "blockhighlight <red> <green> <blue> <width>")
 public class BlockHighlight extends Command {
 
     private Color color;
     private Float width;
 
-    public BlockHighlight() {
-        super("BlockHighlight", "Change colour for block highlight module", "bh", "bhighlight", "blockh");
-    }
-
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         if(args.length == 0){
-            MessageUtil.sendMessage("Invalid Arguments, Usage: " + CommandManager.commandPrefix + "bh <red> <green> <blue> <width>", MessageUtil.Color.RED);
+            MessageUtil.sendMessage("Invalid Arguments, Usage: " + this.getUsage(), MessageUtil.Color.RED);
         }
         /*
         else if(args[1] != null && args[2] != null && args[3] != null && args[4] != null || args[1] != null && args[2] != null && args[3] != null) {

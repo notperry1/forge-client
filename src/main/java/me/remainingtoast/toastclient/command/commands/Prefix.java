@@ -2,16 +2,14 @@ package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
+@CommandManifest(label = "Preifx", description = "Change command prefix", aliases = {"p"}, usage = "")
 public class Prefix extends Command {
 
-    public Prefix() {
-        super("Prefix", "Change command prefix", "p", "prefix");
-    }
-
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         if (!(ToastClient.PREFIX == null)) {
             if (args.length >= 1) {
                 ToastClient.PREFIX = args[0];

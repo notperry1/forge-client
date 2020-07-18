@@ -2,21 +2,19 @@ package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManager;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
+@CommandManifest(label = "ListModule", description = "Lists all the modules", aliases = {"list"}, usage = "list <category>")
 public class ListModule extends Command {
 
     StringBuilder sb = new StringBuilder();
     Integer i = 0;
 
-    public ListModule() {
-        super("ListModule", "Lists all the modules", "list", "modules");
-    }
-
     @Override
-    public void call(String[] args) {
+    public void onRun(final String[] args) {
         if (mc.player == null) return;
         if (args.length == 0) {
             MessageUtil.sendMessage("List of categories:", MessageUtil.Color.GRAY);
@@ -29,16 +27,16 @@ public class ListModule extends Command {
                 if (category.name().equalsIgnoreCase(args[0])) {
                     MessageUtil.sendMessage("Modules in " + args[0] + ":", MessageUtil.Color.GRAY);
                     for (Module module : ModuleManager.getModulesInCat(Module.Category.valueOf(args[0].toUpperCase()))) {
-                        MessageUtil.sendMessage("  " + module.getDisplayName() + ": " + module.getDesc(), MessageUtil.Color.GRAY);
+                        MessageUtil.sendMessage("  " + module.getName() + ": " + module.getDesc(), MessageUtil.Color.GRAY);
                     }
                     return;
                 } else if (args[0].equalsIgnoreCase("ALL")) {
                     sb.replace(0, sb.capacity(), "");
-                    sb.append("Modules (" + ModuleManager.modules.size() + "): ");
-                    for (Module module : ModuleManager.modules) {
+                    sb.append("Modules (" + ModuleManager.modulesSet.size() + "): ");
+                    for (Module module : ModuleManager.modulesSet) {
                         i++;
-                        sb.append(module.getDisplayName()).append(", ");
-                        if (ModuleManager.modules.size() == i) {
+                        sb.append(module.getName()).append(", ");
+                        if (ModuleManager.modulesSet.size() == i) {
                             i = 0;
                             break;
                         }

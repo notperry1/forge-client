@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemWritableBook;
@@ -9,13 +10,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.play.client.CPacketCreativeInventoryAction;
 
+@CommandManifest(label = "SignBook", description = "Change the author of the book your holding (creative only)", aliases = {"sbook"}, usage = "signbook <authorname>")
 public class SignBook extends Command {
-    public SignBook() {
-        super("SignBook", "Change the author of the book your holding (creative only)", "sbook", "signbook");
-    }
 
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         if(args.length > 0){
             if(mc.player.isCreative()){
                 final ItemStack itemStack = mc.player.inventory.getCurrentItem();

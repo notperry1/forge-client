@@ -1,16 +1,15 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NumberUtil;
 
+@CommandManifest(label = "VClip", description = "Vertical clipping", aliases = {""}, usage = "vclip <distance>")
 public class VClip extends Command {
-    public VClip() {
-        super("VClip", "Vertical clipping", "vclip");
-    }
 
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         if(args.length > 0){
             if(NumberUtil.isNumeric(args[0])){
                 final double num = Double.parseDouble(args[0]);

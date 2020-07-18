@@ -1,14 +1,13 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 
+@CommandManifest(label = "Spammer", description = "Set spammer.txt", aliases = {""}, usage = "")
 public class Spammer extends Command {
-    public Spammer() {
-        super("Spammer", "Spammer command", "spam");
-    }
 
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
 
     }
 }

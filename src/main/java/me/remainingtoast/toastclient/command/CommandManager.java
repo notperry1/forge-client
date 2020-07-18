@@ -2,47 +2,52 @@ package me.remainingtoast.toastclient.command;
 
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.commands.*;
+import me.remainingtoast.toastclient.managers.HashMapManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CommandManager {
+public class CommandManager extends HashMapManager<String, Command> {
 
     private static boolean isPanicking = false;
-    public static HashSet<Command> commands = new HashSet<>();
+    public static HashSet<Command> commandsSet = new HashSet<>();
     public static String commandPrefix;
+    private HashMap<String, Command> aliasMap = new HashMap<>();
+
+    @Override
+    public void load() {
+        super.load();
+        init();
+    }
 
     public void init() {
-        commands.clear();
-        commands.add(new Bind());
-        commands.add(new BlockHighlight());
-        commands.add(new ClearChat());
-        commands.add(new Coords());
-        commands.add(new Drawn());
-        commands.add(new Fov());
-        commands.add(new HClip());
-        commands.add(new Help());
-        commands.add(new ListModule());
-        commands.add(new Peek());
-        commands.add(new Pitch());
-        commands.add(new Prefix());
-        commands.add(new Reload());
-        commands.add(new Say());
-        commands.add(new SignBook());
-//        commands.add(new Spammer());
-        commands.add(new ToggleModule());
-        commands.add(new VClip());
-        commands.add(new Yaw());
+        aliasMap.clear();
+        commandsSet.clear();
+        register(new Bind(), new BlockHighlight(), new ClearChat(), new Coords(), new Drawn(), new Fov(), new HClip(), new Help(),
+                new ListModule(), new Peek(), new Pitch(), new Prefix(), new Reload(), new Say(), new SignBook(), new ToggleModule(),
+                new VClip(), new Yaw());
         MinecraftForge.EVENT_BUS.register(this);
         commandPrefix = ToastClient.PREFIX;
     }
 
+    public void register(Command... commands) {
+        for (Command command : commands) {
+            commandsSet.add(command);
+            include(command.getLabel().toLowerCase(), command);
+            if (command.getAlias().length > 0) {
+                for (String com : command.getAlias()) {
+                    aliasMap.put(com.toLowerCase(), command);
+                }
+            }
+        }
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void chatEvent(ClientChatEvent event) {
@@ -58,11 +63,16 @@ public class CommandManager {
                     matchList.add(regexMatcher.group());
                 }
                 String[] argsList = matchList.toArray(new String[0]);
-                for (Command command : commands) {
-                    for (String alias : command.aliases) {
-                        if (alias.equals(firstArg)) {
-                            command.call(argsList);
-                            break;
+                for (Command command : commandsSet) {
+                    if(firstArg.equalsIgnoreCase(command.getLabel())){
+                        command.onRun(argsList);
+                        break;
+                    } else {
+                        for (String alias : command.getAlias()) {
+                            if (alias.equals(firstArg)) {
+                                command.onRun(argsList);
+                                break;
+                            }
                         }
                     }
                 }
@@ -73,7 +83,7 @@ public class CommandManager {
     }
 
     public static void setPanicking(Boolean bool) {
-        isPanicking = true;
+        isPanicking = bool;
     }
 
     public static boolean getPanicked() {

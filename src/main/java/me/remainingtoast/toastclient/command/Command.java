@@ -1,38 +1,60 @@
 package me.remainingtoast.toastclient.command;
 
 
-import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.client.Minecraft;
 
 import java.util.Arrays;
 
 public abstract class Command {
 
-    final String name;
-    final String displayName;
-    final String description;
-    final String[] aliases;
+    private String label;
+    private String description;
+    private String usage;
+    private String[] alias;
     protected Minecraft mc = Minecraft.getMinecraft();
 
-    public Command(String name, String description, String... aliases) {
-        this.name = name;
-        this.displayName = name.toLowerCase().replaceAll(" ", "_");
-        this.aliases = aliases;
-        this.description = description;
+    public Command() {
+        if (getClass().isAnnotationPresent(CommandManifest.class)) {
+            CommandManifest moduleManifest = getClass().getAnnotation(CommandManifest.class);
+            this.label = moduleManifest.label();
+            this.alias = moduleManifest.aliases();
+            this.description = moduleManifest.description();
+            this.usage = moduleManifest.usage();
+        }
     }
 
     public String getName() {
-        return name.replaceAll(" ", "");
+        return label.replaceAll(" ", "");
     }
 
     @Override
     public String toString() {
         return "Command{" +
-                "name= "+name+"\n," +
+                "name= "+label+"\n," +
                 "description= "+description+"\n,"+
-                "aliases= " + Arrays.toString(aliases);
+                "aliases= " + Arrays.toString(alias)+"\n,"+
+                "usage= " + usage;
     }
 
-    protected abstract void call(String[] args);
+//    protected abstract void call(final String[] args);
+
+    public void onRun(final String[] args) {
+    }
+
+    public String getLabel() {
+        return this.label;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String[] getAlias() {
+        return this.alias;
+    }
+
+    public String getUsage() {
+        return this.usage;
+    }
 }
 

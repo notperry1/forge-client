@@ -3,10 +3,10 @@ package me.remainingtoast.toastclient.util;
 public class ASCII {
     public static void printFancyConsoleMSG() {
         System.out.println("_________________________________________________________");
-        System.out.println("     _________ _______  _______  _______ _________           ");
-        System.out.println("     \\__   __/(  ___  )(  ___  )(  ____ \\\\__   __/        ");
-        System.out.println("        ) (   | (   ) || (   ) || (    \\/   ) (             ");
-        System.out.println("        | |   | |   | || (___) || (_____    | |              ");
+        System.out.println("      _________ _______  _______  _______ _________           ");
+        System.out.println("      \\__   __/(  ___  )(  ___  )(  ____ \\\\__   __/        ");
+        System.out.println("         ) (   | (   ) || (   ) || (    \\/   ) (             ");
+        System.out.println("         | |   | |   | || (___) || (_____    | |              ");
         System.out.println("        | |   | |   | ||  ___  |(_____  )   | |              ");
         System.out.println("        | |   | |   | || (   ) |      ) |   | |              ");
         System.out.println("        | |   | (___) || )   ( |/\\____) |   | |             ");

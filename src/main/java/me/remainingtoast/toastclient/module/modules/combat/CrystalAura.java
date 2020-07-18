@@ -1,19 +1,18 @@
 package me.remainingtoast.toastclient.module.modules.combat;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 
 import java.util.Comparator;
 
+@ModuleManifest(label = "CrystalAura", category = Module.Category.COMBAT, description = "Automatically hit crystals", aliases = {"AutoCrystal"}, hidden = false)
 public class CrystalAura extends Module {
+
     private static double yaw;
     private static double pitch;
-
-    public CrystalAura() {
-        super("CrystalAura", Category.COMBAT, "Automatically places crystals.");
-    }
 
     public static double[] calculateLookAt(double px, double py, double pz, EntityPlayer me) {
         double dirx = me.posX - px;

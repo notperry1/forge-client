@@ -1,15 +1,14 @@
 package me.remainingtoast.toastclient.module.modules.combat;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 
+@ModuleManifest(label = "AutoTotem", category = Module.Category.COMBAT, description = "Swaps Totems to offhand after each pop", aliases = {}, hidden = false)
 public class AutoTotem extends Module {
-    public AutoTotem() {
-        super("AutoTotem", Category.COMBAT, "Automatically swaps totem of undying to your offhand");
-    }
 
     @Override
     public void onTick() {

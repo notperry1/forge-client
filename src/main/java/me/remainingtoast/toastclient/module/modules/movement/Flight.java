@@ -1,12 +1,10 @@
 package me.remainingtoast.toastclient.module.modules.movement;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 
+@ModuleManifest(label = "Flight", category = Module.Category.MOVEMENT, description = "Creative Flight", aliases = {"Flight"}, hidden = false)
 public class Flight extends Module {
-
-    public Flight() {
-        super("Flight", Category.MOVEMENT, "Creative Flight");
-    }
 
     @Override
     protected void onEnable() {

@@ -1,14 +1,13 @@
 package me.remainingtoast.toastclient.module.modules.movement;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import me.remainingtoast.toastclient.util.MathUtil;
 
+@ModuleManifest(label = "ElytraFlight", category = Module.Category.MOVEMENT, description = "Fly using Elytra", aliases = {}, hidden = false)
 public class ElytraFlight extends Module {
-    public float speed = 1;
 
-    public ElytraFlight() {
-        super("ElytraFlight", Module.Category.MOVEMENT, "Fly using Elytra");
-    }
+    public float speed = 1;
 
     @Override
     protected void onEnable() {

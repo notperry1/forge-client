@@ -1,16 +1,15 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NumberUtil;
 
+@CommandManifest(label = "Yaw", description = "Set players yaw", aliases = {""}, usage = "yaw <number:direction>")
 public class Yaw extends Command {
-    public Yaw() {
-        super("Yaw", "Set yaw", "yaw");
-    }
 
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         if(args.length > 0){
             if(NumberUtil.isNumeric(args[0])){
                 final float num = Float.parseFloat(args[0]);

@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.module.modules.render;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import me.remainingtoast.toastclient.util.MathUtil;
 import me.remainingtoast.toastclient.util.RenderUtil;
 import net.minecraft.block.material.Material;
@@ -13,14 +14,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
 
+@ModuleManifest(label = "BlockHighlight", category = Module.Category.RENDER, description = "Highlight the block you are looking at", aliases = {"Highlight"}, hidden = false)
 public class BlockHighlight extends Module {
 
     public static Color color = new Color(0, 255,0);
     public static float width = 1.5f;
-
-    public BlockHighlight() {
-        super("BlockHighlight", Category.RENDER, "Highlight the block you are looking at");
-    }
 
     @SubscribeEvent
     public void render(RenderWorldLastEvent event){

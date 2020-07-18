@@ -13,10 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-import java.lang.reflect.InvocationTargetException;
 
 @Mod(modid = ToastClient.MODID, name = ToastClient.NAME, version = ToastClient.VERSION)
-
 public class ToastClient {
 
     public static final String MODID = "toastclient";
@@ -32,6 +30,7 @@ public class ToastClient {
     public static final SettingsManager SETTINGS_MANAGER = new SettingsManager();
     public static String PREFIX = ".";
 
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Display.setTitle(FULLNAME);
@@ -39,8 +38,8 @@ public class ToastClient {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        ModuleManager.init();
-        COMMAND_MANAGER.init();
+        MODULE_MANAGER.load();
+        COMMAND_MANAGER.load();
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
         MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
         ASCII.printFancyConsoleMSG();

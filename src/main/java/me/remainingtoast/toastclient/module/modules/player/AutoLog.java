@@ -1,13 +1,11 @@
 package me.remainingtoast.toastclient.module.modules.player;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import net.minecraft.util.text.TextComponentString;
 
+@ModuleManifest(label = "AutoLog", category = Module.Category.PLAYER, description = "Disconnect when you are low health", aliases = {"Log"}, hidden = false)
 public class AutoLog extends Module {
-
-    public AutoLog() {
-        super("AutoLog", Category.PLAYER, "Auto disconnects you from a server at a certain health");
-    }
 
     @Override
     public void onTick() {

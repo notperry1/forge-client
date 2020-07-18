@@ -1,13 +1,12 @@
 package me.remainingtoast.toastclient.module.modules.render;
 
 import me.remainingtoast.toastclient.module.Module;
+import me.remainingtoast.toastclient.module.ModuleManifest;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
+@ModuleManifest(label = "PlayerESP", category = Module.Category.RENDER, description = "ESP for Players", aliases = {}, hidden = false)
 public class PlayerESP extends Module {
-    public PlayerESP() {
-        super("PlayerESP", Category.RENDER, "");
-    }
 
     @Override
     protected void onDisable() {

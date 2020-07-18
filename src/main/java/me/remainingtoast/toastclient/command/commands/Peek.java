@@ -1,11 +1,11 @@
 package me.remainingtoast.toastclient.command.commands;
 
 import me.remainingtoast.toastclient.command.Command;
+import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.client.gui.inventory.GuiShulkerBox;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -18,13 +18,11 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@CommandManifest(label = "Peek", description = "Show contents of the shulker in your hand", aliases = {""}, usage = "")
 public class Peek extends Command {
-    public Peek() {
-        super("Peek", "Show contents of the shulker in your hand", "p", "peek");
-    }
 
     @Override
-    protected void call(String[] args) {
+    public void onRun(final String[] args) {
         try{
             MinecraftForge.EVENT_BUS.register(this);
         } catch (Exception e) {

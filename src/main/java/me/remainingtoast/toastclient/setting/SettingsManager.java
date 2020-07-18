@@ -70,7 +70,7 @@ public class SettingsManager {
 
     public void updateSettings() {
         Map<String, ModuleSettings> settingsArray = new HashMap<>();
-        for (Module module : ModuleManager.modules) {
+        for (Module module : ModuleManager.modulesSet) {
             settingsArray.put(module.getName(), module.getSettings());
         }
         writeSettings(settingsArray);
@@ -78,7 +78,7 @@ public class SettingsManager {
 
     public void loadSettings() {
         Map<String, ModuleSettings> settingsArray = readSettings();
-        for (Module module : ModuleManager.modules) {
+        for (Module module : ModuleManager.modulesSet) {
             String moduleName = module.getName();
             try {
                 if (settingsArray.containsKey(moduleName)) {

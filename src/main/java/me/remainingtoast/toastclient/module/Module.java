@@ -13,27 +13,27 @@ import java.util.Objects;
 public abstract class Module {
 
     protected static final Minecraft mc = Minecraft.getMinecraft();
-    private final String name;
-    private final Category category;
-    private final String description;
+    private String label;
+    private String[] alias;
+    private String suffix;
+    private String description;
+    private Category category;
+    private int key;
+    private boolean hidden;
+    private boolean enabled;
     public ModuleSettings settings = new ModuleSettings();
     protected Logger LOGGER = ToastClient.log;
-    private String displayName;
 
-    public Module(String name, Category category, String description) {
-        this.name = name.toLowerCase().replaceAll(" ", "_");
-        this.displayName = name;
-        this.category = category;
-        this.description = description;
-        settings.addSetting("Bind", new KeybindSetting(-1));
-    }
-
-    public Module(String name, Category category, String description, int key) {
-        this.name = name.toLowerCase().replaceAll(" ", "_");
-        this.displayName = name;
-        this.category = category;
-        this.description = description;
-        settings.addSetting("Bind", new KeybindSetting(key));
+    public Module() {
+        if (getClass().isAnnotationPresent(ModuleManifest.class)) {
+            ModuleManifest moduleManifest = getClass().getAnnotation(ModuleManifest.class);
+            this.label = moduleManifest.label();
+            this.category = moduleManifest.category();
+            this.alias = moduleManifest.aliases();
+            this.hidden = moduleManifest.hidden();
+            this.description = moduleManifest.description();
+            settings.addSetting("Bind", new KeybindSetting(-1));
+        }
     }
 
     public void registerSettings() {
@@ -55,30 +55,28 @@ public abstract class Module {
     }
 
     public String getName() {
-        return name;
+        return label;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String name) {
-        this.displayName = name;
+    public void setName(String name) {
+        this.label = name;
     }
 
     public Category getCategory() {
         return category;
     }
 
+    public String[] getAlias() { return this.alias; }
+
     public int getKey() {
         return settings.getSetting("Bind", KeybindSetting.class).getKey();
     }
 
-    public void setKey(int newKey) {
+    public void setNewKey(int newKey) {
         settings.getSetting("Bind", KeybindSetting.class).setKey(newKey);
     }
 
-    public String getKeyName() {
+    public String setKeyName() {
         return settings.getSetting("Bind", KeybindSetting.class).getKeyName();
     }
 
@@ -103,6 +101,7 @@ public abstract class Module {
     public void setDrawn(boolean bool) {
         if (bool) enableDrawn();
         else disableDrawn();
+        ToastClient.SETTINGS_MANAGER.updateSettings();
     }
 
     protected void onEnable() {
@@ -153,21 +152,18 @@ public abstract class Module {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Module module = (Module) o;
-        return name.equals(module.name) &&
-                displayName.equals(module.displayName) &&
-                category == module.category;
+        return label.equals(module.label) && category == module.category;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, category);
+        return Objects.hash(label, description, category);
     }
 
     @Override
     public String toString() {
         return "Module{" +
-                "name='" + name + '\'' +
-                ", displayName='" + displayName + '\'' +
+                "name='" + label + '\'' +
                 ", category=" + category +
                 ", enabled=" + isEnabled() +
                 '}';
