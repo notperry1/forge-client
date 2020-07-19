@@ -181,14 +181,24 @@ public abstract class Module {
 
     //A - Z Please
     public enum Category {
-        COMBAT,
-        EXPLOITS,
-        GUI,
-        MISC,
-        MOVEMENT,
-        PLAYER,
-        RENDER,
-        NONE
+        COMBAT("Combat"),
+        EXPLOITS("Exploits"),
+        GUI("GUI"),
+        MISC("MISC"),
+        MOVEMENT("Movement"),
+        PLAYER("Player"),
+        RENDER("Render"),
+        NONE("None");
+
+        String label;
+
+        Category(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
     }
 
 }

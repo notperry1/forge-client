@@ -23,7 +23,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Rename file
-        run: mv build/libs/toastclient-1.0.0-release.jar "toastclient-1.12.2.jar"
+        run: mv build/libs/toastclient-1.0.0-release.jar "toastclient-b1-1.12.2.jar"
       - name: Send message to discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}

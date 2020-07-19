@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.module.modules.gui;
 
 import me.remainingtoast.toastclient.gui.click.ToastClientGUI;
+import me.remainingtoast.toastclient.gui.rewrite.click.NewToastGui;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
 
@@ -8,13 +9,19 @@ import me.remainingtoast.toastclient.module.ModuleManifest;
 public class ClickGui extends Module {
 
     public static ToastClientGUI clickGui = new ToastClientGUI();
+    private NewToastGui gui;
 
     public void onEnable(){
         //TODO: Figure out how to disable clickGui inside GUI
-        if (mc.currentScreen != clickGui) {
-            mc.displayGuiScreen(clickGui);
-            disable();
+        if(gui == null){
+            gui = new NewToastGui();
+            gui.init();
         }
-        disable();
+        mc.displayGuiScreen(gui);
+//        if (mc.currentScreen != clickGui) {
+//            mc.displayGuiScreen(clickGui);
+//            disable();
+//        }
+//        disable();
     }
 }
