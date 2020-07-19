@@ -6,7 +6,6 @@ import net.minecraft.client.gui.FontRenderer;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public abstract class ModuleWindow {
 
@@ -18,18 +17,11 @@ public abstract class ModuleWindow {
     public String name;
     public int len;
 
-    public int posX;
-    public int posY;
-    public int mouseX;
-    public int mouseY;
-    public int prevmX;
-    public int prevmY;
+    public int posX, posY, mouseX, mouseY, prevmX, prevmY;
 
     public int keyDown;
-    public boolean lmDown;
-    public boolean rmDown;
-    public boolean lmHeld;
-    public boolean dragging;
+    public boolean lmDown, rmDown, lmHeld, dragging;
+
 
     public ModuleWindow(HashSet<Module> mods, String name, int len, int posX, int posY){
         this.modList = mods;

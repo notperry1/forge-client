@@ -47,7 +47,7 @@ public class ToastClient {
     public void init(FMLInitializationEvent event) {
         MODULE_MANAGER.load();
         COMMAND_MANAGER.load();
-        ClickGui.clickGui.initWindows();
+        ClickGui.clickGui.init();
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
         MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
         ASCII.printFancyConsoleMSG();

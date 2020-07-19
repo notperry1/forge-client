@@ -22,6 +22,7 @@ public class NewToastGui extends GuiScreen {
     public static CFontRenderer font = new CFontRenderer(new Font("Calibri", 0, 20), true, true);
 
     public void init(){
+        panels.clear();
         GL11.glColor4f(1, 1, 1, 1);
         panels.add(currentPanel = new ModulesPanel());
 //        panels.add(new FriendsPanel());
@@ -36,7 +37,7 @@ public class NewToastGui extends GuiScreen {
         int x = 0;
         for (Panel panel : panels) {
             float renderX = (res.getScaledWidth() / 2) + x - (panels.size() * 20);
-            RenderUtil.drawRect(renderX - 5f, 0, renderX + font.getStringWidth(panel.getLabel()) + 5f, font.getHeight() + 6f, new Color(0, 0, 0, panel == currentPanel ? 170 : 137).getRGB());
+//            RenderUtil.drawRect(renderX - 5f, 0, renderX + font.getStringWidth(panel.getLabel()) + 5f, font.getHeight() + 6f, new Color(0, 0, 0, panel == currentPanel ? 170 : 137).getRGB());
 //            font.drawStringWithShadow(panel.getLabel(), renderX, 4, -1);
             x += font.getStringWidth(panel.getLabel()) + 10;
         }

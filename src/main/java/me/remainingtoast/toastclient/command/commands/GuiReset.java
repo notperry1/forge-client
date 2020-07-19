@@ -12,7 +12,7 @@ public class GuiReset extends Command {
     @Override
     public void onRun(String[] args) {
         if(args.length == 0){
-            ClickGui.clickGui.initWindows();
+            ClickGui.clickGui.init();
             ToastClient.MODULE_MANAGER.getModuleByClass(ClickGui.class).disable();
             MessageUtil.sendMessage("Reset Gui Location!", MessageUtil.Color.GREEN);
         }

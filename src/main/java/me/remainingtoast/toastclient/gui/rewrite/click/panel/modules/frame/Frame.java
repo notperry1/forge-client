@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Frame {
     private float x, y, lastx, lasty, w, h;
+    public int mouseX, mouseY;
     private String label;
     private boolean dragging, extended;
     private ArrayList<Component> components = new ArrayList<>();
@@ -90,6 +91,11 @@ public class Frame {
         }
         if (isExtended())
             components.forEach(component -> component.mouseReleased(mx, my, button));
+    }
+
+    protected boolean mouseOver(float minX, float minY, float maxX, float maxY)
+    {
+        return this.mouseX > minX && this.mouseX < maxX && this.mouseY > minY && this.mouseY < maxY;
     }
 
     public void onGuiClosed() {
