@@ -23,7 +23,6 @@ public class ModuleComponent extends Component {
     @Override
     public void init() {
         super.init();
-
     }
 
     @Override

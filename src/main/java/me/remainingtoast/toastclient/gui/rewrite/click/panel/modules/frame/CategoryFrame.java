@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame;
 
 import me.remainingtoast.toastclient.ToastClient;
+import me.remainingtoast.toastclient.gui.rewrite.click.NewToastGui;
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.Component;
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.components.ModuleComponent;
 import me.remainingtoast.toastclient.module.Module;
@@ -24,6 +25,7 @@ public class CategoryFrame extends Frame {
             getComponents().add(new ModuleComponent(mod, getX(), getY(), 2, offsetY, getW() - 4, 18));
             offsetY += 15;
         }
+        setExtended(true);
     }
 
     @Override
@@ -40,8 +42,7 @@ public class CategoryFrame extends Frame {
             int color = Color.getHSBColor(i / 115, 0.9f, 1).getRGB();
             RenderUtil.drawRect2(getX() + i, getY() + 2.5f, 1, 0.5f, color);
         }
-//        RenderUtil.drawRect2(getX() - 1, getY() - 2, getW() + 3, getH(), new Color(45, 45, 45).getRGB());
-//        NewToastGui.font.drawStringWithShadow(getLabel(), getX() + getW() / 2 - NewToastGui.font.getStringWidth(getLabel()) / 2, (getY() - 2) + getH() / 2 - NewToastGui.font.getHeight() / 2, -1);
+        NewToastGui.font.drawStringWithShadow(getLabel(), getX() + getW() / 2 - NewToastGui.font.getStringWidth(getLabel()) / 2, (getY() - 2) + getH() / 2 - NewToastGui.font.getHeight() / 2, -1);
         super.drawScreen(x, y, partialTicks);
         if (isExtended())
             resetHeights();

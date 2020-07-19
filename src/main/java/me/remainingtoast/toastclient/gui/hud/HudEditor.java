@@ -36,8 +36,8 @@ public class HudEditor extends GuiScreen {
             if (hudComponent.getY() + hudComponent.getH() > new ScaledResolution(mc).getScaledHeight()) {
                 hudComponent.setY(new ScaledResolution(mc).getScaledHeight() - hudComponent.getH());
             }
-            //RenderUtil.drawRect2(0, scaledResolution.getScaledHeight() / 2 - 0.5f, scaledResolution.getScaledWidth(), 1, 0xff000000);
-            //RenderUtil.drawRect2(scaledResolution.getScaledWidth() / 2 - 0.5f, 0, 1, scaledResolution.getScaledHeight(), 0xff000000);
+            RenderUtil.drawRect2(0, scaledResolution.getScaledHeight() / 2 - 0.5f, scaledResolution.getScaledWidth(), 1, 0xff000000);
+            RenderUtil.drawRect2(scaledResolution.getScaledWidth() / 2 - 0.5f, 0, 1, scaledResolution.getScaledHeight(), 0xff000000);
             if (hudComponent.isShown()) hudComponent.onDraw(new ScaledResolution(mc));
 
             RenderUtil.drawRect(hudComponent.getX(), hudComponent.getY(), hudComponent.getW(), hudComponent.getH(), hudComponent.isDragging() ? 0x95000000 : 0x80000000);
