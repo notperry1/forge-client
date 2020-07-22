@@ -13,6 +13,7 @@ public class Frame {
     private String label;
     private boolean dragging, extended;
     private ArrayList<Component> components = new ArrayList<>();
+    public static final Minecraft mc = Minecraft.getMinecraft();
 
     public Frame(String label, float x, float y, float w, float h) {
         this.label = label;

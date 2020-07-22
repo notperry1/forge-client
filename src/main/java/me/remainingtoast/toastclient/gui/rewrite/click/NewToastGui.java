@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.gui.rewrite.click;
 
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.Panel;
+import me.remainingtoast.toastclient.gui.rewrite.click.panel.panels.HudEditorPanel;
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.panels.ModulesPanel;
 import me.remainingtoast.toastclient.util.RenderUtil;
 import me.remainingtoast.toastclient.util.font.CFontRenderer;
@@ -25,9 +26,7 @@ public class NewToastGui extends GuiScreen {
         panels.clear();
         GL11.glColor4f(1, 1, 1, 1);
         panels.add(currentPanel = new ModulesPanel());
-//        panels.add(new FriendsPanel());
-//        panels.add(new ConfigPanel());
-//        panels.add(new SettingsPanel());
+        panels.add(new HudEditorPanel());
     }
 
     @Override
@@ -37,8 +36,8 @@ public class NewToastGui extends GuiScreen {
         int x = 0;
         for (Panel panel : panels) {
             float renderX = (res.getScaledWidth() / 2) + x - (panels.size() * 20);
-//            RenderUtil.drawRect(renderX - 5f, 0, renderX + font.getStringWidth(panel.getLabel()) + 5f, font.getHeight() + 6f, new Color(0, 0, 0, panel == currentPanel ? 170 : 137).getRGB());
-//            font.drawStringWithShadow(panel.getLabel(), renderX, 4, -1);
+            RenderUtil.drawRect(renderX - 5f, 0, renderX + font.getStringWidth(panel.getLabel()) + 5f, font.getHeight() + 6f, new Color(0, 0, 0, panel == currentPanel ? 170 : 137).getRGB());
+            font.drawStringWithShadow(panel.getLabel(), renderX, 4, -1);
             x += font.getStringWidth(panel.getLabel()) + 10;
         }
         currentPanel.draw(mouseX, mouseY, partialTicks);

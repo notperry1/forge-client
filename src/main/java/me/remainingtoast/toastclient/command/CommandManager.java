@@ -21,6 +21,10 @@ public class CommandManager extends HashMapManager<String, Command> {
     public static String commandPrefix;
     private HashMap<String, Command> aliasMap = new HashMap<>();
 
+    public static String getCommandPrefix() {
+        return commandPrefix;
+    }
+
     @Override
     public void load() {
         super.load();

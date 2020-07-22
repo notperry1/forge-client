@@ -2,8 +2,8 @@ package me.remainingtoast.toastclient.gui.rewrite.click.panel.panels;
 
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.Panel;
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.CategoryFrame;
+import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.ConsoleFrame;
 import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.Frame;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.HudFrame;
 import me.remainingtoast.toastclient.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -19,6 +19,7 @@ public class ModulesPanel extends Panel {
         frames = new ArrayList<>();
         int x = 2;
         int y = 20;
+        frames.add(new ConsoleFrame(x, y, 120, 18));
         for (Module.Category moduleCategory : Module.Category.values()) {
             if(moduleCategory.equals(Module.Category.NONE)) return;
             frames.add(new CategoryFrame(moduleCategory, x, y, 100, 10));
@@ -27,14 +28,12 @@ public class ModulesPanel extends Panel {
                 y += 20;
             } else x += 125;
         }
-        frames.add(new HudFrame(x, y, 120, 18));
         frames.forEach(Frame::init);
     }
 
     @Override
     public void draw(int mouseX, int mouseY, float partialTicks) {
         frames.forEach(frame -> frame.drawScreen(mouseX, mouseY, partialTicks));
-
     }
 
     @Override

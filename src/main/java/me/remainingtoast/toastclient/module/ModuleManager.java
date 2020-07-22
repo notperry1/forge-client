@@ -7,6 +7,7 @@ import me.remainingtoast.toastclient.module.modules.combat.CrystalAura;
 import me.remainingtoast.toastclient.module.modules.combat.KillAura;
 import me.remainingtoast.toastclient.module.modules.exploits.AntiHunger;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
+import me.remainingtoast.toastclient.module.modules.gui.Console;
 import me.remainingtoast.toastclient.module.modules.gui.HUD;
 import me.remainingtoast.toastclient.module.modules.gui.HudEditor;
 import me.remainingtoast.toastclient.module.modules.misc.CoordinateLogger;
@@ -40,7 +41,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
         modulesSet.clear();
         register(new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
                 new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new CoordinateLogger(),
-                new BlockHighlight(), new HudEditor());
+                new BlockHighlight(), new HudEditor(), new Console());
         ToastClient.SETTINGS_MANAGER.loadSettings();
         for (Module module : ToastClient.MODULE_MANAGER.modulesSet) {
             if (module.getSettings().getSetting("Enabled", BooleanSetting.class).getValue()) {

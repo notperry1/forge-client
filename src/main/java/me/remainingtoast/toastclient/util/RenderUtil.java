@@ -12,22 +12,29 @@ import net.minecraft.util.math.AxisAlignedBB;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL32;
 
+import java.awt.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtil {
-    /*
-    Credit to Seppuku for RenderUtil
-    https://github.com/seppukudevelopment/seppuku/blob/89d5fdcb914195bccd4d55db78b960d033aa38e2/src/main/java/me/rigamortis/seppuku/api/util/RenderUtil.java
-     */
+
+    private static Minecraft mc = Minecraft.getMinecraft();
     private static final IntBuffer VIEWPORT = GLAllocation.createDirectIntBuffer(16);
     private static final FloatBuffer MODELVIEW = GLAllocation.createDirectFloatBuffer(16);
     private static final FloatBuffer PROJECTION = GLAllocation.createDirectFloatBuffer(16);
 
+    public static boolean isHovered(int x, int y, int width, int height, int mouseX, int mouseY) {
+        return (mouseX >= x) && (mouseX <= x + width) && (mouseY >= y) && (mouseY < y + height);
+    }
+
     public static boolean withinBounds(int mouseX, int mouseY, float x, float y, float width, float height) {
         return (mouseX >= x && mouseX <= (x + width)) && (mouseY >= y && mouseY <= (y + height));
+    }
+
+    public static void drawString(String text, double x, double y, int color, boolean shadow) {
+        Minecraft.getMinecraft().fontRenderer.drawString(text, (float)Math.round(x), (float)Math.round(y), color, shadow);
     }
 
     public static void updateModelViewProjectionMatrix() {
@@ -70,6 +77,29 @@ public class RenderUtil {
         lvt_10_1_.pos(p_drawRect_2_, y, 0.0D).endVertex();
         lvt_10_1_.pos(x, y, 0.0D).endVertex();
         lvt_9_1_.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
+
+    public static void drawOutlinedRect(double x, double y, double w, double h, int color, float width) {
+        float r = (float)(color >> 16 & 255) / 255.0F;
+        float g = (float)(color >> 8 & 255) / 255.0F;
+        float b = (float)(color & 255) / 255.0F;
+        float a = (float)(color >> 24 & 255) / 255.0F;
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder BufferBuilder = tessellator.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.color(r, g, b, a);
+        GL11.glLineWidth(width);
+        BufferBuilder.begin(2, DefaultVertexFormats.POSITION);
+        BufferBuilder.pos(x, y, 0.0D).endVertex();
+        BufferBuilder.pos(x, y + h, 0.0D).endVertex();
+        BufferBuilder.pos(x + w, y + h, 0.0D).endVertex();
+        BufferBuilder.pos(x + w, y, 0.0D).endVertex();
+        tessellator.draw();
+        GlStateManager.color(1.0F, 1.0F, 1.0F);
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
     }
@@ -433,5 +463,60 @@ public class RenderUtil {
         tessellator.draw();
     }
 
+    public static void drawText(String msg, int x, int y, int color) {
+        Minecraft.getMinecraft().fontRenderer.drawString(msg, x, y, color);
+    }
+
+    public static void drawTextShadow(String msg, int x, int y, int color) {
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(msg, (float)x, (float)y, color);
+    }
+
+    public static void drawTextShadowCentered(String msg, float x, float y, int color) {
+        float offsetX = (float)getTextWidth(msg) / 2.0F;
+        float offsetY = (float)getTextHeight() / 2.0F;
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(msg, x - offsetX, y - offsetY, color);
+    }
+
+    public static void drawText(String msg, double x, double y, int color, double scale, boolean shadow) {
+        GlStateManager.pushMatrix();
+        GlStateManager.disableDepth();
+        GlStateManager.scale(scale, scale, scale);
+        Minecraft.getMinecraft().fontRenderer.drawString(msg, (float)(x * (1.0D / scale)), (float)(y * (1.0D / scale)), color, shadow);
+        GlStateManager.enableDepth();
+        GlStateManager.popMatrix();
+    }
+
+    public static void drawText(String msg, double x, double y, int color, double scale) {
+        drawText(msg, x, y, color, scale, false);
+    }
+
+    public static void drawTextShadow(String msg, double x, double y, int color, double scale) {
+        drawText(msg, x, y, color, scale, true);
+    }
+
+    public static int getTextWidth(String text, double scale) {
+        return (int)((double) Minecraft.getMinecraft().fontRenderer.getStringWidth(text) * scale);
+    }
+
+    public static int getTextWidth(String text) {
+        return getTextWidth(text, 1.0D);
+    }
+
+    public static int getTextHeight() {
+        return Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
+    }
+
+    public static int getTextHeight(double scale) {
+        return (int)((double) Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT * scale);
+    }
+
+
+
+    public static void drawHitMarker() {
+        drawLine(mc.displayWidth / 2f - 4, mc.displayHeight / 2f - 4, mc.displayWidth / 2f - 8, mc.displayHeight / 2f - 8, 1f, new Color(255, 255, 255, 255).getRGB());
+        drawLine(mc.displayWidth / 2f + 4, mc.displayHeight / 2f - 4, mc.displayWidth / 2f + 8, mc.displayHeight / 2f - 8, 1f, new Color(255, 255, 255, 255).getRGB());
+        drawLine(mc.displayWidth / 2f - 4, mc.displayHeight / 2f + 4, mc.displayWidth / 2f - 8, mc.displayHeight / 2f + 8, 1f, new Color(255, 255, 255, 255).getRGB());
+        drawLine(mc.displayWidth / 2f + 4, mc.displayHeight / 2f + 4, mc.displayWidth / 2f + 8, mc.displayHeight / 2f + 8, 1f, new Color(255, 255, 255, 255).getRGB());
+    }
 
 }
