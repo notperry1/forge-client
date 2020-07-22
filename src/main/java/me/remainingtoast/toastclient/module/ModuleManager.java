@@ -1,6 +1,7 @@
 package me.remainingtoast.toastclient.module;
 
 import me.remainingtoast.toastclient.ToastClient;
+import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.managers.HashMapManager;
 import me.remainingtoast.toastclient.module.modules.combat.AutoTotem;
 import me.remainingtoast.toastclient.module.modules.combat.CrystalAura;
@@ -22,7 +23,9 @@ import me.remainingtoast.toastclient.module.modules.render.BlockHighlight;
 import me.remainingtoast.toastclient.module.modules.render.FullBright;
 import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
 import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
+import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiChat;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -72,7 +75,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
 
     public Module getModuleByName(String name) {
         for (Module current : modulesSet) {
-            if (current.getName().equals(name)) return current;
+            if (current.getName().equalsIgnoreCase(name)) return current;
         }
         return null;
     }
@@ -97,6 +100,10 @@ public class ModuleManager extends HashMapManager<String, Module> {
                 module.toggle();
                 unReleasedKeys.add(key);
             }
+        }
+        if (("" + Keyboard.getEventCharacter()).equalsIgnoreCase(CommandManager.getCommandPrefix()) && !(Minecraft.getMinecraft().player.isSneaking())) {
+            Minecraft.getMinecraft().displayGuiScreen(new GuiChat(CommandManager.getCommandPrefix()));
+            MessageUtil.sendMessage("Opened chat using command prefix! "+"\"" + CommandManager.getCommandPrefix() + "\"", MessageUtil.Color.GREEN);
         }
     }
 

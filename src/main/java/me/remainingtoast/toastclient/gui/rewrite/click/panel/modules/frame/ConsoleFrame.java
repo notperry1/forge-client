@@ -19,7 +19,8 @@ public class ConsoleFrame extends Frame {
 
     @Override
     public void drawScreen(int mx, int my, float partialTicks) {
-        RenderUtil.drawRect2(getX(), getY(), getW() + 50, getH() + 100, 0xff050505);
+        if(!visible) return;
+        RenderUtil.drawRect2(getX(), getY(), getW() + 49, getH() + 100, 0xff050505);
         RenderUtil.drawBorderedRect2(getX() + .5f, getY() + .5f, getW() + 50, getH() - 1f + 100, 0.5f, 0xff282828, 0xff282828);
         RenderUtil.drawBorderedRect2(getX() + 1.5f, getY() + 1.5f, getW() + 50, getH() - 3f + 100, 0.5f, 0xff111111, 0xff3C3C3C);
         for (float i = 2.5f; i < getW(); i++) {

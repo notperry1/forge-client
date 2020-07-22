@@ -5,7 +5,6 @@ import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.module.Module;
-import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
 @CommandManifest(label = "ToggleModule", description = "Toggles module on and off", aliases = {"t"}, usage = "toggle <module>")
@@ -19,15 +18,20 @@ public class ToggleModule extends Command {
         }
         for(Module module : ToastClient.MODULE_MANAGER.getModules()){
             for(String s : module.getAlias()){
-                if(args[0].equalsIgnoreCase(module.getName()) || args[0].equalsIgnoreCase(s)){
+                if(args[0].equalsIgnoreCase(s)){
                     MessageUtil.sendMessage("Toggled " + module.getName() + (module.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
                     module.toggle();
-                }else{
-                    MessageUtil.sendMessage("Failed to find Module \"" + args[0] + "\" ", MessageUtil.Color.RED);
-                    break;
                 }
                 break;
             }
+            if(args[0].equalsIgnoreCase(module.getName())){
+                MessageUtil.sendMessage("Toggled " + module.getName() + (module.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
+                module.toggle();
+            }
+            break;
+        }
+        if(ToastClient.MODULE_MANAGER.getModuleByName(args[0]) == null){
+            MessageUtil.sendMessage("Unrecognised Module \"" + args[0] +"\"", MessageUtil.Color.RED);
         }
     }
 }

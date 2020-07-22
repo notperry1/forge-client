@@ -9,7 +9,7 @@ public class HudEditor extends Module {
     private me.remainingtoast.toastclient.gui.hud.HudEditor hudEditor;
 
     public void onEnable(){
-        //TODO: Figure out how to disable clickGui inside GUI
+        if(mc.world == null || mc.player == null) return;
         if(hudEditor == null){
             hudEditor = new me.remainingtoast.toastclient.gui.hud.HudEditor();
             hudEditor.initGui();

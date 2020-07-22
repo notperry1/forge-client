@@ -35,7 +35,6 @@ public class ToastClient {
     public static final SettingsManager SETTINGS_MANAGER = new SettingsManager();
     public File directory = new File("ToastClient.json");
     private final ComponentManager componentManager = new ComponentManager(directory);
-    public static String PREFIX = ".";
 
 
     @EventHandler
