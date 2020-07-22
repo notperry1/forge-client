@@ -4,7 +4,6 @@ import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.util.RenderUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 
 import java.awt.*;
 
@@ -50,28 +49,6 @@ public class CategoryFrame extends Frame {
             mc.fontRenderer.drawStringWithShadow(module.getName(), this.getX() + 5, this.getY() + offsetY + BORDER + TEXT_GAP + 1, module.isEnabled() ? Color.GREEN.getRGB() : Color.RED.getRGB());
             offsetY += mc.fontRenderer.FONT_HEIGHT + TEXT_GAP;
         }
-
-        if (RenderUtil.isHovered((int)getX(), (int)getY(), (int)getW(), (int)getHeight(), x, y)) {
-            int height = BORDER;
-            for (Module module : ToastClient.MODULE_MANAGER.getModulesInCat(moduleCategory)) {
-                final boolean insideComponent = x >= (this.getX() + BORDER) && x <= (this.getX() + this.getW() - BORDER) && y >= (this.getY() + BORDER + Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 1 + height) && y <= (this.getY() + BORDER + (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT * 2) + 1 + height);
-//                if (insideComponent) {
-                    final int tooltipWidth = mc.fontRenderer.getStringWidth(module.getDesc());
-                    final int tooltipHeight = mc.fontRenderer.FONT_HEIGHT;
-
-                    GlStateManager.translate(x - tooltipWidth / 2, y - tooltipHeight, 0);
-                    // Tooltip background
-                    RenderUtil.drawRect(-2, -6, tooltipWidth + 2, 5, 0x80101010);
-                    RenderUtil.drawRect(-1, -5, tooltipWidth + 1, 4, 0xAD101010);
-
-                    // Tooltip
-                    mc.fontRenderer.drawStringWithShadow(module.getDesc(), 0, -5, 0xADC255FF);
-                    GlStateManager.translate(-(x - tooltipWidth / 2), -(y - tooltipHeight), 0);
-//                }
-                height += Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + TEXT_GAP;
-            }
-        }
-
 
         super.drawScreen(x, y, partialTicks);
         if (isExtended())
