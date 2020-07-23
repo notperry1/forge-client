@@ -5,7 +5,6 @@ import me.kix.lotus.property.AbstractProperty;
 import me.remainingtoast.toastclient.ToastClient;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,6 @@ public abstract class Module {
     private boolean hidden;
     private boolean enabled;
     private List<AbstractProperty> properties = new ArrayList<>();
-    protected Logger LOGGER = ToastClient.log;
 
     public Module() {
         if (getClass().isAnnotationPresent(ModuleManifest.class)) {
@@ -58,7 +56,6 @@ public abstract class Module {
         destination.addProperty("Enabled", isEnabled());
         destination.addProperty("Hidden", isHidden());
         destination.addProperty("Bind", getKey());
-
     }
 
 
@@ -93,7 +90,7 @@ public abstract class Module {
     }
 
     public String getName() {
-        return label;
+        return this.label;
     }
 
     public void setName(String name) {
@@ -101,13 +98,13 @@ public abstract class Module {
     }
 
     public Category getCategory() {
-        return category;
+        return this.category;
     }
 
     public String[] getAlias() { return this.alias; }
 
     public int getKey() {
-        return key;
+        return this.key;
     }
 
     public void setNewKey(int newKey) {
@@ -115,17 +112,22 @@ public abstract class Module {
     }
 
     public String getDesc() {
-        return description;
+        return this.description;
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return this.enabled;
     }
 
     public void setEnabled(boolean bool) {
         this.enabled = bool;
-        if (bool) enable();
-        else disable();
+        if(enabled){
+            onEnable();
+            MinecraftForge.EVENT_BUS.register(this);
+        }else{
+            onDisable();
+            MinecraftForge.EVENT_BUS.unregister(this);
+        }
     }
 
     public boolean isHidden() {
@@ -147,16 +149,20 @@ public abstract class Module {
 
     public void enable() {
         MinecraftForge.EVENT_BUS.register(this);
+        this.enabled = true;
         onEnable();
     }
 
     public void disable() {
         MinecraftForge.EVENT_BUS.unregister(this);
+        this.enabled = false;
         onDisable();
     }
 
     public void toggle() {
-        this.enabled = !isEnabled();
+//        if(!enabled) enable();
+//        disable();
+        setEnabled(!isEnabled());
     }
 
     public void toggleHidden() {

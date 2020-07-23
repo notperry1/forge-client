@@ -16,7 +16,7 @@ public class ToggleModule extends Command {
             if (args[0] != null) {
                 try{
                     String moduleName = args[0].replaceAll(" ", "");
-                    Module mod = ToastClient.INSTANCE.getModuleManager().getModuleByName(moduleName.toLowerCase());
+                    Module mod = ToastClient.moduleManager.getModuleByName(moduleName.toLowerCase());
                     if (mod != null) {
                         MessageUtil.sendMessage("Toggled " + mod.getName() + (mod.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
                         mod.toggle();

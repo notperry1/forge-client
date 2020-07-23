@@ -10,7 +10,6 @@ import me.remainingtoast.toastclient.managers.HashMapManager;
 import me.remainingtoast.toastclient.module.modules.combat.AutoTotem;
 import me.remainingtoast.toastclient.module.modules.combat.CrystalAura;
 import me.remainingtoast.toastclient.module.modules.combat.KillAura;
-import me.remainingtoast.toastclient.module.modules.exploits.AntiHunger;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.module.modules.gui.Console;
 import me.remainingtoast.toastclient.module.modules.gui.HUD;
@@ -18,10 +17,7 @@ import me.remainingtoast.toastclient.module.modules.misc.DiscordRPC;
 import me.remainingtoast.toastclient.module.modules.movement.ElytraFlight;
 import me.remainingtoast.toastclient.module.modules.movement.Flight;
 import me.remainingtoast.toastclient.module.modules.movement.Sprint;
-import me.remainingtoast.toastclient.module.modules.player.AutoReconnect;
-import me.remainingtoast.toastclient.module.modules.player.AutoRespawn;
-import me.remainingtoast.toastclient.module.modules.player.DeathCoords;
-import me.remainingtoast.toastclient.module.modules.player.NoFall;
+import me.remainingtoast.toastclient.module.modules.player.*;
 import me.remainingtoast.toastclient.module.modules.render.BlockHighlight;
 import me.remainingtoast.toastclient.module.modules.render.FullBright;
 import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
@@ -151,7 +147,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
 
     @SubscribeEvent
     public void inputEvent(InputEvent.KeyInputEvent event) {
-        ToastClient.INSTANCE.getModuleManager().getRegistry().values().forEach(module -> {
+        ToastClient.moduleManager.getRegistry().values().forEach(module -> {
             if(module.getKey() == Keyboard.getEventKey()) module.toggle();
         });
         if (("" + Keyboard.getEventCharacter()).equalsIgnoreCase(CommandManager.getCommandPrefix()) && !(Minecraft.getMinecraft().player.isSneaking())) {

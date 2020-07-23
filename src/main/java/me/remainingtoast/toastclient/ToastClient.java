@@ -31,9 +31,9 @@ public class ToastClient {
     public static final String CONFIGFILE = "ToastClientConfig.json";
     public static final Logger log = LogManager.getLogger("Toast Client");
 
-    private File directory = new File(Minecraft.getMinecraft().mcDataDir, NAME.replaceAll(" ", ""));
+    private static File directory = new File(Minecraft.getMinecraft().mcDataDir, NAME.replaceAll(" ", ""));
 
-    private ModuleManager moduleManager;
+    public static final ModuleManager moduleManager = new ModuleManager(new File(directory, "modules"));
     private CommandManager commandManager = new CommandManager();
     private PropertyManager PROPERTY_MANAGER = new PropertyManager();
 
@@ -47,7 +47,6 @@ public class ToastClient {
     public void init(FMLInitializationEvent event) {
         if (!directory.exists())
             directory.mkdir();
-        moduleManager = new ModuleManager(new File(directory, "modules"));
         moduleManager.load();
         commandManager.load();
         ClickGui.clickGui.init();
@@ -64,12 +63,6 @@ public class ToastClient {
 
     public PropertyManager getPropertyManager() {
         return this.PROPERTY_MANAGER;
-    }
-
-    public ModuleManager getModuleManager() { return this.moduleManager; }
-
-    public CommandManager getCommandManager() {
-        return this.commandManager;
     }
 
 }

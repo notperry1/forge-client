@@ -10,7 +10,7 @@ public class KillAura extends Module {
     int l_Slot = -1;
 
     @Property("AutoSwitch")
-    public static boolean autoSwitch = true;
+    public static boolean autoSwitch;
 
     @Override
     public void onTick() {

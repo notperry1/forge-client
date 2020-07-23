@@ -25,17 +25,17 @@ public class ListModule extends Command {
             for (Module.Category category : Module.Category.values()) {
                 if (category.name().equalsIgnoreCase(args[0])) {
                     MessageUtil.sendMessage("Modules in " + args[0] + ":", MessageUtil.Color.GRAY);
-                    for (Module module : ToastClient.INSTANCE.getModuleManager().getModulesInCat(Module.Category.valueOf(args[0].toUpperCase()))) {
+                    for (Module module : ToastClient.moduleManager.getModulesInCat(Module.Category.valueOf(args[0].toUpperCase()))) {
                         MessageUtil.sendMessage("  " + module.getName() + ": " + module.getDesc(), MessageUtil.Color.GRAY);
                     }
                     return;
                 } else if (args[0].equalsIgnoreCase("ALL")) {
                     sb.replace(0, sb.capacity(), "");
-                    sb.append("Modules (" + ToastClient.INSTANCE.getModuleManager().modulesSet.size() + "): ");
-                    for (Module module : ToastClient.INSTANCE.getModuleManager().modulesSet) {
+                    sb.append("Modules (" + ToastClient.moduleManager.modulesSet.size() + "): ");
+                    for (Module module : ToastClient.moduleManager.modulesSet) {
                         i++;
                         sb.append(module.getName()).append(", ");
-                        if (ToastClient.INSTANCE.getModuleManager().modulesSet.size() == i) {
+                        if (ToastClient.moduleManager.modulesSet.size() == i) {
                             i = 0;
                             break;
                         }
