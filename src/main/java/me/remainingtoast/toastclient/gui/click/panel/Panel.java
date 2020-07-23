@@ -1,4 +1,4 @@
-package me.remainingtoast.toastclient.gui.rewrite.click.panel;
+package me.remainingtoast.toastclient.gui.click.panel;
 
 public class Panel {
     private String label;

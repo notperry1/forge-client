@@ -1,8 +1,8 @@
-package me.remainingtoast.toastclient.gui.rewrite.click;
+package me.remainingtoast.toastclient.gui.click;
 
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.Panel;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.panels.HudEditorPanel;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.panels.ModulesPanel;
+import me.remainingtoast.toastclient.gui.click.panel.Panel;
+import me.remainingtoast.toastclient.gui.click.panel.panels.HudEditorPanel;
+import me.remainingtoast.toastclient.gui.click.panel.panels.ModulesPanel;
 import me.remainingtoast.toastclient.util.RenderUtil;
 import me.remainingtoast.toastclient.util.font.CFontRenderer;
 import net.minecraft.client.Minecraft;
@@ -18,8 +18,8 @@ import java.util.List;
 
 public class NewToastGui extends GuiScreen {
 
-    public List<Panel> panels = new ArrayList<>();
-    public Panel currentPanel;
+    public List<me.remainingtoast.toastclient.gui.click.panel.Panel> panels = new ArrayList<>();
+    public me.remainingtoast.toastclient.gui.click.panel.Panel currentPanel;
     public static CFontRenderer font = new CFontRenderer(new Font("Calibri", 0, 20), true, true);
 
     public void init(){
@@ -34,7 +34,7 @@ public class NewToastGui extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         ScaledResolution res = new ScaledResolution(mc);
         int x = 0;
-        for (Panel panel : panels) {
+        for (me.remainingtoast.toastclient.gui.click.panel.Panel panel : panels) {
             float renderX = (res.getScaledWidth() / 2) + x - (panels.size() * 20);
             RenderUtil.drawRect(renderX - 5f, 0, renderX +  mc.fontRenderer.getStringWidth(panel.getLabel()) + 5f, font.getHeight() + 6f, new Color(0, 0, 0, panel == currentPanel ? 170 : 137).getRGB());
             mc.fontRenderer.drawStringWithShadow(panel.getLabel(), renderX, 4, -1);

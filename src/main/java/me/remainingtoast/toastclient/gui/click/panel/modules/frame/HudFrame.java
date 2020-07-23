@@ -1,9 +1,7 @@
-package me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame;
+package me.remainingtoast.toastclient.gui.click.panel.modules.frame;
 
-import me.remainingtoast.toastclient.ToastClient;
-import me.remainingtoast.toastclient.gui.hud.HudComponent;
-import me.remainingtoast.toastclient.gui.rewrite.click.NewToastGui;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.Component;
+import me.remainingtoast.toastclient.gui.click.NewToastGui;
+import me.remainingtoast.toastclient.gui.click.panel.modules.Component;
 import me.remainingtoast.toastclient.util.RenderUtil;
 
 import java.awt.*;
@@ -16,10 +14,6 @@ public class HudFrame extends Frame {
     @Override
     public void init() {
         float offsetY = getH() - 2f;
-        for (HudComponent hudComponent : ToastClient.INSTANCE.getHudManager().getValues()) {
-//            getComponents().add(new HudGuiComponent(hudComponent, getX(), getY(), 2, offsetY, getW() - 4, 15));
-            offsetY += 15;
-        }
         super.init();
     }
 
@@ -55,7 +49,7 @@ public class HudFrame extends Frame {
 
     private void resetHeights() {
         float offsetY = getH() - 2f;
-        for (Component component : getComponents()) {
+        for (me.remainingtoast.toastclient.gui.click.panel.modules.Component component : getComponents()) {
             component.setOffsety(offsetY);
             component.moved(getX(), getY());
             /*

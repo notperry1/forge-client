@@ -5,7 +5,7 @@ import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
-@CommandManifest(label = "Prefix", description = "Change command prefix", aliases = {"p"}, usage = "")
+@CommandManifest(label = "Prefix", description = "Change command prefix", aliases = {"p"}, usage = "prefix <value>")
 public class Prefix extends Command {
 
     @Override

@@ -1,6 +1,6 @@
 package me.remainingtoast.toastclient.module.modules.gui;
 
-import me.remainingtoast.toastclient.gui.rewrite.click.NewToastGui;
+import me.remainingtoast.toastclient.gui.click.NewToastGui;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
 

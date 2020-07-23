@@ -1,9 +1,9 @@
-package me.remainingtoast.toastclient.gui.rewrite.click.panel.panels;
+package me.remainingtoast.toastclient.gui.click.panel.panels;
 
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.Panel;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.CategoryFrame;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.ConsoleFrame;
-import me.remainingtoast.toastclient.gui.rewrite.click.panel.modules.frame.Frame;
+import me.remainingtoast.toastclient.gui.click.panel.Panel;
+import me.remainingtoast.toastclient.gui.click.panel.modules.frame.CategoryFrame;
+import me.remainingtoast.toastclient.gui.click.panel.modules.frame.ConsoleFrame;
+import me.remainingtoast.toastclient.gui.click.panel.modules.frame.Frame;
 import me.remainingtoast.toastclient.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;

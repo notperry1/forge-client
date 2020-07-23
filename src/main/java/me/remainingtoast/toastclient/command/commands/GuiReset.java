@@ -6,7 +6,7 @@ import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
-@CommandManifest(label = "GuiReset", description = "Reset Gui Location")
+@CommandManifest(label = "GuiReset", description = "Reset Gui Location", aliases = {"fixgui"})
 public class GuiReset extends Command {
 
     @Override

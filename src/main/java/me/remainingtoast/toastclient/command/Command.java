@@ -2,8 +2,8 @@ package me.remainingtoast.toastclient.command;
 
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.TextFormatting;
 
-import java.net.MalformedURLException;
 import java.util.Arrays;
 
 public abstract class Command {
@@ -30,11 +30,10 @@ public abstract class Command {
 
     @Override
     public String toString() {
-        return "Command{" +
-                "name= "+label+"\n," +
-                "description= "+description+"\n,"+
-                "aliases= " + Arrays.toString(alias)+"\n,"+
-                "usage= " + usage;
+        return "" + TextFormatting.GRAY + "Command: "+label+"\n" + TextFormatting.GRAY +
+                "           Description: \""+description+"\"\n"+ TextFormatting.GRAY +
+                "           Aliases: " + Arrays.toString(alias) + "\n"+ TextFormatting.GRAY +
+                "           Usage: \"" + usage + TextFormatting.GRAY + "\"";
     }
 
 //    protected abstract void call(final String[] args);

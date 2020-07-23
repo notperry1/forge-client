@@ -1,7 +1,6 @@
 package me.remainingtoast.toastclient;
 
 import me.remainingtoast.toastclient.command.CommandManager;
-import me.remainingtoast.toastclient.gui.hud.ComponentManager;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.setting.SettingsManager;
@@ -14,8 +13,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
-
-import java.io.File;
 
 
 @Mod(modid = ToastClient.MODID, name = ToastClient.NAME, version = ToastClient.VERSION)
@@ -33,8 +30,6 @@ public class ToastClient {
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
     public static final SettingsManager SETTINGS_MANAGER = new SettingsManager();
-    public File directory = new File("ToastClient.json");
-    private final ComponentManager componentManager = new ComponentManager(directory);
 
 
     @EventHandler
@@ -51,9 +46,5 @@ public class ToastClient {
         MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
         ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
-    }
-
-    public ComponentManager getHudManager() {
-        return this.componentManager;
     }
 }
