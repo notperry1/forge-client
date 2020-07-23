@@ -1,27 +1,27 @@
 package me.remainingtoast.toastclient.module;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.managers.HashMapManager;
 import me.remainingtoast.toastclient.module.modules.combat.AutoTotem;
 import me.remainingtoast.toastclient.module.modules.combat.CrystalAura;
 import me.remainingtoast.toastclient.module.modules.combat.KillAura;
-import me.remainingtoast.toastclient.module.modules.exploits.AntiHunger;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.module.modules.gui.Console;
 import me.remainingtoast.toastclient.module.modules.gui.HUD;
-import me.remainingtoast.toastclient.module.modules.misc.CoordinateLogger;
+import me.remainingtoast.toastclient.module.modules.misc.ClipboardScreenshot;
 import me.remainingtoast.toastclient.module.modules.misc.DiscordRPC;
 import me.remainingtoast.toastclient.module.modules.movement.ElytraFlight;
 import me.remainingtoast.toastclient.module.modules.movement.Flight;
 import me.remainingtoast.toastclient.module.modules.movement.Sprint;
-import me.remainingtoast.toastclient.module.modules.player.AutoReconnect;
-import me.remainingtoast.toastclient.module.modules.player.AutoRespawn;
-import me.remainingtoast.toastclient.module.modules.player.NoFall;
+import me.remainingtoast.toastclient.module.modules.player.*;
 import me.remainingtoast.toastclient.module.modules.render.BlockHighlight;
 import me.remainingtoast.toastclient.module.modules.render.FullBright;
 import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
-import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
@@ -30,29 +30,88 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
+import java.io.*;
 import java.util.HashSet;
 
 public class ModuleManager extends HashMapManager<String, Module> {
 
     public final HashSet<Module> modulesSet = new HashSet<>();
     private final HashSet<Integer> unReleasedKeys = new HashSet<>();
+    private File directory;
+
+    public ModuleManager(File directory) {
+        this.directory = directory;
+        if (!directory.exists())
+            directory.mkdir();
+    }
 
     @Override
     public void load() {
         super.load();
         modulesSet.clear();
-        register(new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
-                new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new CoordinateLogger(),
+        register(new ClipboardScreenshot(), new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
+                new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new DeathCoords(),
                 new BlockHighlight(), new Console());
-        ToastClient.SETTINGS_MANAGER.loadSettings();
-        for (Module module : ToastClient.MODULE_MANAGER.modulesSet) {
-            if (module.getSettings().getSetting("Enabled", BooleanSetting.class).getValue()) {
-                module.enable();
-            }
-            if (module.getSettings().getSetting("Drawn", BooleanSetting.class).getValue()) {
-                module.enableDrawn();
+        getRegistry().values().forEach(Module::init);
+        this.loadCheats();
+    }
+
+    @Override
+    public void unload() {
+        this.saveCheats();
+    }
+
+    public void saveCheats() {
+        if (getRegistry().values().isEmpty()) {
+            directory.delete();
+        }
+        File[] files = directory.listFiles();
+        if (!directory.exists()) {
+            directory.mkdir();
+        } else if (files != null) {
+            for (File file : files) {
+                file.delete();
             }
         }
+        getRegistry().values().forEach(module -> {
+            File file = new File(directory, module.getName() + ".json");
+            JsonObject node = new JsonObject();
+            module.save(node);
+            if (node.entrySet().isEmpty()) {
+                return;
+            }
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                return;
+            }
+            try (Writer writer = new FileWriter(file)) {
+                writer.write(new GsonBuilder().setPrettyPrinting().create().toJson(node));
+            } catch (IOException e) {
+                file.delete();
+            }
+        });
+        files = directory.listFiles();
+        if (files == null || files.length == 0) {
+            directory.delete();
+        }
+    }
+
+    public void loadCheats() {
+        getRegistry().values().forEach(module -> {
+            final File file = new File(directory, module.getName() + ".json");
+            if (!file.exists()) {
+                return;
+            }
+            try (Reader reader = new FileReader(file)) {
+                JsonElement node = new JsonParser().parse(reader);
+                if (!node.isJsonObject()) {
+                    return;
+                }
+                module.load(node.getAsJsonObject());
+            } catch (IOException e) {
+            }
+        });
     }
 
     public void register(Module... modules) {
@@ -89,17 +148,9 @@ public class ModuleManager extends HashMapManager<String, Module> {
 
     @SubscribeEvent
     public void inputEvent(InputEvent.KeyInputEvent event) {
-        int key = Keyboard.getEventKey();
-        if (unReleasedKeys.contains(key)) {
-            unReleasedKeys.remove(key);
-            return;
-        }
-        for (Module module : modulesSet) {
-            if (module.getKey() == key) {
-                module.toggle();
-                unReleasedKeys.add(key);
-            }
-        }
+        ToastClient.moduleManager.getRegistry().values().forEach(module -> {
+            if(module.getKey() == Keyboard.getEventKey()) module.toggle();
+        });
         if (("" + Keyboard.getEventCharacter()).equalsIgnoreCase(CommandManager.getCommandPrefix()) && !(Minecraft.getMinecraft().player.isSneaking())) {
             Minecraft.getMinecraft().displayGuiScreen(new GuiChat(CommandManager.getCommandPrefix()));
             MessageUtil.sendMessage("Opened chat using command prefix! "+"\"" + CommandManager.getCommandPrefix() + "\"", MessageUtil.Color.GREEN);

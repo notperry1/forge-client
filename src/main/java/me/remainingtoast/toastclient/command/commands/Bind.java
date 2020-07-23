@@ -25,7 +25,7 @@ public class Bind extends Command {
     public void onRun(String[] args) {
         if(args.length >= 1){
             final String finalName = args[0].toLowerCase();
-            ToastClient.MODULE_MANAGER.modulesSet.stream().filter(module -> module.getName().equalsIgnoreCase(finalName) || Arrays.asList(module.getAlias()).contains(finalName)).forEach(module -> {
+            ToastClient.moduleManager.modulesSet.stream().filter(module -> module.getName().equalsIgnoreCase(finalName) || Arrays.asList(module.getAlias()).contains(finalName)).forEach(module -> {
                 MessageUtil.sendMessage("Press the key you want to bind " + module.getName() + " to.", MessageUtil.Color.GREEN);
                 listening = true;
                 try{
@@ -43,3 +43,4 @@ public class Bind extends Command {
         }
     }
 }
+

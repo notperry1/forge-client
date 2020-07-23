@@ -1,5 +1,6 @@
-package me.remainingtoast.toastclient.module.modules.misc;
+package me.remainingtoast.toastclient.module.modules.player;
 
+import me.kix.lotus.property.annotations.Property;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
@@ -8,8 +9,10 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-@ModuleManifest(label = "CoordinateLogger", category = Module.Category.MISC, description = "Logs death coordinates", aliases = {}, hidden = false)
-public class CoordinateLogger extends Module {
+@ModuleManifest(label = "DeathCoords", category = Module.Category.PLAYER, description = "Logs death coordinates", aliases = {}, hidden = false)
+public class DeathCoords extends Module {
+
+    @Property("")
 
     private BlockPos l;
 

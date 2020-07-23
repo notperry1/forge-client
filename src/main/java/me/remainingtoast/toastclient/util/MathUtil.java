@@ -9,6 +9,10 @@ import java.text.DecimalFormat;
 
 public class MathUtil {
 
+    public static <T extends Number> T clamp(T value, T minimum, T maximum) {
+        return value.floatValue() <= minimum.floatValue() ? minimum : (value.floatValue() >= maximum.floatValue() ? maximum : value);
+    }
+
     public static String formatPlayerCoords(EntityPlayer player){
         final DecimalFormat format = new DecimalFormat("#.#");
         final String x = format.format(player.posX);

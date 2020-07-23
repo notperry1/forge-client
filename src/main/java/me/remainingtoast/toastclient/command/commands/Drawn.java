@@ -15,10 +15,10 @@ public class Drawn extends Command {
         if (args.length >= 1) {
             if (args[0] != null) {
                 String moduleName = args[0].replaceAll(" ", "");
-                Module mod = ToastClient.MODULE_MANAGER.getModuleByName(moduleName.toLowerCase());
+                Module mod = ToastClient.moduleManager.getModuleByName(moduleName.toLowerCase());
                 if (mod != null) {
-                    MessageUtil.sendMessage(mod.getName() + " now being"  + (mod.isDrawn() ? ChatFormatting.RED + " HIDDEN" : ChatFormatting.GREEN + " DRAWN"), MessageUtil.Color.GRAY);
-                    mod.toggleDrawn();
+                    MessageUtil.sendMessage(mod.getName() + " now being"  + (!mod.isHidden() ? ChatFormatting.RED + " HIDDEN" : ChatFormatting.GREEN + " DRAWN"), MessageUtil.Color.GRAY);
+                    mod.toggleHidden();
                 } else {
                     MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
                 }

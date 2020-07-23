@@ -14,13 +14,17 @@ public class ToggleModule extends Command {
     public void onRun(final String[] args) {
         if (args.length >= 1) {
             if (args[0] != null) {
-                String moduleName = args[0].replaceAll(" ", "");
-                Module mod = ToastClient.MODULE_MANAGER.getModuleByName(moduleName.toLowerCase());
-                if (mod != null) {
-                    MessageUtil.sendMessage("Toggled " + mod.getName() + (mod.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
-                    mod.toggle();
-                } else {
-                    MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
+                try{
+                    String moduleName = args[0].replaceAll(" ", "");
+                    Module mod = ToastClient.moduleManager.getModuleByName(moduleName.toLowerCase());
+                    if (mod != null) {
+                        MessageUtil.sendMessage("Toggled " + mod.getName() + (mod.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
+                        mod.toggle();
+                    } else {
+                        MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else {
                 MessageUtil.sendMessage("Invalid Arguments!", MessageUtil.Color.RED);
