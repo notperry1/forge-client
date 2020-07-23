@@ -1,5 +1,7 @@
 # ToastClientForge
-Custom Based Utility Mod for Minecraft 1.12.2
+Custom Based Utility Mod for Minecraft 1.12.2     
+Big Thanks to all of the [contributors](https://github.com/RemainingToast/ToastClientForge/graphs/contributors) who have contributed!
+
 
 # Credit where credits due
 [Kix](https://github.com/yandhi) for the Property System   
