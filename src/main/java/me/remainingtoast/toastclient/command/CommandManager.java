@@ -42,7 +42,7 @@ public class CommandManager extends HashMapManager<String, Command> {
         commandsSet.clear();
         register(new BlockHighlight(), new ClearChat(), new Coords(), new Drawn(), new Fov(), new HClip(), new Help(),
                 new ListModule(), new Peek(), new Pitch(), new Prefix(), new Reload(), new Say(), new SignBook(), new ToggleModule(),
-                new VClip(), new Yaw(), new GuiReset(), new Unbind());
+                new VClip(), new Yaw(), new GuiReset(), new Unbind()); //new Bind()
         MinecraftForge.EVENT_BUS.register(this);
     }
 

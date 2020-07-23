@@ -7,6 +7,8 @@ import net.minecraft.util.text.TextComponentString;
 @ModuleManifest(label = "AutoLog", category = Module.Category.PLAYER, description = "Disconnect when you are low health", aliases = {"Log"}, hidden = false)
 public class AutoLog extends Module {
 
+    //Settings that toggles off after use
+
     @Override
     public void onTick() {
         if (mc.player.getHealth() < 15) {
