@@ -2,14 +2,13 @@ package me.remainingtoast.toastclient.module.modules.gui;
 
 import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.module.Module;
-import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.module.ModuleManifest;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @ModuleManifest(label = "HUD", category = Module.Category.GUI, description = "Client HUD Information", aliases = {"HUD"}, hidden = true)
-public class HUD extends Module{
+public class HUD extends Module {
 
     protected final static Minecraft mc = Minecraft.getMinecraft();
     public static boolean panicked = false;

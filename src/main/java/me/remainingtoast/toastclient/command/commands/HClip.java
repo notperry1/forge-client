@@ -7,7 +7,7 @@ import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NumberUtil;
 import net.minecraft.util.math.Vec3d;
 
-@CommandManifest(label = "HClip", description = "Horizontal clipping", aliases = {""}, usage = "")
+@CommandManifest(label = "HClip", description = "Horizontal clipping", aliases = {""}, usage = "hclip <value>")
 public class HClip extends Command {
 
     @Override

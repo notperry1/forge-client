@@ -5,7 +5,7 @@ import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NumberUtil;
 
-@CommandManifest(label = "FOV", description = "Change client FOV", aliases = {""}, usage = "")
+@CommandManifest(label = "FOV", description = "Change client FOV", aliases = {""}, usage = "fov <value>")
 public class Fov extends Command {
 
     @Override

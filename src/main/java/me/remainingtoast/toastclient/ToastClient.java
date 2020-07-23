@@ -2,6 +2,7 @@ package me.remainingtoast.toastclient;
 
 import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.module.ModuleManager;
+import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.setting.SettingsManager;
 import me.remainingtoast.toastclient.util.ASCII;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +18,7 @@ import org.lwjgl.opengl.Display;
 @Mod(modid = ToastClient.MODID, name = ToastClient.NAME, version = ToastClient.VERSION)
 public class ToastClient {
 
+    public static ToastClient INSTANCE = new ToastClient();
     public static final String MODID = "toastclient";
     public static final String NAME = "Toast Client";
     public static final String VERSION = "1"; //putting a v before this looks weird in the mod menu
@@ -28,7 +30,6 @@ public class ToastClient {
     public static final CommandManager COMMAND_MANAGER = new CommandManager();
     public static final ModuleManager MODULE_MANAGER = new ModuleManager();
     public static final SettingsManager SETTINGS_MANAGER = new SettingsManager();
-    public static String PREFIX = ".";
 
 
     @EventHandler
@@ -40,6 +41,7 @@ public class ToastClient {
     public void init(FMLInitializationEvent event) {
         MODULE_MANAGER.load();
         COMMAND_MANAGER.load();
+        ClickGui.clickGui.init();
         MinecraftForge.EVENT_BUS.register(MODULE_MANAGER);
         MinecraftForge.EVENT_BUS.register(COMMAND_MANAGER);
         ASCII.printFancyConsoleMSG();

@@ -1,6 +1,5 @@
 package me.remainingtoast.toastclient.command;
 
-import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.commands.*;
 import me.remainingtoast.toastclient.managers.HashMapManager;
 import net.minecraft.client.Minecraft;
@@ -9,7 +8,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.regex.Matcher;
@@ -22,6 +20,17 @@ public class CommandManager extends HashMapManager<String, Command> {
     public static String commandPrefix;
     private HashMap<String, Command> aliasMap = new HashMap<>();
 
+    public static String getCommandPrefix() {
+        if(commandPrefix == null){
+            commandPrefix = ".";
+        }
+        return commandPrefix;
+    }
+
+    public static void setCommandPrefix(String newPrefix) {
+        commandPrefix = newPrefix;
+    }
+
     @Override
     public void load() {
         super.load();
@@ -33,9 +42,8 @@ public class CommandManager extends HashMapManager<String, Command> {
         commandsSet.clear();
         register(new BlockHighlight(), new ClearChat(), new Coords(), new Drawn(), new Fov(), new HClip(), new Help(),
                 new ListModule(), new Peek(), new Pitch(), new Prefix(), new Reload(), new Say(), new SignBook(), new ToggleModule(),
-                new VClip(), new Yaw());
+                new VClip(), new Yaw(), new GuiReset(), new Unbind());
         MinecraftForge.EVENT_BUS.register(this);
-        commandPrefix = ToastClient.PREFIX;
     }
 
     public void register(Command... commands) {
@@ -54,7 +62,6 @@ public class CommandManager extends HashMapManager<String, Command> {
     public void chatEvent(ClientChatEvent event) {
         if (event.getMessage().startsWith(commandPrefix)) {
             if(isPanicking) return;
-            if (event.getMessage().length() > 1) {
                 String firstArg = event.getMessage().replaceFirst(commandPrefix, "").split(" ")[0];
                 HashSet<String> matchList = new HashSet<>();
                 // from https://stackoverflow.com/a/366532
@@ -77,7 +84,6 @@ public class CommandManager extends HashMapManager<String, Command> {
                         }
                     }
                 }
-            }
             Minecraft.getMinecraft().ingameGUI.getChatGUI().addToSentMessages(event.getMessage());
             event.setCanceled(true);
         }

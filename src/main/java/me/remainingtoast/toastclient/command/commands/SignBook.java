@@ -4,13 +4,12 @@ import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemWritableBook;
 import net.minecraft.item.ItemWrittenBook;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.play.client.CPacketCreativeInventoryAction;
 
-@CommandManifest(label = "SignBook", description = "Change the author of the book your holding (creative only)", aliases = {"sbook"}, usage = "signbook <authorname>")
+@CommandManifest(label = "SignBook", description = "Change the author of the book you are holding (creative only)", aliases = {"sbook"}, usage = "signbook <authorname>")
 public class SignBook extends Command {
 
     @Override

@@ -4,7 +4,7 @@ import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
-@CommandManifest(label = "ClearChat", description = "Clears all messages in chat", aliases = {"cchat"}, usage = "")
+@CommandManifest(label = "ClearChat", description = "Clears all messages in chat", aliases = {"cchat"}, usage = "clearchat")
 public class ClearChat extends Command {
 
     @Override

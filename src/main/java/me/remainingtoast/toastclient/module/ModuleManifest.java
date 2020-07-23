@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface ModuleManifest {
     String label();
+    int key() default -1;
     String[] aliases() default {};
     Module.Category category();
     boolean hidden() default false;

@@ -9,7 +9,6 @@ import me.remainingtoast.toastclient.util.MessageUtil;
 public class Help extends Command {
 
     StringBuilder sb = new StringBuilder();
-    Integer i = 0;
 
     @Override
     public void onRun(final String[] args) {
@@ -18,16 +17,19 @@ public class Help extends Command {
             sb.replace(0, sb.capacity(), "");
             sb.append("Commands (" + CommandManager.commandsSet.size() + "): ");
             for (Command command : CommandManager.commandsSet) {
-                i++;
                 if (command.getName().equalsIgnoreCase("Help")) continue;
                 sb.append(command.getName()).append(", ");
-                if (CommandManager.commandsSet.size() == i) {
-                    i = 0;
-                    break;
-                }
             }
             sb.replace(sb.lastIndexOf(", "), sb.lastIndexOf(", ") + 1, "");
             MessageUtil.sendMessage(sb.toString(), MessageUtil.Color.GRAY);
+        } else {
+            for (Command command : CommandManager.commandsSet) {
+                if (command.getName().equalsIgnoreCase(args[0])){
+                    MessageUtil.sendMessage(command.toString(), MessageUtil.Color.GRAY);
+                    return;
+                }
+            }
+            MessageUtil.sendMessage("Unknown Command", MessageUtil.Color.RED);
         }
     }
 }

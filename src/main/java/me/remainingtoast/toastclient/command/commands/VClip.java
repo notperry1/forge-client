@@ -5,7 +5,7 @@ import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NumberUtil;
 
-@CommandManifest(label = "VClip", description = "Vertical clipping", aliases = {""}, usage = "vclip <distance>")
+@CommandManifest(label = "VClip", description = "Vertical clipping", aliases = {""}, usage = "vclip <value>")
 public class VClip extends Command {
 
     @Override

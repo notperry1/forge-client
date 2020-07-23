@@ -32,12 +32,14 @@ public abstract class Module {
             this.alias = moduleManifest.aliases();
             this.hidden = moduleManifest.hidden();
             this.description = moduleManifest.description();
-            settings.addSetting("Bind", new KeybindSetting(-1));
+            this.key = moduleManifest.key();
+            settings.addSetting("Bind", new KeybindSetting(key));
+            settings.addSetting("Drawn", new BooleanSetting(!hidden));
         }
     }
 
     public void registerSettings() {
-        settings.addSetting("Drawn", new BooleanSetting(true));
+        settings.addSetting("Drawn", new BooleanSetting(!hidden));
         settings.addSetting("Enabled", new BooleanSetting(false));
         selfSettings();
         LOGGER.info("Registered settings of " + this.getName());
@@ -171,14 +173,24 @@ public abstract class Module {
 
     //A - Z Please
     public enum Category {
-        COMBAT,
-        EXPLOITS,
-        GUI,
-        MISC,
-        MOVEMENT,
-        PLAYER,
-        RENDER,
-        NONE
+        COMBAT("Combat"),
+        EXPLOITS("Exploits"),
+        GUI("GUI"),
+        MISC("MISC"),
+        MOVEMENT("Movement"),
+        PLAYER("Player"),
+        RENDER("Render"),
+        NONE("None");
+
+        String label;
+
+        Category(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return this.label;
+        }
     }
 
 }

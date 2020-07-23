@@ -5,7 +5,6 @@ import me.remainingtoast.toastclient.ToastClient;
 import me.remainingtoast.toastclient.command.Command;
 import me.remainingtoast.toastclient.command.CommandManifest;
 import me.remainingtoast.toastclient.module.Module;
-import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.util.MessageUtil;
 
 @CommandManifest(label = "ToggleModule", description = "Toggles module on and off", aliases = {"t"}, usage = "toggle <module>")
@@ -13,21 +12,21 @@ public class ToggleModule extends Command {
 
     @Override
     public void onRun(final String[] args) {
-        if(args.length == 0){
-            MessageUtil.sendMessage("Invalid Arguments", MessageUtil.Color.RED);
-            return;
-        }
-        for(Module module : ToastClient.MODULE_MANAGER.getModules()){
-            for(String s : module.getAlias()){
-                if(args[0].equalsIgnoreCase(module.getName()) || args[0].equalsIgnoreCase(s)){
-                    MessageUtil.sendMessage("Toggled " + module.getName() + (module.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
-                    module.toggle();
-                }else{
-                    MessageUtil.sendMessage("Failed to find Module \"" + args[0] + "\" ", MessageUtil.Color.RED);
-                    break;
+        if (args.length >= 1) {
+            if (args[0] != null) {
+                String moduleName = args[0].replaceAll(" ", "");
+                Module mod = ToastClient.MODULE_MANAGER.getModuleByName(moduleName.toLowerCase());
+                if (mod != null) {
+                    MessageUtil.sendMessage("Toggled " + mod.getName() + (mod.isEnabled() ? ChatFormatting.RED + " OFF" : ChatFormatting.GREEN + " ON"), MessageUtil.Color.GRAY);
+                    mod.toggle();
+                } else {
+                    MessageUtil.sendMessage(moduleName + " is not a module!", MessageUtil.Color.RED);
                 }
-                break;
+            } else {
+                MessageUtil.sendMessage("Invalid Arguments!", MessageUtil.Color.RED);
             }
+        } else {
+            MessageUtil.sendMessage("Invalid Arguments!", MessageUtil.Color.RED);
         }
     }
 }
