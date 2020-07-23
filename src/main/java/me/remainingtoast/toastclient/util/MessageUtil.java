@@ -73,7 +73,6 @@ public class MessageUtil {
                 sendRawMessage(CHAT_PREFIX + TextFormatting.BLACK + message);
                 break;
         }
-
     }
 
     //A - Z Please

@@ -13,6 +13,7 @@ import me.remainingtoast.toastclient.module.modules.combat.KillAura;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.module.modules.gui.Console;
 import me.remainingtoast.toastclient.module.modules.gui.HUD;
+import me.remainingtoast.toastclient.module.modules.misc.ClipboardScreenshot;
 import me.remainingtoast.toastclient.module.modules.misc.DiscordRPC;
 import me.remainingtoast.toastclient.module.modules.movement.ElytraFlight;
 import me.remainingtoast.toastclient.module.modules.movement.Flight;
@@ -48,7 +49,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
     public void load() {
         super.load();
         modulesSet.clear();
-        register(new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
+        register(new ClipboardScreenshot(), new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
                 new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new DeathCoords(),
                 new BlockHighlight(), new Console());
         getRegistry().values().forEach(Module::init);

@@ -194,7 +194,6 @@ public abstract class Module {
     //A - Z Please
     public enum Category {
         COMBAT("Combat"),
-        EXPLOITS("Exploits"),
         GUI("GUI"),
         MISC("MISC"),
         MOVEMENT("Movement"),
