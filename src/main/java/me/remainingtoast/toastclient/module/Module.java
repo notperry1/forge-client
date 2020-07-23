@@ -1,13 +1,14 @@
 package me.remainingtoast.toastclient.module;
 
+import com.google.gson.JsonObject;
+import me.kix.lotus.property.AbstractProperty;
 import me.remainingtoast.toastclient.ToastClient;
-import me.remainingtoast.toastclient.setting.ModuleSettings;
-import me.remainingtoast.toastclient.setting.settings.BooleanSetting;
-import me.remainingtoast.toastclient.setting.settings.KeybindSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Module {
@@ -21,7 +22,7 @@ public abstract class Module {
     private int key;
     private boolean hidden;
     private boolean enabled;
-    public ModuleSettings settings = new ModuleSettings();
+    private List<AbstractProperty> properties = new ArrayList<>();
     protected Logger LOGGER = ToastClient.log;
 
     public Module() {
@@ -33,27 +34,62 @@ public abstract class Module {
             this.hidden = moduleManifest.hidden();
             this.description = moduleManifest.description();
             this.key = moduleManifest.key();
-            settings.addSetting("Bind", new KeybindSetting(key));
-            settings.addSetting("Drawn", new BooleanSetting(!hidden));
         }
     }
 
-    public void registerSettings() {
-        settings.addSetting("Drawn", new BooleanSetting(!hidden));
-        settings.addSetting("Enabled", new BooleanSetting(false));
-        selfSettings();
-        LOGGER.info("Registered settings of " + this.getName());
+    public void init() {
+        ToastClient.INSTANCE.getPropertyManager().scan(this);
     }
 
-    public void selfSettings() {
+    public AbstractProperty find(String term) {
+        for (AbstractProperty property : properties) {
+            if (property.getLabel().equalsIgnoreCase(term)) {
+                return property;
+            }
+        }
+        return null;
     }
 
-    public ModuleSettings getSettings() {
-        return settings;
+    public void save(JsonObject destination) {
+        if (ToastClient.INSTANCE.getPropertyManager().getPropertiesFromObject(this) != null) {
+            ToastClient.INSTANCE.getPropertyManager().getPropertiesFromObject(this).forEach(property -> destination.addProperty(property.getLabel(), property.getValue().toString()));
+        }
+        destination.addProperty("Name", getName());
+        destination.addProperty("Enabled", isEnabled());
+        destination.addProperty("Hidden", isHidden());
+        destination.addProperty("Bind", getKey());
+
     }
 
-    public void setSettings(ModuleSettings newSettings) {
-        settings = newSettings;
+
+    public void load(JsonObject source) {
+        source.entrySet().forEach(entry -> {
+            if (ToastClient.INSTANCE.getPropertyManager().getPropertiesFromObject(this) != null) {
+                source.entrySet().forEach(entri -> ToastClient.INSTANCE.getPropertyManager().getProperty(this, entri.getKey()).ifPresent(property -> property.setValue(entri.getValue().getAsString())));
+            }
+            switch (entry.getKey()) {
+                case "Enabled":
+                    if (entry.getValue().getAsBoolean()) {
+                        setEnabled(entry.getValue().getAsBoolean());
+                    }
+                    break;
+                case "Hidden":
+                    if (entry.getValue().getAsBoolean()) {
+                        setHidden(entry.getValue().getAsBoolean());
+                    }
+                    break;
+                case "Bind":
+                    setNewKey(entry.getValue().getAsInt());
+                    break;
+                case "Name":
+                    setName(entry.getValue().getAsString());
+                    break;
+            }
+        });
+    }
+
+    public List<AbstractProperty> getProperties() {
+        return this.properties;
     }
 
     public String getName() {
@@ -71,15 +107,11 @@ public abstract class Module {
     public String[] getAlias() { return this.alias; }
 
     public int getKey() {
-        return settings.getSetting("Bind", KeybindSetting.class).getKey();
+        return key;
     }
 
     public void setNewKey(int newKey) {
-        settings.getSetting("Bind", KeybindSetting.class).setKey(newKey);
-    }
-
-    public String setKeyName() {
-        return settings.getSetting("Bind", KeybindSetting.class).getKeyName();
+        this.key = newKey;
     }
 
     public String getDesc() {
@@ -87,23 +119,21 @@ public abstract class Module {
     }
 
     public boolean isEnabled() {
-        return settings.getSetting("Enabled", BooleanSetting.class).getValue();
+        return enabled;
     }
 
     public void setEnabled(boolean bool) {
+        this.enabled = bool;
         if (bool) enable();
         else disable();
-        ToastClient.SETTINGS_MANAGER.updateSettings();
     }
 
-    public boolean isDrawn() {
-        return settings.getSetting("Drawn", BooleanSetting.class).getValue();
+    public boolean isHidden() {
+        return hidden;
     }
 
-    public void setDrawn(boolean bool) {
-        if (bool) enableDrawn();
-        else disableDrawn();
-        ToastClient.SETTINGS_MANAGER.updateSettings();
+    public void setHidden(boolean bool) {
+        this.hidden = bool;
     }
 
     protected void onEnable() {
@@ -118,35 +148,19 @@ public abstract class Module {
     public void enable() {
         MinecraftForge.EVENT_BUS.register(this);
         onEnable();
-        settings.getSetting("Enabled", BooleanSetting.class).setValue(true);
-        ToastClient.SETTINGS_MANAGER.updateSettings();
     }
 
     public void disable() {
         MinecraftForge.EVENT_BUS.unregister(this);
         onDisable();
-        settings.getSetting("Enabled", BooleanSetting.class).setValue(false);
-        ToastClient.SETTINGS_MANAGER.updateSettings();
-    }
-
-    public void enableDrawn() {
-        settings.getSetting("Drawn", BooleanSetting.class).setValue(true);
-        ToastClient.SETTINGS_MANAGER.updateSettings();
-    }
-
-    public void disableDrawn() {
-        settings.getSetting("Drawn", BooleanSetting.class).setValue(false);
-        ToastClient.SETTINGS_MANAGER.updateSettings();
     }
 
     public void toggle() {
-        if (settings.getSetting("Enabled", BooleanSetting.class).getValue()) disable();
-        else enable();
+        this.enabled = !isEnabled();
     }
 
-    public void toggleDrawn() {
-        if (settings.getSetting("Drawn", BooleanSetting.class).getValue()) disableDrawn();
-        else enableDrawn();
+    public void toggleHidden() {
+        this.hidden = !isHidden();
     }
 
     @Override

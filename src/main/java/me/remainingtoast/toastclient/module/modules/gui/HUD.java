@@ -19,8 +19,8 @@ public class HUD extends Module {
             if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
                 mc.fontRenderer.drawStringWithShadow(ToastClient.FULLNAME, 5, 5, -1);
                 float currY = mc.fontRenderer.FONT_HEIGHT + 5;
-                for (Module m : ToastClient.MODULE_MANAGER.modulesSet) {
-                    if (m.isEnabled() && m.isDrawn()) {
+                for (Module m : ToastClient.INSTANCE.getModuleManager().modulesSet) {
+                    if (m.isEnabled() && !m.isHidden()) {
                         mc.fontRenderer.drawStringWithShadow(m.getName(), 5, currY + 1, -1);
                         currY += mc.fontRenderer.FONT_HEIGHT;
                     }

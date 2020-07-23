@@ -12,9 +12,9 @@ public class Unbind extends Command {
     @Override
     public void onRun(String[] args) {
         if (args.length >= 1) {
-            Module mod = ToastClient.MODULE_MANAGER.getModuleByName(args[0]);
+            Module mod = ToastClient.INSTANCE.getModuleManager().getModuleByName(args[0]);
             if (args[0].equalsIgnoreCase("all")) {
-                for (Module module : ToastClient.MODULE_MANAGER.getModules()) {
+                for (Module module : ToastClient.INSTANCE.getModuleManager().getModules()) {
                     if(module.getKey() == -1){MessageUtil.sendMessage(module.getName() + " doesn't have a bind to remove!", MessageUtil.Color.RED); return; }
                     module.setNewKey(-1);
                     MessageUtil.sendMessage(module.getName() + " keybind set to NONE", MessageUtil.Color.GREEN);

@@ -36,16 +36,16 @@ public class CategoryFrame extends Frame {
         int offsetY = 10;
         final boolean hovered = RenderUtil.withinBounds(x, y, getX(), getY(), getW(), getH());
 
-        RenderUtil.drawRect2(getX(), getY(), getW(), getH() + ToastClient.MODULE_MANAGER.getModulesInCat(moduleCategory).size() * 10 + 5, 0xff050505);
-        RenderUtil.drawBorderedRect2(getX() + .5f, getY() + .5f, getW() - 1f, getH() - 1f + ToastClient.MODULE_MANAGER.getModulesInCat(moduleCategory).size() * 10 + 5, 0.5f, 0xff282828, 0xff282828);
-        RenderUtil.drawBorderedRect2(getX() + 1.5f, getY() + 1.5f, getW() - 3f, getH() - 3f + ToastClient.MODULE_MANAGER.getModulesInCat(moduleCategory).size() * 10 + 5, 0.5f, 0xff111111, 0xff3C3C3C);
+        RenderUtil.drawRect2(getX(), getY(), getW(), getH() + ToastClient.INSTANCE.getModuleManager().getModulesInCat(moduleCategory).size() * 10 + 5, 0xff050505);
+        RenderUtil.drawBorderedRect2(getX() + .5f, getY() + .5f, getW() - 1f, getH() - 1f + ToastClient.INSTANCE.getModuleManager().getModulesInCat(moduleCategory).size() * 10 + 5, 0.5f, 0xff282828, 0xff282828);
+        RenderUtil.drawBorderedRect2(getX() + 1.5f, getY() + 1.5f, getW() - 3f, getH() - 3f + ToastClient.INSTANCE.getModuleManager().getModulesInCat(moduleCategory).size() * 10 + 5, 0.5f, 0xff111111, 0xff3C3C3C);
 
         for (float i = 2.5f; i < getW() - 2.5f; i++) {
             int color = Color.getHSBColor(i / 115, 0.9f, 1).getRGB();
             RenderUtil.drawRect2(getX() + i, getY() + 2.5f, 1, 0.5f, color);
         }
         Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(getLabel(), getX() + 5, getY() + 5, -1);
-        for (Module module : ToastClient.MODULE_MANAGER.getModulesInCat(moduleCategory)) {
+        for (Module module : ToastClient.INSTANCE.getModuleManager().getModulesInCat(moduleCategory)) {
             mc.fontRenderer.drawStringWithShadow(module.getName(), this.getX() + 5, this.getY() + offsetY + BORDER + TEXT_GAP + 1, module.isEnabled() ? Color.GREEN.getRGB() : Color.RED.getRGB());
             offsetY += mc.fontRenderer.FONT_HEIGHT + TEXT_GAP;
         }
@@ -67,7 +67,7 @@ public class CategoryFrame extends Frame {
         final boolean inside = x >= this.getX() && x <= this.getX() + this.getW() && y >= this.getY() && y <= this.getY() + this.getH();
         if (inside && button == 0) {
             int offsetY = BORDER;
-            for (Module module : ToastClient.MODULE_MANAGER.getModulesInCat(moduleCategory)) {
+            for (Module module : ToastClient.INSTANCE.getModuleManager().getModulesInCat(moduleCategory)) {
                 final boolean insideTitlebar = y <= this.getY() + BORDER + Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 1;
                 final boolean insideComponent = x >= (this.getX() + BORDER) && x <= (this.getX() + this.getW() - BORDER) && y >= (this.getY() + BORDER + Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT + 1 + offsetY) && y <= (this.getY() + BORDER + (Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT * 2) + 1 + offsetY);
                 if (!insideTitlebar && insideComponent) {
