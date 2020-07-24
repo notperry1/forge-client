@@ -3,6 +3,7 @@ package me.remainingtoast.toastclient.module.modules.render;
 import me.kix.lotus.property.annotations.Property;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
+import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NametagUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -74,7 +75,7 @@ public class NameTags extends Module {
         FontRenderer font = mc.fontRenderer;
         GlStateManager.scale(-0.025F, -0.025F, 0.025F);
 
-        String name = entity.getName() + (health ? " " + healthColoured(entity, Math.round(((EntityLivingBase) entity).getHealth() + (entity instanceof EntityPlayer ? ((EntityPlayer) entity).getAbsorptionAmount() : 0))) : "");
+        String name = entity.getName() + (this.health ? " " + healthColoured(entity, Math.round(((EntityLivingBase) entity).getHealth() + (entity instanceof EntityPlayer ? ((EntityPlayer) entity).getAbsorptionAmount() : 0))) : "");
         int length = font.getStringWidth(name) / 2;
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
@@ -100,13 +101,17 @@ public class NameTags extends Module {
 
         GlStateManager.enableTexture2D();
         GlStateManager.glNormal3f(0.0f, 1.0f, 0.0f);
-        font.drawString(name, -length, 10, 0x00FF00);
+
+        if (!entity.isSneaking()) font.drawString(name, -length, 10, entity instanceof EntityPlayer ? 0xffffff : 0xffffff);
+        else font.drawString(name, -length, 10, 0x00FF00);
+
         GlStateManager.glNormal3f(0.0F, 0.0F, 0.0F);
         glTranslatef(0, 20, 0);
 
         GlStateManager.scale(-40, -40, 40);
         GlStateManager.enableDepth();
         GlStateManager.popMatrix();
+        MessageUtil.sendRawMessage(name);
     }
 
 
