@@ -8,7 +8,6 @@ import me.remainingtoast.toastclient.util.ASCII;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
@@ -38,12 +37,12 @@ public class ToastClient {
     private PropertyManager PROPERTY_MANAGER = new PropertyManager();
 
 
-    @EventHandler
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Display.setTitle(FULLNAME);
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         if (!directory.exists())
             directory.mkdir();
