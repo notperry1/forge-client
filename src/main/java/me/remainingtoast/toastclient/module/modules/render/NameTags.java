@@ -8,6 +8,7 @@ import me.remainingtoast.toastclient.util.NametagUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.Enchantment;
@@ -35,8 +36,8 @@ public class NameTags extends Module {
     public float range = 200;
 
     @Property("Scale")
-    @Clamp(minimum = "0.5f", maximum = "10f")
-    public float scale = 2.5f;
+    @Clamp(minimum = "2f", maximum = "10f")
+    public float scale = 5f;
 
     @Property("Health")
     public boolean health = true;
@@ -46,7 +47,7 @@ public class NameTags extends Module {
     @SubscribeEvent
     public void worldRender(RenderWorldLastEvent event){
         for (EntityPlayer p : mc.world.playerEntities) {
-            if ((p != mc.getRenderViewEntity()) && (p.isEntityAlive())) {       
+            if ((p != mc.getRenderViewEntity()) && (p.isEntityAlive())) {
                 if (!p.getName().startsWith("Body #")) {
                     drawNametag(p);
                 }
@@ -103,7 +104,7 @@ public class NameTags extends Module {
         GlStateManager.enableTexture2D();
         GlStateManager.glNormal3f(0.0f, 1.0f, 0.0f);
 
-        if (!entity.isSneaking()) font.drawString(name, -length, 10, entity instanceof EntityPlayer ? 0xffffff : 0xffffff);
+        if (!entity.isSneaking()) font.drawString(name, -length, 10, 0xffffff);
         else font.drawString(name, -length, 10, 0x00FF00);
 
         int xOffset = 0;
@@ -117,15 +118,14 @@ public class NameTags extends Module {
         if (entity.getHeldItemMainhand() != null) {
             xOffset -= 8;
             renderStack = entity.getHeldItemMainhand().copy();
-            renderItem(entity, (ItemStack) renderStack, xOffset, -10);
+            renderItem((ItemStack) renderStack, xOffset, -10);
             xOffset += 16;
         }
         for (int index = 3; index >= 0; --index) {
             ItemStack armourStack = entity.inventory.armorInventory.get(index);
             if (armourStack != null) {
                 ItemStack renderStack1 = armourStack.copy();
-
-                renderItem(entity, renderStack1, xOffset, -10);
+                renderItem(renderStack1, xOffset, -10);
                 xOffset += 16;
             }
         }
@@ -135,8 +135,8 @@ public class NameTags extends Module {
             xOffset -= 0;
             renderOffhand = entity.getHeldItemOffhand().copy();
 
-            renderItem(entity, renderOffhand, xOffset, -10);
-            xOffset += 8;
+            renderItem(renderOffhand, xOffset, -10);
+            xOffset += 16;
         }
 
         GlStateManager.glNormal3f(0.0F, 0.0F, 0.0F);
@@ -145,12 +145,9 @@ public class NameTags extends Module {
         GlStateManager.scale(-40, -40, 40);
         GlStateManager.enableDepth();
         GlStateManager.popMatrix();
-
-
-
     }
 
-    private void renderItem(EntityPlayer player, ItemStack stack, int x, int y) {
+    private void renderItem(ItemStack stack, int x, int y) {
         GL11.glPushMatrix();
         GL11.glDepthMask(true);
         GlStateManager.clear(256);
@@ -158,26 +155,26 @@ public class NameTags extends Module {
         GlStateManager.disableDepth();
         GlStateManager.enableDepth();
 
-        net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
+        RenderHelper.enableStandardItemLighting();
         mc.getRenderItem().zLevel = -100.0F;
         GlStateManager.scale(1, 1, 0.01f);
         mc.getRenderItem().renderItemAndEffectIntoGUI(stack, x, (y / 2) - 12);
         mc.getRenderItem().renderItemOverlays(mc.fontRenderer, stack, x, (y / 2) - 12);
         mc.getRenderItem().zLevel = 0.0F;
         GlStateManager.scale(1, 1, 1);
-        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        RenderHelper.disableStandardItemLighting();
         GlStateManager.enableAlpha();
         GlStateManager.disableBlend();
         GlStateManager.disableLighting();
         GlStateManager.scale(0.5D, 0.5D, 0.5D);
         GlStateManager.disableDepth();
-        renderEnchantText(player, stack, x, y - 18);
+        renderEnchantText(stack, x, y - 18);
         GlStateManager.enableDepth();
         GlStateManager.scale(2.0F, 2.0F, 2.0F);
         GL11.glPopMatrix();
     }
 
-    private void renderEnchantText(EntityPlayer player, ItemStack stack, int x, int y) {
+    private void renderEnchantText(ItemStack stack, int x, int y) {
         int encY = y - 24;
         int yCount = encY - -5;
         if (stack.getItem() instanceof ItemArmor || stack.getItem() instanceof ItemSword

@@ -5,7 +5,6 @@ import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.util.ASCII;
-import me.remainingtoast.toastclient.util.LoginUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -56,7 +55,7 @@ public class ToastClient {
         ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
 
-        LoginUtil.loginCracked("RemainingToast");
+//        LoginUtil.loginCracked("RemainingToast");
 
         //Keep Last
         Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
