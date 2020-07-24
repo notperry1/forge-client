@@ -1,9 +1,9 @@
 package me.remainingtoast.toastclient.module.modules.render;
 
+import me.kix.lotus.property.annotations.Clamp;
 import me.kix.lotus.property.annotations.Property;
 import me.remainingtoast.toastclient.module.Module;
 import me.remainingtoast.toastclient.module.ModuleManifest;
-import me.remainingtoast.toastclient.util.MessageUtil;
 import me.remainingtoast.toastclient.util.NametagUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -27,9 +27,11 @@ import static org.lwjgl.opengl.GL11.*;
 public class NameTags extends Module {
 
     @Property("Range")
+    @Clamp(minimum = "10", maximum = "1000")
     public float range = 200;
 
     @Property("Scale")
+    @Clamp(minimum = "0.5f", maximum = "10f")
     public float scale = 2.5f;
 
     @Property("Health")
@@ -111,7 +113,6 @@ public class NameTags extends Module {
         GlStateManager.scale(-40, -40, 40);
         GlStateManager.enableDepth();
         GlStateManager.popMatrix();
-        MessageUtil.sendRawMessage(name);
     }
 
 
