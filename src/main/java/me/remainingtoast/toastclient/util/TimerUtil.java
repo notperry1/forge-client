@@ -1,7 +1,10 @@
 package me.remainingtoast.toastclient.util;
 
+import net.minecraft.client.Minecraft;
+
 public class TimerUtil {
     private long time;
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     public TimerUtil(){
         time = -1;
@@ -30,4 +33,5 @@ public class TimerUtil {
     {
         this.time = time;
     }
+
 }
