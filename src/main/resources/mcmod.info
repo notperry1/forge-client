@@ -1,0 +1,12 @@
+[
+  {
+    "modid": "toastclient",
+    "name": "Toast Client\n",
+    "description": "Utility Mod Designed for Anarchy\n",
+    "version": "1.0-beta",
+    "mcversion": "1.12.2",
+    "url": "https://github.com/RemainingToast/ToastClientForge",
+    "authorList": ["RemainingToast"],
+    "credits": "Thanks to all the contributors for your help and time <3\n"
+  }
+]
