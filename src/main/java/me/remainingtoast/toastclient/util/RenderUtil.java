@@ -226,7 +226,7 @@ public class RenderUtil {
         GlStateManager.popMatrix();
     }
 
-    public static void drawLine3D(float x, float y, float z, float x1, float y1, float z1, float thickness, int hex) {
+        public static void drawLine3D(float x, float y, float z, float x1, float y1, float z1, float thickness, int hex) {
         float red = (hex >> 16 & 0xFF) / 255.0F;
         float green = (hex >> 8 & 0xFF) / 255.0F;
         float blue = (hex & 0xFF) / 255.0F;

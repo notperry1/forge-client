@@ -5,6 +5,7 @@ import me.remainingtoast.toastclient.command.CommandManager;
 import me.remainingtoast.toastclient.module.ModuleManager;
 import me.remainingtoast.toastclient.module.modules.gui.ClickGui;
 import me.remainingtoast.toastclient.util.ASCII;
+import me.remainingtoast.toastclient.util.LoginUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -29,9 +30,7 @@ public class ToastClient {
     public static final String FULLNAME = NAME +" "+ FULLVERSION;
     public static final String CONFIGFILE = "ToastClientConfig.json";
     public static final Logger log = LogManager.getLogger("Toast Client");
-
     private static File directory = new File(Minecraft.getMinecraft().mcDataDir, NAME.replaceAll(" ", ""));
-
     public static final ModuleManager moduleManager = new ModuleManager(new File(directory, "modules"));
     private CommandManager commandManager = new CommandManager();
     private PropertyManager PROPERTY_MANAGER = new PropertyManager();
@@ -54,7 +53,7 @@ public class ToastClient {
         ASCII.printFancyConsoleMSG();
         System.out.println(FULLNAME + " loaded.");
 
-//        LoginUtil.loginCracked("RemainingToast");
+        LoginUtil.loginCracked("RemainingToast");
 
         //Keep Last
         Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
