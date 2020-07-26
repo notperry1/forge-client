@@ -74,13 +74,11 @@ public class NameTags extends Module {
         float dist = mc.player.getDistance(entity);
         float math = (dist / 8f) * (float) (Math.pow(1.258254f, this.scale));
         GlStateManager.scale(math, math, math);
-
-
         GlStateManager.scale(-0.025F, -0.025F, 0.025F);
-
-        final NetworkPlayerInfo playerInfo = mc.getConnection().getPlayerInfo(mc.player.getUniqueID());
-        final String ping = " " + playerInfo.getResponseTime() + "ms";
-        String name = entity.getName() + ping + (this.health ? " " + healthColoured(entity, Math.round(((EntityLivingBase) entity).getHealth() + (entity instanceof EntityPlayer ? ((EntityPlayer) entity).getAbsorptionAmount() : 0))) : "");
+        NetworkPlayerInfo playerInfo = mc.getConnection().getPlayerInfo(entity.getUniqueID());
+        if(playerInfo == null || entity == null) return; // IntelliJ says this is always false, but crashes without it.
+        String ping = " " + playerInfo.getResponseTime() + "ms";
+        String name = entity.getName() + ping + (this.health ? " " + healthColoured(entity, Math.round(entity.getHealth() + entity.getAbsorptionAmount())) : "");
         int length = font.getStringWidth(name) / 2;
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);

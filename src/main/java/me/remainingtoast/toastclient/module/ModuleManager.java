@@ -19,7 +19,10 @@ import me.remainingtoast.toastclient.module.modules.movement.ElytraFlight;
 import me.remainingtoast.toastclient.module.modules.movement.Flight;
 import me.remainingtoast.toastclient.module.modules.movement.Sprint;
 import me.remainingtoast.toastclient.module.modules.player.*;
-import me.remainingtoast.toastclient.module.modules.render.*;
+import me.remainingtoast.toastclient.module.modules.render.BlockHighlight;
+import me.remainingtoast.toastclient.module.modules.render.FullBright;
+import me.remainingtoast.toastclient.module.modules.render.NameTags;
+import me.remainingtoast.toastclient.module.modules.render.PlayerESP;
 import me.remainingtoast.toastclient.util.MessageUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
@@ -49,7 +52,7 @@ public class ModuleManager extends HashMapManager<String, Module> {
         modulesSet.clear();
         register(new ClipboardScreenshot(), new ClickGui(), new NoFall(), new HUD(), new FullBright(), new Flight(), new AntiHunger(), new ElytraFlight(), new DiscordRPC(), new KillAura(),
                 new Sprint(), new AutoTotem(), new PlayerESP(), new CrystalAura(), new AutoRespawn(), new AutoReconnect(), new DeathCoords(),
-                new BlockHighlight(), new Console(), new NameTags(), new Tracers());
+                new BlockHighlight(), new Console(), new NameTags());
         getRegistry().values().forEach(Module::init);
         this.loadCheats();
     }

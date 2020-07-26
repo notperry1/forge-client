@@ -63,14 +63,14 @@ public class MessageUtil {
             case WHITE:
                 sendRawMessage(CHAT_PREFIX + TextFormatting.WHITE + message);
                 break;
-            case GRAY:
-                sendRawMessage(CHAT_PREFIX + TextFormatting.GRAY + message);
-                break;
             case DARK_GRAY:
                 sendRawMessage(CHAT_PREFIX + TextFormatting.DARK_GRAY + message);
                 break;
             case BLACK:
                 sendRawMessage(CHAT_PREFIX + TextFormatting.BLACK + message);
+                break;
+            default:
+                sendRawMessage(CHAT_PREFIX + TextFormatting.GRAY + message);
                 break;
         }
     }
