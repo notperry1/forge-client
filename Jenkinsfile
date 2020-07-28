@@ -1,6 +1,10 @@
-node {
-  withGradle {
-    sh './gradlew --scan -s'
-    sh './gradlew build'
-  }
+pipeline {
+    agent { docker 'gradle:latest' } 
+    stages {
+        stage('Gradle Build') {
+            steps {
+                sh 'gradle build'
+            }
+        }
+    }
 }
