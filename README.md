@@ -1,3 +1,5 @@
+[![Build Status](https://jenkins.wnuke.dev/job/forge-client/job/feature%252Fmodules/badge/icon)](https://jenkins.wnuke.dev/job/forge-client/job/feature%252Fmodules/)
+
 # ToastClientForge
 Custom Based Utility Mod for Minecraft 1.12.2     
 Big Thanks to all of the [contributors](https://github.com/RemainingToast/ToastClientForge/graphs/contributors) who have contributed!
