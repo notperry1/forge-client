@@ -1,4 +1,4 @@
-[![Build Status](https://jenkins.wnuke.dev/job/toast/forge-client/job/feature%252Fmodules/badge/icon)](https://jenkins.wnuke.dev/job/toast/forge-client/job/feature%252Fmodules/)
+[![Build Status](https://jenkins.wnuke.dev/job/toast/job/forge-client/job/feature%252Fmodules/badge/icon)](https://jenkins.wnuke.dev/job/toast/job/forge-client/job/feature%252Fmodules/)
 
 # ToastClientForge
 Custom Based Utility Mod for Minecraft 1.12.2     
